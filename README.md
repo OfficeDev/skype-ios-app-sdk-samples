@@ -34,3 +34,5 @@ For details on how the above class was used, see **ChatViewController.m**.
 
 > note: in order to leave the conversaion, canLeave property of SfBConversation must be checked. In this case, it is monitored through Key-Value Observation.
 
+## Copyright
+Copyright (c) 2016 Microsoft. All rights reserved.
