@@ -1,0 +1,421 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		96101E6F1C90AC8B004CE997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E6E1C90AC8B004CE997 /* main.m */; };
+		96101E721C90AC8B004CE997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E711C90AC8B004CE997 /* AppDelegate.m */; };
+		96101E781C90AC8B004CE997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96101E761C90AC8B004CE997 /* Main.storyboard */; };
+		96101E7A1C90AC8B004CE997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96101E791C90AC8B004CE997 /* Assets.xcassets */; };
+		96101E7D1C90AC8B004CE997 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96101E7B1C90AC8B004CE997 /* LaunchScreen.storyboard */; };
+		96101E891C90B4D4004CE997 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E881C90B4D4004CE997 /* MainViewController.m */; };
+		962058951C9724C100D35390 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962058941C9724C100D35390 /* VideoViewController.m */; };
+		9629F0E71C92C17A00957E74 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9629F0E61C92C17A00957E74 /* LoginViewController.m */; };
+		9634F71B1CC9520700F3D29E /* ChatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9634F71A1CC9520700F3D29E /* ChatTableViewController.m */; };
+		9634F71E1CC9525100F3D29E /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9634F71D1CC9525100F3D29E /* ChatCell.m */; };
+		9634F7211CC9598100F3D29E /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9634F7201CC9598100F3D29E /* ChatViewController.m */; };
+		9683CE481CD2C3F5008351E4 /* ChatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9683CE471CD2C3F5008351E4 /* ChatHandler.m */; };
+		96844E5F1C91F011003F6562 /* AccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96844E5E1C91F011003F6562 /* AccountTableViewController.m */; };
+		96844E6C1C91FCEF003F6562 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96844E6B1C91FCEF003F6562 /* AVFoundation.framework */; };
+		96844E6E1C922A9A003F6562 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96844E6D1C922A9A003F6562 /* GLKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		96101E6A1C90AC8B004CE997 /* BankingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96101E6E1C90AC8B004CE997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		96101E701C90AC8B004CE997 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		96101E711C90AC8B004CE997 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		96101E771C90AC8B004CE997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		96101E791C90AC8B004CE997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		96101E7C1C90AC8B004CE997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		96101E7E1C90AC8B004CE997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96101E871C90B4D4004CE997 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		96101E881C90B4D4004CE997 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		962058931C9724C100D35390 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		962058941C9724C100D35390 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
+		9629F0E51C92C17A00957E74 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		9629F0E61C92C17A00957E74 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		9634F7191CC9520700F3D29E /* ChatTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTableViewController.h; sourceTree = "<group>"; };
+		9634F71A1CC9520700F3D29E /* ChatTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTableViewController.m; sourceTree = "<group>"; };
+		9634F71C1CC9525100F3D29E /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		9634F71D1CC9525100F3D29E /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		9634F71F1CC9598100F3D29E /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		9634F7201CC9598100F3D29E /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		9683CE461CD2C3F5008351E4 /* ChatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatHandler.h; sourceTree = "<group>"; };
+		9683CE471CD2C3F5008351E4 /* ChatHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatHandler.m; sourceTree = "<group>"; };
+		96844E5D1C91F011003F6562 /* AccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTableViewController.h; sourceTree = "<group>"; };
+		96844E5E1C91F011003F6562 /* AccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewController.m; sourceTree = "<group>"; };
+		96844E6B1C91FCEF003F6562 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		96844E6D1C922A9A003F6562 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96101E671C90AC8B004CE997 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96844E6E1C922A9A003F6562 /* GLKit.framework in Frameworks */,
+				96844E6C1C91FCEF003F6562 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		960A88F01CD2147100262EF5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				9634F7191CC9520700F3D29E /* ChatTableViewController.h */,
+				9634F71A1CC9520700F3D29E /* ChatTableViewController.m */,
+				9634F71F1CC9598100F3D29E /* ChatViewController.h */,
+				9634F7201CC9598100F3D29E /* ChatViewController.m */,
+				9683CE461CD2C3F5008351E4 /* ChatHandler.h */,
+				9683CE471CD2C3F5008351E4 /* ChatHandler.m */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		960A88F11CD2147600262EF5 /* AV */ = {
+			isa = PBXGroup;
+			children = (
+				962058931C9724C100D35390 /* VideoViewController.h */,
+				962058941C9724C100D35390 /* VideoViewController.m */,
+			);
+			name = AV;
+			sourceTree = "<group>";
+		};
+		96101E611C90AC8B004CE997 = {
+			isa = PBXGroup;
+			children = (
+				96101E6C1C90AC8B004CE997 /* BankingApp */,
+				962239B41CA148D00068CE3A /* Frameworks */,
+				96101E6B1C90AC8B004CE997 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		96101E6B1C90AC8B004CE997 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96101E6A1C90AC8B004CE997 /* BankingApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96101E6C1C90AC8B004CE997 /* BankingApp */ = {
+			isa = PBXGroup;
+			children = (
+				962239B81CA148F50068CE3A /* Controllers */,
+				962239B61CA148EA0068CE3A /* Resources */,
+				962239B51CA148E30068CE3A /* Views */,
+				96101E6D1C90AC8B004CE997 /* Supporting Files */,
+			);
+			path = BankingApp;
+			sourceTree = "<group>";
+		};
+		96101E6D1C90AC8B004CE997 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				96101E6E1C90AC8B004CE997 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		962239B41CA148D00068CE3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				96844E6D1C922A9A003F6562 /* GLKit.framework */,
+				96844E6B1C91FCEF003F6562 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		962239B51CA148E30068CE3A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9634F71C1CC9525100F3D29E /* ChatCell.h */,
+				9634F71D1CC9525100F3D29E /* ChatCell.m */,
+				96101E761C90AC8B004CE997 /* Main.storyboard */,
+				96101E7B1C90AC8B004CE997 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		962239B61CA148EA0068CE3A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				96101E7E1C90AC8B004CE997 /* Info.plist */,
+				96101E791C90AC8B004CE997 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		962239B81CA148F50068CE3A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				960A88F11CD2147600262EF5 /* AV */,
+				960A88F01CD2147100262EF5 /* Chat */,
+				96101E701C90AC8B004CE997 /* AppDelegate.h */,
+				96101E711C90AC8B004CE997 /* AppDelegate.m */,
+				96101E871C90B4D4004CE997 /* MainViewController.h */,
+				96101E881C90B4D4004CE997 /* MainViewController.m */,
+				96844E5D1C91F011003F6562 /* AccountTableViewController.h */,
+				96844E5E1C91F011003F6562 /* AccountTableViewController.m */,
+				9629F0E51C92C17A00957E74 /* LoginViewController.h */,
+				9629F0E61C92C17A00957E74 /* LoginViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96101E691C90AC8B004CE997 /* BankingApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96101E811C90AC8B004CE997 /* Build configuration list for PBXNativeTarget "BankingApp" */;
+			buildPhases = (
+				96101E661C90AC8B004CE997 /* Sources */,
+				96101E671C90AC8B004CE997 /* Frameworks */,
+				96101E681C90AC8B004CE997 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BankingApp;
+			productName = SkypeDemo;
+			productReference = 96101E6A1C90AC8B004CE997 /* BankingApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96101E621C90AC8B004CE997 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Jason Kim";
+				TargetAttributes = {
+					96101E691C90AC8B004CE997 = {
+						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 96101E651C90AC8B004CE997 /* Build configuration list for PBXProject "BankingApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 96101E611C90AC8B004CE997;
+			productRefGroup = 96101E6B1C90AC8B004CE997 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96101E691C90AC8B004CE997 /* BankingApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96101E681C90AC8B004CE997 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96101E7D1C90AC8B004CE997 /* LaunchScreen.storyboard in Resources */,
+				96101E7A1C90AC8B004CE997 /* Assets.xcassets in Resources */,
+				96101E781C90AC8B004CE997 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96101E661C90AC8B004CE997 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96101E721C90AC8B004CE997 /* AppDelegate.m in Sources */,
+				9634F7211CC9598100F3D29E /* ChatViewController.m in Sources */,
+				9629F0E71C92C17A00957E74 /* LoginViewController.m in Sources */,
+				9634F71E1CC9525100F3D29E /* ChatCell.m in Sources */,
+				9634F71B1CC9520700F3D29E /* ChatTableViewController.m in Sources */,
+				9683CE481CD2C3F5008351E4 /* ChatHandler.m in Sources */,
+				96101E6F1C90AC8B004CE997 /* main.m in Sources */,
+				96101E891C90B4D4004CE997 /* MainViewController.m in Sources */,
+				962058951C9724C100D35390 /* VideoViewController.m in Sources */,
+				96844E5F1C91F011003F6562 /* AccountTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		96101E761C90AC8B004CE997 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96101E771C90AC8B004CE997 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		96101E7B1C90AC8B004CE997 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96101E7C1C90AC8B004CE997 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		96101E7F1C90AC8B004CE997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		96101E801C90AC8B004CE997 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		96101E821C90AC8B004CE997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BankingApp",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = BankingApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp-";
+				PRODUCT_NAME = BankingApp;
+			};
+			name = Debug;
+		};
+		96101E831C90AC8B004CE997 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BankingApp",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = BankingApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp-";
+				PRODUCT_NAME = BankingApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96101E651C90AC8B004CE997 /* Build configuration list for PBXProject "BankingApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96101E7F1C90AC8B004CE997 /* Debug */,
+				96101E801C90AC8B004CE997 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96101E811C90AC8B004CE997 /* Build configuration list for PBXNativeTarget "BankingApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96101E821C90AC8B004CE997 /* Debug */,
+				96101E831C90AC8B004CE997 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 96101E621C90AC8B004CE997 /* Project object */;
+}
