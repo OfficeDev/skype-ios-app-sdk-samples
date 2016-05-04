@@ -14,7 +14,7 @@ This sample app illustrates how to integrate Skype for Business to an iOS applic
 
 2. Copy SkypeForBusiness.framework from SkypeForBusinessAppSDKiOS folder and add to your sample application folder. 
 
-3. In the Project Navigator, Select your project. -> In Editor, Go to Build Phases tab -> Open Embed Frameworks -> Click the + button to select the frameworks to add. -> Click Add Other to navigate to SkypeforBusiness.framework.
+3. In the Project Navigator, Select your project. -> In Editor, Go to General tab -> Open Embedded Binaries -> Click the + button to select the frameworks to add. -> Click Add Other to navigate to SkypeforBusiness.framework.
 ```console
 Note: Add SkypeForBusiness.framework as an "Embedded Binary" (not a "Linked Framework").
 ```
