@@ -1,28 +1,25 @@
 # Skype for Business IOS SDK - Guest Meeting Join sample
 
-Guest Meeting Join sample demonstrates the power of ** Skype for Business – App SDK API** to start or join a meeting, participate in chat, and start sharing audio/video. The user has to provide a **Join Meeting URL** to participate. 
+The Guest meeting join sample provides further technology details of you how to join a guest meeting, start chatting, and connect to the audio/video stream of the meeting.
 
 ##Prerequisites
 
-1. Download [**Skype for Business App SDK for iOS**](https://www.microsoft.com/en-us/download/confirmation.aspx?id=51962) 
+1. Download the [**Skype for Business App SDK for iOS**](https://www.microsoft.com/en-us/download/confirmation.aspx?id=51962).
 
-2. Have a [**Join Meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) for an established Skype Business meeting.
+2. Obtain a [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) for a Skype Business meeting.
 
 ##How to get started
 
-1. Clone the Guest Meeting Join sample application in your local directory
-2. Copy the SkypeForBusiness.framework in the parent directory of your sample application. 
-3. Change the project **Bundle Identifier**. In the Project Navigator, Select your project. -> In Editor, Go to General tab -> Change Bundle Identifier under Identity section. 
-```console
-NOTE: The SDK comes with a SkypeForBusiness.framework for use on physical devices (recommended) and a SkypeForBusiness.framework for running the iOS simulator (limited because audio and video function won't work correctly). The binaries have the same name but are in separate folders. To run your app on a device, navigate to the location where you downloaded the App SDK and select the SkypeForBusiness.framework file in the AppSDKiOS folder. To run your app in a simulator, selec the SkypeForBusiness.framework file in the AppSDKiOSSimulator folder.
-```
+1. Clone or copy the Guest Meeting Join sample app to your local machine.
 
-##Run the sample
+2. Copy the SkypeForBusiness.framework in the parent directory of your sample application.
+ 
+   > **Note**: The SDK comes with a SkypeForBusiness.framework for use on physical devices (recommended) and a SkypeForBusiness.framework for running the iOS simulator (limited because audio and video function won't work correctly). The binaries have the same name but are in separate folders. To run your app on a device, navigate to the location where you downloaded the App SDK and select the SkypeForBusiness.framework file in the AppSDKiOS folder. To run your app in a simulator, selec the SkypeForBusiness.framework file in the AppSDKiOSSimulator folder.
 
-On running the sample, you will be prompted for Meeting URL. To join the meeting, Use [**Join Meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) for an established Skype Business meeting.
-```console 
-Note: Depending on the framework added, sample application can run on simulator or an iOS device.
-```
-##Copyright
+3. In the Project Navigator, select your project. In the Editor pane, go to General tab -> Open Embedded Binaries.  Click the + button to add a new framework. Click Add Other to navigate to where you just copied the SkypeforBusiness.framework.
 
-Copyright (c) 2016 Microsoft. All rights reserved.
+   > **Note**: Add SkypeForBusiness.framework as an "Embedded Binary" (not a "Linked Framework").
+
+4. Change the project **Bundle Identifier**. In the Project Navigator select your project. In the Editor pane, go to General tab -> Change Bundle Identifier under Identity section. 
+
+5. Run the sample.  You will be prompted for [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and a display name of your choice.
