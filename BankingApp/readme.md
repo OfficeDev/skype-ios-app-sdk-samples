@@ -2,7 +2,7 @@
 
 This sample app illustrates how to integrate Skype for Business to an iOS application to do a anonymous meeting join with text chat and audio/video conversations.
 
-##Prerequisites
+#Prerequisites
 
 1. Download [**Skype for Business App SDK for iOS**](https://www.microsoft.com/en-us/download/confirmation.aspx?id=51962) 
 2. Go through [**Use the SDK to Join a meeting with an iOS device**](https://msdn.microsoft.com/en-us/skype/appsdk/howtojoinmeeting_ios)
