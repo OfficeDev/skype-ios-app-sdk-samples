@@ -52,6 +52,7 @@ Here you can view the list of meeting participants identified by name and live v
   - The "Camera" icon to switch front-to-back camera option. 
   - The "Mute/Audio" toggle button to handle outgoing audio.
   - The remote participant list is available, with an indication of who is speaking.
-  - The "Chat" button to go back to **Conversation Screen**
+  - The "Chat" button to go back to **Conversation Screen**.
  
-  
+  > Note: You can add more meeting participants by using the Skype for Business application installed on your desktop or mobile device. Please use the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) as above.
+ 
