@@ -22,19 +22,17 @@ The Guest meeting join sample provides further technology details of you how to 
 
 4. Change the project **Bundle Identifier**. In the Project Navigator select your project. In the Editor pane, go to General tab -> Change Bundle Identifier under Identity section. 
 
-5. Run the sample.  You will be prompted for [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and a display name of your choice.
+5. Build and run the sample.
 
-## Sample app walkthrough
+6. Enter the [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and a display name of your choice.
 
-Here's how the sample app works:
+7. Join the meeting.
 
-###Start Screen
-
-When prompted, enter [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and a display name of your choice.
+   > Note: To test the app, you need to join the meeting as the remote "agent" yourself by using the Skype for Business application installed on your desktop or mobile device. Join the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) that you configured in the app above.
 
 ### Conversation Screen
 
-Once you join the meeting , You enter the conversation screen. On this screen, you can send text message to other meeting participants and view chat history.
+Once you join the meeting, you enter the conversation screen. On this screen, you can send text message to other meeting participants and view chat history.
 
 - Conversation Screen shows:
  - The "Leave" button to leave the meeting.
@@ -44,7 +42,7 @@ Once you join the meeting , You enter the conversation screen. On this screen, y
  
 ###Participants Screen
  
-Here you can view the list of meeting participants identified by name and live video stream(if available).
+Here you can view the list of meeting participants identified by name, along with their live video stream (if available).
 - Participants Screen shows:
   - The "Play" button to start outgoing video. 
   - The "Pause" button to pause outgoing video.
@@ -53,6 +51,4 @@ Here you can view the list of meeting participants identified by name and live v
   - The "Mute/Audio" toggle button to handle outgoing audio.
   - The remote participant list is available, with an indication of who is speaking.
   - The "Chat" button to go back to **Conversation Screen**.
- 
-  > Note: You can add more meeting participants by using the Skype for Business application installed on your desktop or mobile device. Please use the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) as above.
  

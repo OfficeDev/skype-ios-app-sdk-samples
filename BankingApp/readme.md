@@ -25,38 +25,14 @@ This sample app illustrates how to integrate Skype for Business text chat, audio
 
 6. Edit Info.plist and replace value of __Skype meeting URL__ and __Skype meeting display name__ with a [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and any desired name respectively.
 
-## Sample app walkthrough
+7. Build and run the app.
 
-Here's how the sample app works:
+8. Press the **"Sign in"** button to login.  This is a pseudo login screen and does not require a real email and password. 
 
-###Login Screen
+9. Once you sign in, you enter the main screen where you can view pseudo bank account details and can contact a "bank agent" via text or video call.
 
-This is a pseudo login screen and does not require email and password to sign in. Simply press **"Sign in"** button to login.
+   > Note: To test the app, you need to join the meeting as a "bank agent" yourself by using the Skype for Business application installed on your desktop or mobile device. Join the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) that you configured in the app above.
 
- > **Note**: Before signing in, make sure that you edit Info.plist and replace value of __Skype meeting URL__ and __Skype meeting display name__ with a valid "Meeting URL" and any desired name respectively. 
-
-### Main Screen
-
-Once you sign in, You enter the Main screen where you can view pseudo bank account details and can contact the bank agent via text or video call.
-
-- Main Screen shows:
- - The "Ask Agent" button that connects you to banking agent via text or video call.
- - The "Log off" button to log out of the sample.
- 
-### Chat Screen
- 
-Press "Ask Agent" button -> select "Ask using Text Chat" from options menu to start text Chat with the bank agent. You will be notified once the agent is available for chat. Press "End" button to exit the chat.
-
-### Video Chat Screen:
- 
- Press "Ask Agent" button -> select "Ask using Video Chat" from options menu to start Video Chat with the agent. You will be notified once you are connected to the agent. This screen will show your live video stream  and bank agent.
- 
- - You can
-  - Press "End" button to exit the chat. 
-  - Use Mute/unMute toggle button to handle outgoing audio.
-  
-  > Note: You can join the meeting as a bank agent by using the Skype for Business application installed on your desktop or mobile device. Please use the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) as above.
- 
 ## Sample code walkthrough
 
 Here's how the sample source code works:
