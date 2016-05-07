@@ -25,9 +25,17 @@ This sample app illustrates how to integrate Skype for Business text chat, audio
 
 6. Edit Info.plist and replace value of __Skype meeting URL__ and __Skype meeting display name__ with a [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and any desired name respectively.
 
-## Sample app walkthrough
+7. Build and run the app.
 
-Here's how the sample app works:
+8. Press the **"Sign in"** button to login.  This is a pseudo login screen and does not require a real email and password. 
+
+9. Once you sign in, you enter the main screen where you can view pseudo bank account details and can contact a "bank agent" via text or video call.
+
+   > Note: To test the app, you need to join the meeting as a "bank agent" yourself by using the Skype for Business application installed on your desktop or mobile device. Join the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) that you configured in the app above.
+
+## Sample code walkthrough
+
+Here's how the sample source code works:
 
 ### Initializing Skype for Business
 In **MainViewController.m**, initialization of Skype is done.
@@ -40,7 +48,7 @@ In **MainViewController.m**, initialization of Skype is done.
 ```
 
 ### Handling Audio/Video conversation  
-AV conversation takes advantage of a convinient helper class included in the SDK.
+AV conversation takes advantage of a convenient helper class included in the SDK.
 In **SfBConversation.h** and **.m**, using initializer sets up everything needed in the AV conversation.
 
 For details on how it was used, see **VideoViewController.m**.
@@ -52,10 +60,8 @@ For details on how the above class was used, see **ChatViewController.m**.
 
 ### Leaving a conversation
 In order to leave the conversaion, __canLeave__ property of SfBConversation must be checked. In this case, it is monitored through Key-Value Observation in **VideoViewController.m** and **ChatViewController.m**.
-```objective-c
-...
-[conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
-...     
 
+```objective-c
+[conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
 ```
 
