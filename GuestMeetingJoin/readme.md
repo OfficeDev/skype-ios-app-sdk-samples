@@ -20,9 +20,7 @@ The Guest meeting join sample provides further technology details of you how to 
 
    > **Note**: Add SkypeForBusiness.framework as an "Embedded Binary" (not a "Linked Framework").
 
-4. Change the project **Bundle Identifier**. In the Project Navigator select your project. In the Editor pane, go to General tab -> Change Bundle Identifier under Identity section. 
-
-5. Run the sample.  You will be prompted for [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and a display name of your choice.
+4. Run the sample.  You will be prompted for [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and a display name of your choice.
 
 ## Sample app walkthrough
 
