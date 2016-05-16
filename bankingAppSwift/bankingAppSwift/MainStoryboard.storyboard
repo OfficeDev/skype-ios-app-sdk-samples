@@ -26,12 +26,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKM-8G-SYM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-794" y="158"/>
+            <point key="canvasLocation" x="-1069" y="158"/>
         </scene>
-        <!--Woodgrove Bank-->
+        <!--Login -->
         <scene sceneID="7HO-16-OIp">
             <objects>
-                <viewController id="xJ0-Je-lng" customClass="LoginViewController" customModule="bankingAppSwift" sceneMemberID="viewController">
+                <viewController id="xJ0-Je-lng" userLabel="Login " customClass="LoginViewController" customModule="bankingAppSwift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KQz-yh-qgk"/>
                         <viewControllerLayoutGuide type="bottom" id="5xS-Ac-axz"/>
@@ -104,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBf-5I-YyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13" y="167"/>
+            <point key="canvasLocation" x="-349" y="158"/>
         </scene>
         <!--Main-->
         <scene sceneID="tH9-uG-6hc">
@@ -163,12 +163,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lS8-qK-2kN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="158"/>
+            <point key="canvasLocation" x="369" y="158"/>
         </scene>
-        <!--Woodgrove Bank-->
+        <!--Text Chat -->
         <scene sceneID="HFA-uK-ocu">
             <objects>
-                <viewController id="YbP-R5-2Oq" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController id="YbP-R5-2Oq" userLabel="Text Chat " customClass="ChatViewController" customModule="bankingAppSwift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vB3-7b-cjH"/>
                         <viewControllerLayoutGuide type="bottom" id="tFU-fU-d9N"/>
@@ -201,7 +201,7 @@
                                             <color key="titleColor" red="0.92678740540000004" green="0.92678740540000004" blue="0.92678740540000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="sendMessage:" destination="YbP-R5-2Oq" eventType="touchUpInside" id="wJV-cE-vcC"/>
+                                            <action selector="sendMessage:" destination="YbP-R5-2Oq" eventType="touchUpInside" id="Vxh-rg-4Gx"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Balance: $153.23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRw-5z-LKj">
@@ -248,25 +248,25 @@
                         <barButtonItem key="rightBarButtonItem" title="End" id="HqN-K3-qbU">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="endChat:" destination="YbP-R5-2Oq" id="uNa-Bb-ZXy"/>
+                                <action selector="endChat:" destination="YbP-R5-2Oq" id="l0i-sa-tLe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="endButton" destination="HqN-K3-qbU" id="zxL-lq-n8O"/>
-                        <outlet property="messageTextField" destination="EO7-0l-9zX" id="h6v-EC-iyR"/>
-                        <outlet property="sendButton" destination="aqz-vk-MWj" id="Xnk-JV-xo7"/>
-                        <outlet property="spaceConstraint" destination="Mtz-Wz-96J" id="Jaq-LX-I1c"/>
+                        <outlet property="endButton" destination="HqN-K3-qbU" id="sBM-nb-dtM"/>
+                        <outlet property="messageTextField" destination="EO7-0l-9zX" id="Lfc-UC-vQB"/>
+                        <outlet property="sendButton" destination="aqz-vk-MWj" id="kXU-w6-HNn"/>
+                        <outlet property="spaceConstraint" destination="Mtz-Wz-96J" id="gZq-Lk-NZe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBb-NY-f0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1296" y="-618"/>
+            <point key="canvasLocation" x="1284" y="-542"/>
         </scene>
-        <!--Chat -->
+        <!--Video Chat-->
         <scene sceneID="L6L-hp-WEU">
             <objects>
-                <viewController id="QOx-2o-Lxb" userLabel="Chat " customClass="VideoViewController" sceneMemberID="viewController">
+                <viewController id="QOx-2o-Lxb" userLabel="Video Chat" customClass="VideoViewController" customModule="bankingAppSwift" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PEl-i9-x0d"/>
                         <viewControllerLayoutGuide type="bottom" id="mJc-vz-BcF"/>
@@ -287,6 +287,9 @@ an agent</string>
                                 <color key="textColor" red="0.0033992959650000001" green="0.4364449084" blue="0.87180966140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <glkView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srE-hQ-xls" userLabel="Participant View">
+                                <rect key="frame" x="0.0" y="94" width="600" height="506"/>
+                            </glkView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KlA-Gj-fUe" userLabel="Self Video View">
                                 <rect key="frame" x="460" y="460" width="120" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -325,7 +328,7 @@ an agent</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="endCall:" destination="QOx-2o-Lxb" eventType="touchUpInside" id="fcM-z3-HCf"/>
+                                            <action selector="endCall:" destination="QOx-2o-Lxb" eventType="touchUpInside" id="EGe-kK-XsV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjl-Lu-iGq">
@@ -343,7 +346,7 @@ an agent</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="toggleMute:" destination="QOx-2o-Lxb" eventType="touchUpInside" id="ymg-bS-mt3"/>
+                                            <action selector="toggleMute:" destination="QOx-2o-Lxb" eventType="touchUpInside" id="kOY-nw-kko"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -367,9 +370,6 @@ an agent</string>
                                     </mask>
                                 </variation>
                             </view>
-                            <glkView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srE-hQ-xls" userLabel="Participant View">
-                                <rect key="frame" x="0.0" y="94" width="600" height="506"/>
-                            </glkView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -407,13 +407,13 @@ an agent</string>
         <!--Chat Table View Controller-->
         <scene sceneID="mih-tp-MtT">
             <objects>
-                <tableViewController id="3Bk-Z1-God" customClass="ChatTableViewController" sceneMemberID="viewController">
+                <tableViewController id="3Bk-Z1-God" customClass="ChatTableViewController" customModule="bankingAppSwift" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="afd-LE-16y">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="426"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="participantCell" rowHeight="100" id="6WB-vD-LXr" customClass="ChatCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="participantCell" rowHeight="100" id="6WB-vD-LXr" customClass="ChatCell" customModule="bankingAppSwift">
                                 <rect key="frame" x="0.0" y="28" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6WB-vD-LXr" id="Svn-eS-dgT">
@@ -479,7 +479,7 @@ an agent</string>
                                     <outlet property="nameLabel" destination="35G-Br-t2G" id="7uF-NQ-bSG"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selfCell" rowHeight="100" id="fe0-Iq-j1N" customClass="ChatCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selfCell" rowHeight="100" id="fe0-Iq-j1N" customClass="ChatCell" customModule="bankingAppSwift">
                                 <rect key="frame" x="0.0" y="128" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fe0-Iq-j1N" id="1ZN-Rd-1A6">
@@ -548,8 +548,8 @@ an agent</string>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="messageLabel" destination="EGp-jD-cxh" id="Y5Y-zB-3fM"/>
-                                    <outlet property="nameLabel" destination="3AR-ty-nKo" id="6g5-Cr-JEV"/>
+                                    <outlet property="messageLabel" destination="EGp-jD-cxh" id="bqv-b2-q52"/>
+                                    <outlet property="nameLabel" destination="3AR-ty-nKo" id="t3i-jk-biC"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusCell" textLabel="cu4-Q1-P1x" rowHeight="44" style="IBUITableViewCellStyleDefault" id="u9n-c0-Fiz" customClass="ChatCell">
@@ -603,7 +603,7 @@ an agent</string>
         <!--Accounts-->
         <scene sceneID="fIx-VD-e2A">
             <objects>
-                <tableViewController id="NwE-lr-9Ea" customClass="AccountTableViewController" sceneMemberID="viewController">
+                <tableViewController id="NwE-lr-9Ea" customClass="AccountTableViewController" customModule="bankingAppSwift" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="J4H-ka-vuD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -742,7 +742,7 @@ an agent</string>
                         <barButtonItem key="rightBarButtonItem" title="Log off" id="CVM-z5-ZhJ">
                             <color key="tintColor" red="0.3318907022" green="0.65978997949999996" blue="0.99993234870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="logOff:" destination="NwE-lr-9Ea" id="TEh-eM-8JW"/>
+                                <action selector="logOff:" destination="NwE-lr-9Ea" id="cUH-9y-rYv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

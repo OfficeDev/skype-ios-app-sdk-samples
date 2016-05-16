@@ -15,26 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-//        let sfb: SfBApplication = SfBApplication.sharedApplication()!
-//       do {
-//        let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(NSURL(string:"https://meet.lync.com/microsoft/ritaylor/36VPM77M" )!, displayName: "jasdepe")
-//        
-//        if (conversation) {
-//            [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
-//            
-//            _conversationHelper = [[SfBConversationHelper alloc] initWithConversation:conversation
-//            delegate:self
-//            devicesManager:sfb.devicesManager
-//            outgoingVideoView:self.selfVideoView
-//            incomingVideoLayer:(CAEAGLLayer *) self.participantVideoView.layer
-//            userInfo:@{DisplayNameInfo:meetingDisplayName}];}
-//        
-//        
-//        }
-//       catch let error as NSError {
-//        print(error.localizedDescription)
-//        }
        
         return true
     }
