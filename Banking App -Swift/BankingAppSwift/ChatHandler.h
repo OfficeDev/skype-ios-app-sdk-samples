@@ -2,7 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
  */
-
+/** This is a helper class that can be used to  integrate Skype text chat feature into your application. To add audio/video chat feature, use SfBConversationHelper.h/SfBConversationHelper.m helper classes in your application.
+**/
 #import <SkypeForBusiness/SkypeForBusiness.h>
 
 NS_ASSUME_NONNULL_BEGIN
