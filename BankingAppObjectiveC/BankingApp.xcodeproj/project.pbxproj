@@ -66,26 +66,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		960A88F01CD2147100262EF5 /* Chat */ = {
+		5F2086C01CEBD0DD00D2DA2D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9683CE461CD2C3F5008351E4 /* ChatHandler.h */,
+				9683CE471CD2C3F5008351E4 /* ChatHandler.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		960A88F01CD2147100262EF5 /* Text Chat */ = {
 			isa = PBXGroup;
 			children = (
 				9634F7191CC9520700F3D29E /* ChatTableViewController.h */,
 				9634F71A1CC9520700F3D29E /* ChatTableViewController.m */,
 				9634F71F1CC9598100F3D29E /* ChatViewController.h */,
 				9634F7201CC9598100F3D29E /* ChatViewController.m */,
-				9683CE461CD2C3F5008351E4 /* ChatHandler.h */,
-				9683CE471CD2C3F5008351E4 /* ChatHandler.m */,
 			);
-			name = Chat;
+			name = "Text Chat";
 			sourceTree = "<group>";
 		};
-		960A88F11CD2147600262EF5 /* AV */ = {
+		960A88F11CD2147600262EF5 /* AV Chat */ = {
 			isa = PBXGroup;
 			children = (
 				962058931C9724C100D35390 /* VideoViewController.h */,
 				962058941C9724C100D35390 /* VideoViewController.m */,
 			);
-			name = AV;
+			name = "AV Chat";
 			sourceTree = "<group>";
 		};
 		96101E611C90AC8B004CE997 = {
@@ -108,6 +115,7 @@
 		96101E6C1C90AC8B004CE997 /* BankingApp */ = {
 			isa = PBXGroup;
 			children = (
+				5F2086C01CEBD0DD00D2DA2D /* Helpers */,
 				962239B81CA148F50068CE3A /* Controllers */,
 				962239B61CA148EA0068CE3A /* Resources */,
 				962239B51CA148E30068CE3A /* Views */,
@@ -156,8 +164,8 @@
 		962239B81CA148F50068CE3A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				960A88F11CD2147600262EF5 /* AV */,
-				960A88F01CD2147100262EF5 /* Chat */,
+				960A88F11CD2147600262EF5 /* AV Chat */,
+				960A88F01CD2147100262EF5 /* Text Chat */,
 				96101E701C90AC8B004CE997 /* AppDelegate.h */,
 				96101E711C90AC8B004CE997 /* AppDelegate.m */,
 				96101E871C90B4D4004CE997 /* MainViewController.h */,

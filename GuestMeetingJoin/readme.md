@@ -10,21 +10,20 @@ The Guest meeting join sample provides further technology details of you how to 
 
 ##How to get started
 
-1. Clone or copy the Guest Meeting Join sample app to your local machine.
+1.  Clone or copy the Guest Meeting Join sample app to your local machine.
 
-2. Copy the SkypeForBusiness.framework in the parent directory of your sample application.
- 
-   > **Note**: The SDK comes with a SkypeForBusiness.framework for use on physical devices (recommended) and a SkypeForBusiness.framework for running the iOS simulator (limited because audio and video function won't work correctly). The binaries have the same name but are in separate folders. To run your app on a device, navigate to the location where you downloaded the App SDK and select the SkypeForBusiness.framework file in the AppSDKiOS folder. To run your app in a simulator, selec the SkypeForBusiness.framework file in the AppSDKiOSSimulator folder.
+2.  Copy SkypeForBusiness.framework from the SkypeForBusinessAppSDKiOS folder in the SDK download into the sample app folder.
 
-3. In the Project Navigator, select your project. In the Editor pane, go to General tab -> Open Embedded Binaries.  Click the + button to add a new framework. Click Add Other to navigate to where you just copied the SkypeforBusiness.framework.
+ > **Note**: The SDK comes with a SkypeForBusiness.framework for use on physical devices (recommended) and a SkypeForBusiness.framework for running the iOS simulator (limited because audio and video function won't work correctly). The binaries have the same name but are in separate folders. To run your app on a device, navigate to the location where you downloaded the App SDK and select the SkypeForBusiness.framework file in the AppSDKiOS folder. To run your app in a simulator, selec the SkypeForBusiness.framework file in the AppSDKiOSSimulator folder.
 
-   > **Note**: Add SkypeForBusiness.framework as an "Embedded Binary" (not a "Linked Framework").
+3. In the Project Navigator, select your project. In the Editor pane, go to General tab -> Open Embedded Binaries. Click the + button to add a new framework. Click Add Other to navigate to where you just copied the SkypeforBusiness.framework.
+ > **Note**: Add SkypeForBusiness.framework as an "Embedded Binary" (not a "Linked Framework").
 
 4. Build and run the sample.
 
-6. Enter the [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and a display name of your choice.
+5. Enter the [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and a display name of your choice.
 
-7. Join the meeting.
+6. Join the meeting.
 
    > Note: To test the app, you need to join the meeting as the remote "agent" yourself by using the Skype for Business application installed on your desktop or mobile device. Join the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) that you configured in the app above.
 
