@@ -36,7 +36,7 @@ This sample app illustrates how to integrate Skype for Business text chat, audio
 Here's how the sample source code works:
 
 ### Initializing Skype for Business
-In **MainViewController.m**, initialization of Skype is done. Application level Skype configurations can be handeled here, e.g.  requireWifiForAudio, requireWifiForVideo, cameras list etc.
+In **MainViewController.m**, initialization of Skype is done. Application level Skype configurations can be handled here, e.g.  requireWifiForAudio, requireWifiForVideo, cameras list etc.
 
 ```objective-c
 - (void)initializeSkype {
