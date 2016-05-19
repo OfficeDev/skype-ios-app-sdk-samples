@@ -372,7 +372,7 @@
 				INFOPLIST_FILE = BankingAppSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.micros.skype.appsdk.samples.bankingapp-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.BankingAppSwift-";
 				PRODUCT_NAME = BankingAppSwift;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BankingAppSwift/BankingAppSwift-Bridging-Header.h";
@@ -394,7 +394,7 @@
 				INFOPLIST_FILE = BankingAppSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.micros.skype.appsdk.samples.bankingapp-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.BankingAppSwift-";
 				PRODUCT_NAME = BankingAppSwift;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BankingAppSwift/BankingAppSwift-Bridging-Header.h";
