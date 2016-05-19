@@ -1,4 +1,4 @@
-# Banking App for iOS
+# Banking App for iOS (Objective C)
 
 This sample app illustrates how to integrate Skype for Business text chat, audio and video into an iOS application, via "guest meeting join".
 ##Prerequisites
