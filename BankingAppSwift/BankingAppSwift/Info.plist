@@ -23,9 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>Skype meeting URL</key>
-	<string>SkypeMeetingURL</string>
+	<string>SkypeMeetingUrl</string>
 	<key>Skype meeting display name</key>
-	<string>SkypeDisplayName</string>
+	<string>Jake</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

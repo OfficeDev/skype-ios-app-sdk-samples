@@ -105,17 +105,15 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
     //Joins a Skype meeting.
     func joinMeeting() {
         
-        let meetingURLString:String = NSBundle.mainBundle().objectForInfoDictionaryKey("Skype meeting URL") as! String
-        let meetingDisplayName:String = NSBundle.mainBundle().objectForInfoDictionaryKey("Skype meeting display name") as! String
+        let meetingURLString:String = MeetingCredentialsManager.sharedInstance.getMeetingUrl()
+        let meetingDisplayName:String = MeetingCredentialsManager.sharedInstance.getSkypeDisplayName()
         
         let sfb: SfBApplication = SfBApplication.sharedApplication()!
         
         
         do {
             let url = NSURL(string:meetingURLString)
-            print(url)
             let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName)
-            
             self.chatHandler = ChatHandler(conversation: conversation,
                                            delegate: self,
                                            userInfo: [DisplayNameInfo:meetingDisplayName])
@@ -128,7 +126,7 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
         }
         catch let error as NSError {
             print(error.localizedDescription)
-            self.handleError("Could Not Join Meeting! Please check URL")
+            self.handleError("Could Not Join Meeting!(System Error)")
             
             
         }

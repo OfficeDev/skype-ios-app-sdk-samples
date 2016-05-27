@@ -25,6 +25,7 @@ class AccountTableViewController: UITableViewController {
 }
 
     @IBAction func logOff(sender: AnyObject) {
+     
         self.parentViewController?.navigationController?.setNavigationBarHidden(false, animated: false)
         self.parentViewController?.navigationController?.popViewControllerAnimated(true)
         

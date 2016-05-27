@@ -9,7 +9,8 @@
 import UIKit
 import GLKit
 
-class VideoViewController: UIViewController,SfBConversationHelperDelegate {
+class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAlertDelegate {
+    
     
     @IBOutlet weak var infoBarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var infoBar: UIView!
@@ -78,17 +79,20 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate {
     func joinMeeting() {
         
         
-        let meetingURLString:String = NSBundle.mainBundle().objectForInfoDictionaryKey("Skype meeting URL") as! String
-        let meetingDisplayName:String = NSBundle.mainBundle().objectForInfoDictionaryKey("Skype meeting display name") as! String
+        
+        let meetingURLString:String = MeetingCredentialsManager.sharedInstance.getMeetingUrl()
+        let meetingDisplayName:String = MeetingCredentialsManager.sharedInstance.getSkypeDisplayName()
         
         
         //Override point for customization after application launch.
         let sfb: SfBApplication = SfBApplication.sharedApplication()!
         
         
+        
         do {
             let url = NSURL(string:meetingURLString)
             let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName)
+            conversation.alertDelegate = self
             
             self.conversationHelper = SfBConversationHelper(conversation: conversation,
                                                             delegate: self,
@@ -104,7 +108,9 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate {
         }
         catch let error as NSError {
             print(error.localizedDescription)
-            self.handleError("Could Not Join Meeting! Please check URL")
+            self.handleError("Could Not Join Meeting!(System Error)")
+            //Enable end call button to let user exit video call screen after failure to join meeting
+            self.endCallButton.enabled = true
         }
         
     }
@@ -143,13 +149,14 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate {
     
     //MARK - Skype SfBConversationHelperDelegate Functions
     
-    
     // At incoming video, unhide the participant video view
+    
     func conversationHelper(conversationHelper: SfBConversationHelper, didSubscribeToVideo video: SfBParticipantVideo?) {
         self.participantVideoView.hidden = false
     }
     
     // When video service is ready to start, unhide self video view and start the service.
+    
     func conversationHelper(conversationHelper: SfBConversationHelper, videoService: SfBVideoService, didChangeCanStart canStart: Bool) {
         
         if (canStart) {
@@ -161,10 +168,12 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate {
             }
             catch let error as NSError {
                 print(error.localizedDescription)
-                                
+                
             }
         }
     }
+    
+    // When the audio status changes, reflect in UI
     
     func conversationHelper(avHelper: SfBConversationHelper, selfAudio audio: SfBParticipantAudio, didChangeIsMuted isMuted: Bool) {
         if !isMuted {
@@ -207,4 +216,12 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate {
      }
      */
     
+    func didReceiveAlert(alert: SfBAlert) {
+        print("aasveen di galti")
+        alert.show()
+    }
+    
 }
+
+
+
