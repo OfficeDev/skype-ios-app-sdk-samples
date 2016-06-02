@@ -90,7 +90,9 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         
         
         do {
-            let url = NSURL(string:meetingURLString)
+            
+            let urlText:String = meetingURLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            let url = NSURL(string:urlText)
             let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName)
             conversation.alertDelegate = self
             
