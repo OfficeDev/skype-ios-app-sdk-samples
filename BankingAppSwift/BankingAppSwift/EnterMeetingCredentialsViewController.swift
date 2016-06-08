@@ -13,7 +13,6 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     
     @IBOutlet weak var currentMeetingUrl: UILabel!
     @IBOutlet weak var meetingDisplayName: UITextField!
-    
     @IBOutlet weak var meetingUrl: UITextField!
     
     override func viewDidLoad() {
@@ -24,62 +23,80 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
         // Do any additional setup after loading the view.
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // Display saved meeting url on screen
     func showCurrentMeetingUrl(){
         if (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) != nil) {
-           currentMeetingUrl.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) as! String)
+            
+            currentMeetingUrl.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) as! String)
+            
         }
         else{
+            
             currentMeetingUrl.text = "Meeting Url not set!"
+            
         }
-
+        
         
     }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
-    
-    
     
     @IBAction func okButtonPressed(sender: AnyObject) {
         
-        if (self.meetingDisplayName.isFirstResponder()) {
-            self.meetingDisplayName.resignFirstResponder()
-        } else if (self.meetingUrl.isFirstResponder()) {
-            self.meetingUrl.resignFirstResponder()
-        }
+        self.hideKeyboard()
         
         let prefs = NSUserDefaults.standardUserDefaults()
+        
+        //Save Skype display name and meeting url.
         if (checkIfTextFieldHasText(meetingUrl))
         {
-            //do something if it's not empty
             if (checkIfTextFieldHasText(meetingDisplayName)) {
+                
                 prefs.setValue(meetingDisplayName.text, forKey: USER_DISPLAY_NAME)
+                
             }
             
             prefs.setValue(meetingUrl.text, forKey: USER_MEETING_URL)
             prefs.synchronize()
             
+            // show saved message and dismiss EnterMeetingCredentialsViewController
             let alertController:UIAlertController = UIAlertController(title: "SAVED!", message: nil, preferredStyle: .Alert)
             
             alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler:{(alert: UIAlertAction!) in
-            self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }))
             
             presentViewController(alertController, animated: true, completion:nil)
             
             
-
+            
         }
         else{
+            // show alert message if meeting url is empty
             let alertController:UIAlertController = UIAlertController(title: "Alert!", message: "Please enter valid meeting url!", preferredStyle: .Alert)
             
             alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
             presentViewController(alertController, animated: true, completion:nil)
-            
         }
         
+    }
+    
+    //MARK: - Text field handlers
+    
+    func hideKeyboard() {
+        if (self.meetingDisplayName.isFirstResponder()) {
+            self.meetingDisplayName.resignFirstResponder()
+        } else if (self.meetingUrl.isFirstResponder()) {
+            self.meetingUrl.resignFirstResponder()
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     func checkIfTextFieldHasText(textField:UITextField) -> Bool {
@@ -91,30 +108,10 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
         return false
     }
     
+    //MARK: - Hide status bar
     
-    
-    // To hide status bar
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+   
 }

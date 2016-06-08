@@ -16,19 +16,23 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view.
         
         super.viewDidLoad()
+        
         credentialTextFields[0].delegate = self
         credentialTextFields[1].delegate = self
+        
         self.addSwipeGesturesInDirection(UISwipeGestureRecognizerDirection.Down)
         self.addSwipeGesturesInDirection(UISwipeGestureRecognizerDirection.Up)
     }
     
+    // Hide Keyboard on return.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
-    
+    //MARK: - Handle Swipe Gestures
     func addSwipeGesturesInDirection(swipeDirection:UISwipeGestureRecognizerDirection)  {
+        
         let swipeAction = UISwipeGestureRecognizer(target: self, action: #selector(LoginViewController.respondToSwipeGesture(_:)))
         swipeAction.direction = swipeDirection
         self.view.addGestureRecognizer(swipeAction)
@@ -54,6 +58,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+    // Show and hide AddURL button with animation.
     func showButtonWithAnimation(options:UIViewAnimationOptions, button:UIButton, alphaValue:CGFloat, hiddenStatus:Bool)  {
         UIView.animateWithDuration(0.2, delay: 0.0, options:options, animations: {
             if(hiddenStatus == false){
@@ -85,11 +90,4 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         self.addURLButton.hidden = true
         self.addURLButton.alpha = 0
     }
-    
-    
-    
-    
-    
-    
-    
 }
