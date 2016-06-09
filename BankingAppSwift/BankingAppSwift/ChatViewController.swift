@@ -12,6 +12,8 @@ import UIKit
 class ChatViewController: UIViewController,ChatHandlerDelegate {
     let DisplayNameInfo: String = "displayName"
     
+    
+    
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var endButton: UIBarButtonItem!
     @IBOutlet weak var spaceConstraint: NSLayoutConstraint!
@@ -105,8 +107,8 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
     //Joins a Skype meeting.
     func joinMeeting() {
         
-        let meetingURLString:String = MeetingCredentialsManager.sharedInstance.getMeetingUrl()
-        let meetingDisplayName:String = MeetingCredentialsManager.sharedInstance.getSkypeDisplayName()
+        let meetingURLString:String = getMeetingURLString
+        let meetingDisplayName:String = getMeetingDisplayName
         
         let sfb: SfBApplication = SfBApplication.sharedApplication()!
         

@@ -11,7 +11,7 @@ import UIKit
 
 class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegate {
     
-    @IBOutlet weak var currentMeetingUrl: UILabel!
+   
     @IBOutlet weak var meetingDisplayName: UITextField!
     @IBOutlet weak var meetingUrl: UITextField!
     
@@ -32,12 +32,12 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     func showCurrentMeetingUrl(){
         if (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) != nil) {
             
-            currentMeetingUrl.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) as! String)
+            meetingUrl.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) as! String)
             
         }
         else{
             
-            currentMeetingUrl.text = "Meeting Url not set!"
+            meetingUrl.text = meetingUrl.placeholder
             
         }
         

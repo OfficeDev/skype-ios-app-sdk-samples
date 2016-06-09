@@ -9,8 +9,12 @@
 import UIKit
 import GLKit
 
+
+
+
 class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAlertDelegate {
-    
+   
+   
     
     @IBOutlet weak var infoBarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var infoBar: UIView!
@@ -80,9 +84,8 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         
         
         
-        let meetingURLString:String = MeetingCredentialsManager.sharedInstance.getMeetingUrl()
-        let meetingDisplayName:String = MeetingCredentialsManager.sharedInstance.getSkypeDisplayName()
-        
+        let meetingURLString:String = getMeetingURLString
+        let meetingDisplayName:String = getMeetingDisplayName
         
         //Override point for customization after application launch.
         let sfb: SfBApplication = SfBApplication.sharedApplication()!

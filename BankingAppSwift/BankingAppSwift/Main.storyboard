@@ -223,49 +223,28 @@
                                     <segue destination="U3h-wr-NB2" kind="unwind" unwindAction="prepareForUnwind:" id="AjA-Ty-hCQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Meeting Url" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNy-aT-7VJ" userLabel="Current Meeting Url Label">
-                                <rect key="frame" x="224" y="8" width="152" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxD-UB-JWe">
-                                <rect key="frame" x="25" y="49" width="550" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="CxG-dF-PQG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="knm-Q9-ANe" firstAttribute="centerX" secondItem="cfJ-YY-SID" secondAttribute="centerX" id="0AU-7m-9BC"/>
                             <constraint firstItem="knm-Q9-ANe" firstAttribute="leading" secondItem="8m8-lK-KqH" secondAttribute="trailing" constant="43" id="0d7-zu-uHS"/>
                             <constraint firstAttribute="trailing" secondItem="knm-Q9-ANe" secondAttribute="trailing" constant="170" id="0zv-zg-bnw"/>
-                            <constraint firstItem="DxD-UB-JWe" firstAttribute="top" secondItem="SNy-aT-7VJ" secondAttribute="bottom" constant="20" id="23m-Ci-TmB"/>
                             <constraint firstItem="8m8-lK-KqH" firstAttribute="leading" secondItem="r6r-ME-NTm" secondAttribute="leading" constant="20" symbolic="YES" id="5K8-c0-Jev"/>
-                            <constraint firstItem="SNy-aT-7VJ" firstAttribute="centerX" secondItem="r6r-ME-NTm" secondAttribute="centerX" id="9dd-Da-2ey"/>
                             <constraint firstItem="Xm4-aO-Is1" firstAttribute="centerX" secondItem="r6r-ME-NTm" secondAttribute="centerX" id="A8D-a9-6V7"/>
-                            <constraint firstItem="DxD-UB-JWe" firstAttribute="leading" secondItem="r6r-ME-NTm" secondAttribute="leadingMargin" constant="5" id="Aip-nb-2cV"/>
                             <constraint firstItem="cfJ-YY-SID" firstAttribute="centerX" secondItem="r6r-ME-NTm" secondAttribute="centerX" id="B36-ZS-L5y"/>
                             <constraint firstItem="8m8-lK-KqH" firstAttribute="leading" secondItem="r6r-ME-NTm" secondAttribute="leading" constant="20" symbolic="YES" id="GYP-UB-k7U"/>
                             <constraint firstItem="Xm4-aO-Is1" firstAttribute="leading" secondItem="r6r-ME-NTm" secondAttribute="leadingMargin" constant="5" id="Ibe-W9-igl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cfJ-YY-SID" secondAttribute="trailing" constant="5" id="JoY-ZC-Pip"/>
                             <constraint firstItem="8m8-lK-KqH" firstAttribute="centerX" secondItem="r6r-ME-NTm" secondAttribute="centerX" id="KAv-Fw-eqk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="DxD-UB-JWe" secondAttribute="trailing" constant="5" id="Q0v-ua-XH9"/>
                             <constraint firstItem="knm-Q9-ANe" firstAttribute="baseline" secondItem="8m8-lK-KqH" secondAttribute="baseline" id="RfV-Up-FaZ"/>
                             <constraint firstItem="cfJ-YY-SID" firstAttribute="top" secondItem="Xm4-aO-Is1" secondAttribute="bottom" constant="19" id="XSO-EY-CLN"/>
                             <constraint firstItem="8m8-lK-KqH" firstAttribute="centerX" secondItem="r6r-ME-NTm" secondAttribute="centerX" id="bld-KH-OEj"/>
                             <constraint firstItem="8m8-lK-KqH" firstAttribute="leading" secondItem="r6r-ME-NTm" secondAttribute="leading" constant="187" id="ccX-2M-QId"/>
                             <constraint firstItem="cfJ-YY-SID" firstAttribute="centerY" secondItem="r6r-ME-NTm" secondAttribute="centerY" id="eT9-gz-pYH"/>
                             <constraint firstItem="8m8-lK-KqH" firstAttribute="top" secondItem="cfJ-YY-SID" secondAttribute="bottom" constant="15" id="fi1-70-wHU"/>
-                            <constraint firstItem="SNy-aT-7VJ" firstAttribute="top" secondItem="uk6-Lh-0GS" secondAttribute="bottom" constant="8" symbolic="YES" id="g65-xF-ofp"/>
                             <constraint firstItem="knm-Q9-ANe" firstAttribute="width" secondItem="8m8-lK-KqH" secondAttribute="width" id="mpE-y6-jWK"/>
                             <constraint firstItem="8m8-lK-KqH" firstAttribute="centerX" secondItem="cfJ-YY-SID" secondAttribute="centerX" id="oi4-Wj-pbP"/>
                             <constraint firstItem="knm-Q9-ANe" firstAttribute="leading" secondItem="8m8-lK-KqH" secondAttribute="trailing" constant="20" id="pbw-ed-H9k"/>
-                            <constraint firstItem="DxD-UB-JWe" firstAttribute="centerX" secondItem="SNy-aT-7VJ" secondAttribute="centerX" id="qZn-0e-f5u"/>
                             <constraint firstItem="8m8-lK-KqH" firstAttribute="leading" secondItem="r6r-ME-NTm" secondAttribute="leading" constant="20" symbolic="YES" id="uEb-AZ-U7V"/>
                             <constraint firstItem="cfJ-YY-SID" firstAttribute="leading" secondItem="r6r-ME-NTm" secondAttribute="leadingMargin" constant="5" id="uax-t8-7d5"/>
                             <constraint firstAttribute="trailing" secondItem="knm-Q9-ANe" secondAttribute="trailing" constant="20" symbolic="YES" id="xLD-pL-dfi"/>
@@ -288,7 +267,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="currentMeetingUrl" destination="DxD-UB-JWe" id="AzA-eP-A7C"/>
                         <outlet property="meetingDisplayName" destination="Xm4-aO-Is1" id="FId-aY-la9"/>
                         <outlet property="meetingUrl" destination="cfJ-YY-SID" id="P8S-zw-fk5"/>
                     </connections>
