@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController,SfBAlertDelegate {
 
     @IBOutlet weak var askAgentButton: UIButton!
     override func viewDidLoad() {
@@ -50,9 +50,11 @@ class MainViewController: UIViewController {
     
     func initializeSkype(){
         let sfb:SfBApplication? = SfBApplication.sharedApplication()
+        
         if let sfb = sfb{
-        sfb.configurationManager.maxVideoChannels = 1
+            sfb.configurationManager.maxVideoChannels = 1
             sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
+            sfb.alertDelegate = self
         }
         
     }
@@ -61,6 +63,10 @@ class MainViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    func didReceiveAlert(alert: SfBAlert) {
+        
+        alert.show()
+    }
 
     /*
     // MARK: - Navigation
