@@ -228,7 +228,7 @@ class SelfParticipantCell: BaseParticipantCell {
 
     var videoService: SfBVideoService? {
         didSet {
-            renderTarget = try! videoService?.preview(videoView)
+            renderTarget = try! videoService?.showPreviewOnView(videoView)
         }
     }
 
