@@ -44,32 +44,63 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email or user id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2U-sQ-fy8">
-                                <rect key="frame" x="140" y="114" width="320" height="30"/>
+                                <rect key="frame" x="20" y="285" width="560" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="KFX-Sh-bsp"/>
+                                    <constraint firstAttribute="width" constant="600" id="LIs-wQ-fq8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KFX-Sh-bsp"/>
+                                        <exclude reference="LIs-wQ-fq8"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <mask key="constraints">
+                                        <include reference="LIs-wQ-fq8"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy &amp; Security" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXD-cN-NhR">
-                                <rect key="frame" x="235" y="541" width="131" height="18"/>
+                                <rect key="frame" x="235" y="562" width="131" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" red="0.0033992959650000001" green="0.4364449084" blue="0.87180966140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=regular" misplaced="YES">
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                    <rect key="frame" x="335" y="562" width="131" height="18"/>
+                                </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvK-aU-TuC">
-                                <rect key="frame" x="140" y="152" width="320" height="30"/>
+                                <rect key="frame" x="20" y="323" width="560" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="8qy-8Q-gGT"/>
                                     <constraint firstAttribute="width" constant="320" id="F2e-3L-owW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8qy-8Q-gGT"/>
+                                        <exclude reference="F2e-3L-owW"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <mask key="constraints">
+                                        <include reference="8qy-8Q-gGT"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wo4-xQ-eDj">
-                                <rect key="frame" x="239" y="207" width="123" height="30"/>
+                                <rect key="frame" x="239" y="378" width="123" height="30"/>
                                 <color key="backgroundColor" red="0.3318907022" green="0.65978997949999996" blue="0.99993234870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="123" id="C4v-C4-QZf"/>
+                                    <constraint firstAttribute="height" constant="41" id="HVf-LK-BzT"/>
                                 </constraints>
                                 <state key="normal" title="Sign in">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,6 +110,16 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="HVf-LK-BzT"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="HVf-LK-BzT"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="0Ak-7Z-HIQ" kind="show" identifier="segueToMainSceneFromLoginScene" id="G5W-Gr-CNO"/>
                                 </connections>
@@ -106,31 +147,61 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5xS-Ac-axz" firstAttribute="top" secondItem="OXD-cN-NhR" secondAttribute="bottom" constant="41" id="3n0-YK-sC8"/>
+                            <constraint firstItem="5xS-Ac-axz" firstAttribute="top" secondItem="OXD-cN-NhR" secondAttribute="bottom" constant="20" id="3n0-YK-sC8"/>
                             <constraint firstAttribute="trailing" secondItem="hpw-TA-UBo" secondAttribute="trailing" id="8uV-bo-4q4"/>
                             <constraint firstItem="pZl-1y-OZE" firstAttribute="top" secondItem="hpw-TA-UBo" secondAttribute="bottom" constant="-100" id="99G-ZO-qPj"/>
                             <constraint firstItem="5xS-Ac-axz" firstAttribute="top" secondItem="hpw-TA-UBo" secondAttribute="bottom" id="B6J-8Q-eEq"/>
+                            <constraint firstItem="gvK-aU-TuC" firstAttribute="leading" secondItem="Lra-FE-dA2" secondAttribute="leading" constant="50" id="CA5-Vz-c0Y">
+                                <variation key="widthClass=regular" constant="100"/>
+                            </constraint>
                             <constraint firstItem="wo4-xQ-eDj" firstAttribute="top" secondItem="gvK-aU-TuC" secondAttribute="bottom" constant="25" id="IWu-St-aYk"/>
                             <constraint firstItem="pZl-1y-OZE" firstAttribute="centerX" secondItem="Lra-FE-dA2" secondAttribute="centerX" id="Ia7-bE-8gG"/>
                             <constraint firstItem="5xS-Ac-axz" firstAttribute="top" secondItem="pZl-1y-OZE" secondAttribute="bottom" constant="8" symbolic="YES" id="KlS-Gc-buL"/>
                             <constraint firstItem="OXD-cN-NhR" firstAttribute="centerX" secondItem="Lra-FE-dA2" secondAttribute="centerX" id="LK4-gT-MpD"/>
+                            <constraint firstAttribute="trailing" secondItem="gvK-aU-TuC" secondAttribute="trailing" constant="20" id="PMT-zc-D2Z">
+                                <variation key="widthClass=regular" constant="100"/>
+                            </constraint>
                             <constraint firstItem="gvK-aU-TuC" firstAttribute="top" secondItem="c2U-sQ-fy8" secondAttribute="bottom" constant="8" id="Pje-yb-ap6"/>
                             <constraint firstItem="c2U-sQ-fy8" firstAttribute="centerX" secondItem="Lra-FE-dA2" secondAttribute="centerX" id="Qcw-Dv-db2"/>
+                            <constraint firstItem="c2U-sQ-fy8" firstAttribute="centerY" secondItem="Lra-FE-dA2" secondAttribute="centerY" id="T1x-tq-n8k"/>
+                            <constraint firstAttribute="trailing" secondItem="c2U-sQ-fy8" secondAttribute="trailing" constant="20" id="Xf1-F4-LQk"/>
                             <constraint firstItem="hpw-TA-UBo" firstAttribute="leading" secondItem="Lra-FE-dA2" secondAttribute="leading" id="Yww-Xj-Sb8"/>
                             <constraint firstItem="c2U-sQ-fy8" firstAttribute="top" secondItem="KQz-yh-qgk" secondAttribute="bottom" constant="50" id="YyH-sc-vyg"/>
                             <constraint firstItem="wo4-xQ-eDj" firstAttribute="centerX" secondItem="Lra-FE-dA2" secondAttribute="centerX" id="btz-tX-wjk"/>
                             <constraint firstAttribute="trailing" secondItem="pZl-1y-OZE" secondAttribute="trailing" constant="20" symbolic="YES" id="cZb-WN-8Jp"/>
+                            <constraint firstItem="c2U-sQ-fy8" firstAttribute="leading" secondItem="Lra-FE-dA2" secondAttribute="leading" constant="20" id="dzI-J1-f1e">
+                                <variation key="widthClass=regular" constant="100"/>
+                            </constraint>
                             <constraint firstItem="pZl-1y-OZE" firstAttribute="leading" secondItem="hpw-TA-UBo" secondAttribute="trailing" constant="-100" id="f4d-Z2-4ir"/>
+                            <constraint firstAttribute="trailing" secondItem="c2U-sQ-fy8" secondAttribute="trailing" constant="50" id="hDs-TZ-TH0">
+                                <variation key="widthClass=regular" constant="100"/>
+                            </constraint>
                             <constraint firstItem="pZl-1y-OZE" firstAttribute="top" secondItem="wo4-xQ-eDj" secondAttribute="bottom" constant="25" id="knW-cx-Pfp"/>
                             <constraint firstItem="hpw-TA-UBo" firstAttribute="top" secondItem="KQz-yh-qgk" secondAttribute="bottom" id="ksN-yX-cHF"/>
+                            <constraint firstItem="gvK-aU-TuC" firstAttribute="leading" secondItem="Lra-FE-dA2" secondAttribute="leading" constant="20" id="n3j-Ct-2YR"/>
+                            <constraint firstItem="c2U-sQ-fy8" firstAttribute="centerX" secondItem="Lra-FE-dA2" secondAttribute="centerX" id="qwR-gK-o92"/>
                             <constraint firstItem="gvK-aU-TuC" firstAttribute="centerX" secondItem="Lra-FE-dA2" secondAttribute="centerX" id="s1F-yO-TUh"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Qcw-Dv-db2"/>
+                                <exclude reference="YyH-sc-vyg"/>
+                                <exclude reference="hDs-TZ-TH0"/>
+                                <exclude reference="CA5-Vz-c0Y"/>
                                 <exclude reference="99G-ZO-qPj"/>
                                 <exclude reference="Ia7-bE-8gG"/>
                                 <exclude reference="f4d-Z2-4ir"/>
                                 <exclude reference="knW-cx-Pfp"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="Xf1-F4-LQk"/>
+                                <exclude reference="dzI-J1-f1e"/>
+                                <exclude reference="hDs-TZ-TH0"/>
+                                <exclude reference="CA5-Vz-c0Y"/>
+                                <exclude reference="PMT-zc-D2Z"/>
+                                <exclude reference="n3j-Ct-2YR"/>
                             </mask>
                         </variation>
                     </view>
@@ -143,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBf-5I-YyY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-349" y="158"/>
+            <point key="canvasLocation" x="-111" y="112"/>
         </scene>
         <!--Enter Meeting Credentials View Controller-->
         <scene sceneID="tRA-f3-ddu">
@@ -161,16 +232,25 @@
                                 <rect key="frame" x="25" y="236" width="550" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your meeting URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfJ-YY-SID">
                                 <rect key="frame" x="25" y="285" width="550" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8m8-lK-KqH">
                                 <rect key="frame" x="20" y="330" width="258.5" height="30"/>
                                 <color key="backgroundColor" red="0.3318907022" green="0.65978997949999996" blue="0.99993234870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2Pu-6s-n1W">
+                                        <variation key="widthClass=regular" constant="41"/>
+                                    </constraint>
                                     <constraint firstAttribute="width" constant="123" id="A48-s4-ekS"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="FlF-gL-B4s"/>
                                     <constraint firstAttribute="width" constant="80" id="Wl1-o0-gdJ"/>
@@ -186,10 +266,16 @@
                                 </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="2Pu-6s-n1W"/>
                                         <exclude reference="A48-s4-ekS"/>
                                         <exclude reference="FlF-gL-B4s"/>
                                         <exclude reference="Wl1-o0-gdJ"/>
                                         <exclude reference="wXG-5c-o60"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="2Pu-6s-n1W"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -200,6 +286,9 @@
                                 <rect key="frame" x="321" y="330" width="258.5" height="30"/>
                                 <color key="backgroundColor" red="0.3318907022" green="0.65978997949999996" blue="0.99993234870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1Ck-j7-883">
+                                        <variation key="widthClass=regular" constant="41"/>
+                                    </constraint>
                                     <constraint firstAttribute="width" constant="123" id="MDt-Fi-RbJ"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="ffL-La-X2R"/>
                                     <constraint firstAttribute="width" constant="100" id="jjH-ZM-KQ9"/>
@@ -214,9 +303,15 @@
                                 </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="1Ck-j7-883"/>
                                         <exclude reference="MDt-Fi-RbJ"/>
                                         <exclude reference="ffL-La-X2R"/>
                                         <exclude reference="jjH-ZM-KQ9"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="1Ck-j7-883"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -274,7 +369,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5O-W1-qgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="U3h-wr-NB2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-527" y="953"/>
+            <point key="canvasLocation" x="-525" y="798"/>
         </scene>
         <!--Main-->
         <scene sceneID="tH9-uG-6hc">
@@ -333,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lS8-qK-2kN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="369" y="158"/>
+            <point key="canvasLocation" x="582" y="-638"/>
         </scene>
         <!--Text Chat -->
         <scene sceneID="HFA-uK-ocu">
@@ -361,12 +456,13 @@
                                         <color key="textColor" red="0.92678740540000004" green="0.92678740540000004" blue="0.92678740540000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqz-vk-MWj">
-                                        <rect key="frame" x="551" y="5" width="36" height="30"/>
+                                    <button opaque="NO" alpha="0.10000000000000001" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqz-vk-MWj">
+                                        <rect key="frame" x="551" y="5" width="36" height="29"/>
                                         <color key="backgroundColor" red="0.3318907022" green="0.65978997949999996" blue="0.99993234870000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="9cw-W2-JaK"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" title="Send">
                                             <color key="titleColor" red="0.92678740540000004" green="0.92678740540000004" blue="0.92678740540000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -464,8 +560,12 @@ an agent</string>
                                 <rect key="frame" x="460" y="460" width="120" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="SVX-AB-PqU"/>
-                                    <constraint firstAttribute="height" constant="120" id="vFn-yN-qKu"/>
+                                    <constraint firstAttribute="width" constant="120" id="SVX-AB-PqU">
+                                        <variation key="widthClass=regular" constant="250"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="120" id="vFn-yN-qKu">
+                                        <variation key="widthClass=regular" constant="250"/>
+                                    </constraint>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AuN-kN-nD2" userLabel="Bottom Info View">
@@ -807,12 +907,19 @@ an agent</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$12,213.31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc7-8O-4GJ">
                                                     <rect key="frame" x="472" y="25" width="82" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=regular" misplaced="YES">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <rect key="frame" x="603" y="25" width="82" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -842,6 +949,9 @@ an agent</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -878,12 +988,18 @@ an agent</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$8,100.31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKN-a9-Vgv">
                                                     <rect key="frame" x="479" y="25" width="75" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -919,7 +1035,7 @@ an agent</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cc3-6r-36G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1194" y="966"/>
+            <point key="canvasLocation" x="1165.5" y="966"/>
         </scene>
         <!--Today-->
         <scene sceneID="OiW-Sa-7OB">

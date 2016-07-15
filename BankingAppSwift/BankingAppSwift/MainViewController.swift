@@ -19,7 +19,7 @@ class MainViewController: UIViewController,SfBAlertDelegate {
     }
 
     @IBAction func askAgent(sender: AnyObject) {
-        let alertController:UIAlertController = UIAlertController(title: "Ask agent", message: nil, preferredStyle: .ActionSheet)
+        let alertController:UIAlertController = UIAlertController(title: "Ask Agent", message: nil, preferredStyle: .ActionSheet)
         
         
         alertController.addAction(UIAlertAction(title: "Ask using Text Chat", style: .Default, handler: { (action:UIAlertAction) in
@@ -31,7 +31,13 @@ class MainViewController: UIViewController,SfBAlertDelegate {
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-     presentViewController(alertController, animated: true, completion:nil)
+    
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = sender as? UIView
+            popoverController.sourceRect = sender.bounds
+        }
+        self.presentViewController(alertController, animated: true, completion: nil)
         
     
     }
