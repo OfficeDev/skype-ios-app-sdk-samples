@@ -34,6 +34,13 @@
         [self askAgentVideo];
     }]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+ UIPopoverPresentationController *popoverController =  alertController.popoverPresentationController;
+    if(popoverController != nil){
+        popoverController.sourceView = sender;
+        popoverController.sourceRect = sender.bounds;
+        
+    }
+    
     
     [self presentViewController:alertController animated:YES completion:nil];
     
