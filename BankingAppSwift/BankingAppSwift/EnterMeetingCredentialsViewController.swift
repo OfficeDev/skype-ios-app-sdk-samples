@@ -51,9 +51,9 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
         let prefs = NSUserDefaults.standardUserDefaults()
         
         //Save Skype display name and meeting url.
-        if (checkIfTextFieldHasText(meetingUrl))
+        if ((checkIfTextFieldHasText(meetingUrl)) && (meetingUrl.text != meetingUrl.placeholder))
         {
-            if (checkIfTextFieldHasText(meetingDisplayName)) {
+            if ((checkIfTextFieldHasText(meetingDisplayName)) && (meetingDisplayName.text != meetingDisplayName.placeholder)) {
                 
                 prefs.setValue(meetingDisplayName.text, forKey: USER_DISPLAY_NAME)
                 
@@ -97,6 +97,13 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if(textField.text == textField.placeholder){
+        textField.placeholder = ""
+        textField.text = ""
+        }
     }
     
     func checkIfTextFieldHasText(textField:UITextField) -> Bool {

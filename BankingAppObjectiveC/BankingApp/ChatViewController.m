@@ -145,6 +145,7 @@ static NSString* const DisplayNameInfo = @"displayName";
 
     if (canSendMessage) {
         self.sendButton.enabled = YES;
+        self.sendButton.alpha = 1;
         [self.chatTableViewController addStatus:@"Now you can send a message"];
     }
     else {

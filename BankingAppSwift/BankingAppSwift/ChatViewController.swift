@@ -114,7 +114,8 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
         
         
         do {
-            let url = NSURL(string:meetingURLString)
+             let urlText:String = meetingURLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            let url = NSURL(string:urlText)
             let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName)
             self.chatHandler = ChatHandler(conversation: conversation,
                                            delegate: self,
@@ -142,6 +143,7 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
     func chatHandler(chatHandler: ChatHandler, chatService: SfBChatService, didChangeCanSendMessage canSendMessage: Bool) {
         if (canSendMessage) {
             self.sendButton.enabled = true
+            self.sendButton.alpha = 1
             self.chatTableViewController?.addStatus("now you can send a message")
         }
         else{

@@ -24,7 +24,7 @@ This sample app illustrates how to integrate Skype for Business text chat, audio
 5. Go to **"BankingAppSwift-Bridging-Header.h"** file in your source code and uncomment **#import "SfBConversationHelper.h"**
 
 6. Edit Info.plist and replace value of __Skype meeting URL__ and __Skype meeting display name__ with a [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and any desired name respectively.
-
+  > Note: You can also add __Skype meeting URL__ and __Skype meeting display name__  at run time by using hidden **Add URL** button on login screen. Simply swipe the Login screen down/up to show/hide the Add URL button and save your credentials.
 7. Build and run the app.
 
 8. Press the **"Sign in"** button to login.  This is a pseudo login screen and does not require a real email and password. 
