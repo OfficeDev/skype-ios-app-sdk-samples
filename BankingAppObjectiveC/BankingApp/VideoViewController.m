@@ -7,8 +7,9 @@
 #import "VideoViewController.h"
 #import "SfBConversationHelper.h"
 #import <GLKit/GLKit.h>
+#import "Util.h"
 
-@interface VideoViewController () <SfBConversationHelperDelegate>
+@interface VideoViewController () <SfBConversationHelperDelegate,SfBAlertDelegate>
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *infoBarBottomConstraint;
 @property (strong, nonatomic) IBOutlet UIView *infoBar;
@@ -26,6 +27,15 @@ static NSString* const DisplayNameInfo = @"displayName";
 
 @implementation VideoViewController
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self registerForNotifications];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -41,11 +51,6 @@ static NSString* const DisplayNameInfo = @"displayName";
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -59,6 +64,13 @@ static NSString* const DisplayNameInfo = @"displayName";
     [self initializeUI];
     [self joinMeeting];
 }
+
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 /**
  *  Initialize UI.
@@ -87,18 +99,22 @@ static NSString* const DisplayNameInfo = @"displayName";
     SfBConversation *conversation = [sfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
                                                          displayName:meetingDisplayName
                                                                error:&error];
+    conversation.alertDelegate = self;
     
     if (conversation) {
-        [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
-        
-        _conversationHelper = [[SfBConversationHelper alloc] initWithConversation:conversation
+               _conversationHelper = [[SfBConversationHelper alloc] initWithConversation:conversation
                                                                          delegate:self
                                                                    devicesManager:sfb.devicesManager
                                                                 outgoingVideoView:self.selfVideoView
                                                                incomingVideoLayer:(CAEAGLLayer *) self.participantVideoView.layer
                                                                          userInfo:@{DisplayNameInfo:meetingDisplayName}];
+         [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
+        
+
     } else {
-        [self handleError:error];
+        
+        [Util showErrorMessage:error inViewController:self];
+        self.endCallButton.enabled = YES;
     }
 }
 
@@ -109,18 +125,17 @@ static NSString* const DisplayNameInfo = @"displayName";
     // Get conversation handle and call leave.
     // Need to check for canLeave property of conversation,
     // in this case happens in KVO
-    
-    NSError *error = nil;
-    [_conversationHelper.conversation leave:&error];
-    
-    if (error) {
-        [self handleError:error];
-    }
-    else {
+    [self leaveMeeting];
+   }
+
+- (void)leaveMeeting {
+    if(_conversationHelper.conversation){
+        [Util leaveMeetingOrLogError:_conversationHelper.conversation];
         [_conversationHelper.conversation removeObserver:self forKeyPath:@"canLeave"];
-        [self.navigationController popViewControllerAnimated:YES];
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 - (IBAction)toggleMute:(id)sender {
     // Toggle audio mute. The result(updated state) is handled as a delegate callback.
@@ -144,6 +159,7 @@ static NSString* const DisplayNameInfo = @"displayName";
     }
 }
 
+
 // When the audio status changes, reflect in UI
 - (void)conversationHelper:(SfBConversationHelper *)avHelper selfAudio:(SfBParticipantAudio *)audio didChangeIsMuted:(BOOL)isMuted {
 
@@ -153,6 +169,14 @@ static NSString* const DisplayNameInfo = @"displayName";
     else {
         [self.muteButton setTitle:@"Mute" forState:UIControlStateNormal];
     }
+}
+
+#pragma mark - Sfb Alert Delegate
+
+- (void)didReceiveAlert:(SfBAlert *)alert{
+    
+    [Util showSfbAlert:alert inViewController:self];
+    
 }
 
 
@@ -167,17 +191,20 @@ static NSString* const DisplayNameInfo = @"displayName";
 }
 
 
-#pragma mark - Helper UI
 
-- (void)handleError:(NSError *)error {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                             message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Close"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:nil]];
-    [self presentViewController:alertController animated:YES completion:nil];
+#pragma mark -  notifications
+- (void)registerForNotifications
+
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(leaveMeetingWhenAppTerminates:)
+                                                 name:UIApplicationWillTerminateNotification object:nil];
+    
 }
 
+-(void) leaveMeetingWhenAppTerminates:(NSNotification *)aNotification {
+    [Util leaveMeetingOrLogError:_conversationHelper.conversation];
+}
 
 
 
