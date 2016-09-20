@@ -1,10 +1,7 @@
-//
-//  MainViewController.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/9/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
-//
+/*
+ * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+ * See LICENSE in the project root for license information.
+ */
 
 import UIKit
 
@@ -17,27 +14,31 @@ class MainViewController: UIViewController,SfBAlertDelegate {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 
-    @IBAction func askAgent(sender: AnyObject) {
-        let alertController:UIAlertController = UIAlertController(title: "Ask Agent", message: nil, preferredStyle: .ActionSheet)
+    @IBAction func askAgent(_ sender: AnyObject) {
+        let alertController:UIAlertController = UIAlertController(title: "Ask Agent", message: nil, preferredStyle: .actionSheet)
         
         
-        alertController.addAction(UIAlertAction(title: "Ask using Text Chat", style: .Default, handler: { (action:UIAlertAction) in
+        alertController.addAction(UIAlertAction(title: "Ask using Text Chat", style: .default, handler: { (action:UIAlertAction) in
             self.askAgentText()
         }))
         
-        alertController.addAction(UIAlertAction(title: "Ask using Video Chat", style: .Default, handler: { (action:UIAlertAction) in
+        alertController.addAction(UIAlertAction(title: "Ask using Video Chat", style: .default, handler: { (action:UIAlertAction) in
             self.askAgentVideo()
         }))
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     
         
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = sender as? UIView
             popoverController.sourceRect = sender.bounds
         }
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
         
     
     }
@@ -47,41 +48,32 @@ class MainViewController: UIViewController,SfBAlertDelegate {
     }
     
     func askAgentText()  {
-        self.performSegueWithIdentifier("askAgentText", sender: nil)
+        self.performSegue(withIdentifier: "askAgentText", sender: nil)
     }
     
     func askAgentVideo()  {
-        self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+        self.performSegue(withIdentifier: "askAgentVideo", sender: nil)
     }
     
     func initializeSkype(){
-        let sfb:SfBApplication? = SfBApplication.sharedApplication()
+        let sfb:SfBApplication? = SfBApplication.shared()
         
         if let sfb = sfb{
             sfb.configurationManager.maxVideoChannels = 1
-            sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
+            sfb.configurationManager.requireWifiForAudio = false
+            sfb.configurationManager.requireWifiForVideo = false
+            sfb.devicesManager.selectedSpeaker.activeEndpoint = .loudspeaker
             sfb.alertDelegate = self
         }
         
     }
+   
+    //MARK - Sfb Alert Delegate
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
-    func didReceiveAlert(alert: SfBAlert) {
+    func didReceive(_ alert: SfBAlert) {
         
         alert.show()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

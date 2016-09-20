@@ -1,10 +1,7 @@
-//
-//  EnterMeetingUrlViewController.swift
-//  BankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/23/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
-//
+/*
+ * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+ * See LICENSE in the project root for license information.
+ */
 
 import UIKit
 
@@ -30,9 +27,9 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     
     // Display saved meeting url on screen
     func showCurrentMeetingUrl(){
-        if (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) != nil) {
+        if (UserDefaults.standard.object(forKey: USER_MEETING_URL) != nil) {
             
-            meetingUrl.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) as! String)
+            meetingUrl.text = (UserDefaults.standard.object(forKey: USER_MEETING_URL) as! String)
             
         }
         else{
@@ -44,11 +41,11 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
         
     }
     
-    @IBAction func okButtonPressed(sender: AnyObject) {
+    @IBAction func okButtonPressed(_ sender: AnyObject) {
         
         self.hideKeyboard()
         
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         
         //Save Skype display name and meeting url.
         if ((checkIfTextFieldHasText(meetingUrl)) && (meetingUrl.text != meetingUrl.placeholder))
@@ -63,23 +60,23 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
             prefs.synchronize()
             
             // show saved message and dismiss EnterMeetingCredentialsViewController
-            let alertController:UIAlertController = UIAlertController(title: "SAVED!", message: nil, preferredStyle: .Alert)
+            let alertController:UIAlertController = UIAlertController(title: "SAVED!", message: nil, preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "OK", style: .Cancel, handler:{(alert: UIAlertAction!) in
-                self.dismissViewControllerAnimated(true, completion: nil)
+            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{(alert: UIAlertAction!) in
+                self.dismiss(animated: true, completion: nil)
             }))
             
-            presentViewController(alertController, animated: true, completion:nil)
+            present(alertController, animated: true, completion:nil)
             
             
             
         }
         else{
             // show alert message if meeting url is empty
-            let alertController:UIAlertController = UIAlertController(title: "Alert!", message: "Please enter valid meeting url!", preferredStyle: .Alert)
+            let alertController:UIAlertController = UIAlertController(title: "Alert!", message: "Please enter valid meeting url!", preferredStyle: .alert)
             
-            alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
-            presentViewController(alertController, animated: true, completion:nil)
+            alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion:nil)
         }
         
     }
@@ -87,27 +84,27 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     //MARK: - Text field handlers
     
     func hideKeyboard() {
-        if (self.meetingDisplayName.isFirstResponder()) {
+        if (self.meetingDisplayName.isFirstResponder) {
             self.meetingDisplayName.resignFirstResponder()
-        } else if (self.meetingUrl.isFirstResponder()) {
+        } else if (self.meetingUrl.isFirstResponder) {
             self.meetingUrl.resignFirstResponder()
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if(textField.text == textField.placeholder){
         textField.placeholder = ""
         textField.text = ""
         }
     }
     
-    func checkIfTextFieldHasText(textField:UITextField) -> Bool {
-        if let text = textField.text where !text.isEmpty
+    func checkIfTextFieldHasText(_ textField:UITextField) -> Bool {
+        if let text = textField.text , !text.isEmpty
         {
             //return true if it's not empty
             return true
@@ -117,7 +114,7 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     
     //MARK: - Hide status bar
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
    
