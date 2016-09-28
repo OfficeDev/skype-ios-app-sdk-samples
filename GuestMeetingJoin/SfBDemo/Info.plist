@@ -22,6 +22,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Access to the camera is required for making video calls.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Access to your address book is required for making calls to contacts.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Access to the microphone is required for making calls.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
