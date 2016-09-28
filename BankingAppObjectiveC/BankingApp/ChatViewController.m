@@ -6,8 +6,9 @@
 #import "ChatViewController.h"
 #import "ChatTableViewController.h"
 #import "ChatHandler.h"
+#import "Util.h"
 
-@interface ChatViewController () <ChatHandlerDelegate>
+@interface ChatViewController () <ChatHandlerDelegate,SfBAlertDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *spaceConstraint;
@@ -24,12 +25,20 @@ static NSString* const DisplayNameInfo = @"displayName";
 
 @implementation ChatViewController
 
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self registerForNotifications];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-
-    [self joinMeeting];
+     [self joinMeeting];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -38,7 +47,6 @@ static NSString* const DisplayNameInfo = @"displayName";
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-    [self registerForKeyboardNotifications];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -46,14 +54,20 @@ static NSString* const DisplayNameInfo = @"displayName";
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - Keyboard notifications
-- (void)registerForKeyboardNotifications
+#pragma mark -  notifications
+- (void)registerForNotifications
+
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(leaveMeetingWhenAppTerminates:)
+                                                 name:UIApplicationWillTerminateNotification object:nil];
+    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification object:nil];
@@ -64,18 +78,16 @@ static NSString* const DisplayNameInfo = @"displayName";
     
 }
 
+-(void) leaveMeetingWhenAppTerminates:(NSNotification *)aNotification {
+    [Util leaveMeetingOrLogError:_chatHandler.conversation];
+}
+
 - (void)keyboardWillShow:(NSNotification *)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     self.spaceConstraint.constant = keyboardFrame.size.height;
     [self.view layoutIfNeeded];
-    
-    CGPoint newOffset = CGPointMake(0, self.chatTableViewController.tableView.contentOffset.y + keyboardFrame.size.height);
-    
-    [self.chatTableViewController.tableView setContentOffset:newOffset
-                                                    animated:YES];
-    
     
 }
 
@@ -95,6 +107,30 @@ static NSString* const DisplayNameInfo = @"displayName";
     [self leaveMeeting];
 }
 
+- (void)sendChatMessage:(NSString *)message {
+    
+    NSError *error = nil;
+    [_chatHandler sendMessage:message error:&error];
+    
+    if (error) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        self.messageTextField.text = @"";
+        [self.chatTableViewController addMessage:message from:_chatHandler.userInfo[DisplayNameInfo] origin:ChatSourceSelf];
+    }
+    
+}
+
+- (void)leaveMeeting {
+    if(_chatHandler.conversation){
+            [Util leaveMeetingOrLogError:_chatHandler.conversation];
+            [_chatHandler.conversation removeObserver:self forKeyPath:@"canLeave"];
+    }
+            [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 
 #pragma mark - Skype
 /**
@@ -109,34 +145,24 @@ static NSString* const DisplayNameInfo = @"displayName";
     SfBConversation *conversation = [sfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
                                                          displayName:meetingDisplayName
                                                                error:&error];
+     conversation.alertDelegate = self;
     
     if (conversation) {
-        [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
         
         _chatHandler = [[ChatHandler alloc] initWithConversation:conversation
-                                                       delegate:self
-                                                       userInfo:@{DisplayNameInfo:meetingDisplayName}];
+                                                        delegate:self
+                                                        userInfo:@{DisplayNameInfo:meetingDisplayName}];
+        [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
+        
+
     } else {
-        [self handleError:error];
+        [Util showErrorMessage:error inViewController:self];
+        self.endButton.enabled = YES;
     }
 
 }
 
-    
-- (void)leaveMeeting {
-    NSError *error = nil;
-    [_chatHandler.conversation leave:&error];
-    
-    if (error) {
-        [self handleError:error];
-    }
-    else {
-        [_chatHandler.conversation removeObserver:self forKeyPath:@"canLeave"];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
-
+#pragma mark - Skype Delegates
 - (void)chatHandler:(ChatHandler *)chatHandler conversation:(SfBConversation *)conversation didChangeState:(SfBConversationState)state {
     
 }
@@ -157,21 +183,14 @@ static NSString* const DisplayNameInfo = @"displayName";
     [self.chatTableViewController addMessage:message.text from:message.sender.displayName origin:ChatSourceParticipant];
 }
 
+//MARK - Sfb Alert Delegate
 
-- (void)sendChatMessage:(NSString *)message {
+- (void)didReceiveAlert:(SfBAlert *)alert{
     
-    NSError *error = nil;
-    [_chatHandler sendMessage:message error:&error];
-    
-    if (error) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else {
-        self.messageTextField.text = @"";
-        [self.chatTableViewController addMessage:message from:_chatHandler.userInfo[DisplayNameInfo] origin:ChatSourceSelf];
-    }
+    [Util showSfbAlert:alert inViewController:self];
     
 }
+
 
 #pragma mark - Additional KVO
 
@@ -183,18 +202,6 @@ static NSString* const DisplayNameInfo = @"displayName";
     }
     
     
-}
-
-#pragma mark - Helper UI
-
-- (void)handleError:(NSError *)error {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                             message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Close"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:nil]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Navigation

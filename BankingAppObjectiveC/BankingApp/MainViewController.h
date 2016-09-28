@@ -4,7 +4,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <SkypeForBusiness/SkypeForBusiness.h>
 
-@interface MainViewController : UIViewController
-
+@interface MainViewController : UIViewController 
 @end

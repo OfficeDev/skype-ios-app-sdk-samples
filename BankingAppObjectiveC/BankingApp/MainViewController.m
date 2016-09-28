@@ -5,14 +5,17 @@
 
 #import "MainViewController.h"
 #import "VideoViewController.h"
-
 #import <SkypeForBusiness/SkypeForBusiness.h>
+#import "Util.h"
 
-@interface MainViewController ()
+
+
+@interface MainViewController () <SfBAlertDelegate>
+
 @property (strong, nonatomic) IBOutlet UIButton *askAgentButton;
 @end
 
-@implementation MainViewController
+@implementation MainViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,8 +69,19 @@
  */
 - (void)initializeSkype {
     SfBApplication *sfb = SfBApplication.sharedApplication;
+    sfb.alertDelegate = self;
     sfb.configurationManager.maxVideoChannels = 1;
+    sfb.configurationManager.requireWifiForVideo = NO;
+    sfb.configurationManager.requireWifiForAudio = NO;
     sfb.devicesManager.selectedSpeaker.activeEndpoint = SfBSpeakerEndpointLoudspeaker;
+}
+
+//MARK - Sfb Alert Delegate
+
+- (void)didReceiveAlert:(SfBAlert *)alert{
+    
+    [Util showSfbAlert:alert inViewController:self];
+    
 }
 
 

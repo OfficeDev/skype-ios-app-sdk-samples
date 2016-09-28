@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  ViewViewControllers handles AV chat using Skype for Business SDK.
+ *  VideoViewController handles AV chat using Skype for Business SDK.
  *  Namely, it uses a convenient helper SfBConversationHelper.h included in the 
  *  Helpers folder of the SDK.
  */

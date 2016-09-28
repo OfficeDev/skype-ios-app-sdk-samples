@@ -1,10 +1,7 @@
-//
-//  LoginViewController.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/9/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
-//
+/*
+ * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+ * See LICENSE in the project root for license information.
+ */
 
 import UIKit
 
@@ -20,37 +17,37 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         credentialTextFields[0].delegate = self
         credentialTextFields[1].delegate = self
         
-        self.addSwipeGesturesInDirection(UISwipeGestureRecognizerDirection.Down)
-        self.addSwipeGesturesInDirection(UISwipeGestureRecognizerDirection.Up)
+        self.addSwipeGesturesInDirection(UISwipeGestureRecognizerDirection.down)
+        self.addSwipeGesturesInDirection(UISwipeGestureRecognizerDirection.up)
     }
     
     // Hide Keyboard on return.
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
     //MARK: - Handle Swipe Gestures
-    func addSwipeGesturesInDirection(swipeDirection:UISwipeGestureRecognizerDirection)  {
+    func addSwipeGesturesInDirection(_ swipeDirection:UISwipeGestureRecognizerDirection)  {
         
         let swipeAction = UISwipeGestureRecognizer(target: self, action: #selector(LoginViewController.respondToSwipeGesture(_:)))
         swipeAction.direction = swipeDirection
         self.view.addGestureRecognizer(swipeAction)
     }
     
-    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+    func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             
             switch swipeGesture.direction {
                 
-            case UISwipeGestureRecognizerDirection.Down:
+            case UISwipeGestureRecognizerDirection.down:
                 
-                self.showButtonWithAnimation(.CurveEaseIn, button: self.addURLButton, alphaValue: 1, hiddenStatus: false)
+                self.showButtonWithAnimation(.curveEaseIn, button: self.addURLButton, alphaValue: 1, hiddenStatus: false)
                 
-            case UISwipeGestureRecognizerDirection.Up:
+            case UISwipeGestureRecognizerDirection.up:
                 
-                self.showButtonWithAnimation(.CurveEaseOut, button: self.addURLButton, alphaValue: 0, hiddenStatus: true)
+                self.showButtonWithAnimation(.curveEaseOut, button: self.addURLButton, alphaValue: 0, hiddenStatus: true)
                 
             default:
                 break
@@ -59,18 +56,18 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     // Show and hide AddURL button with animation.
-    func showButtonWithAnimation(options:UIViewAnimationOptions, button:UIButton, alphaValue:CGFloat, hiddenStatus:Bool)  {
-        UIView.animateWithDuration(0.2, delay: 0.0, options:options, animations: {
+    func showButtonWithAnimation(_ options:UIViewAnimationOptions, button:UIButton, alphaValue:CGFloat, hiddenStatus:Bool)  {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options:options, animations: {
             if(hiddenStatus == false){
                 button.alpha = alphaValue
-                button.hidden = hiddenStatus
+                button.isHidden = hiddenStatus
             }
             else{
                 button.alpha = alphaValue
             }
             }, completion:  { (Bool) in
                 if(hiddenStatus == true){
-                    button.hidden = true
+                    button.isHidden = true
                 }
         })
         
@@ -82,12 +79,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func prepareForUnwind(segue:UIStoryboardSegue){
+    @IBAction func prepareForUnwind(_ segue:UIStoryboardSegue){
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        self.addURLButton.hidden = true
+    override func viewWillDisappear(_ animated: Bool) {
+        self.addURLButton.isHidden = true
         self.addURLButton.alpha = 0
     }
 }

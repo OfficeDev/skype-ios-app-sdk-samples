@@ -311,7 +311,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Woodgrove Bank" prompt="Text Chat" id="Wq0-0s-8YD">
-                        <barButtonItem key="rightBarButtonItem" title="End" id="HqN-K3-qbU">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="End" id="HqN-K3-qbU">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="endChat:" destination="YbP-R5-2Oq" id="uNa-Bb-ZXy"/>

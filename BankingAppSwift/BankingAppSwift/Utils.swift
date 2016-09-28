@@ -14,14 +14,14 @@ let USER_DISPLAY_NAME = "userDisplayName"
 var getMeetingURLString : String {
 get {
     
-    return (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) as? String) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("Skype meeting URL") as! String
+    return (UserDefaults.standard.object(forKey: USER_MEETING_URL) as? String) ?? Bundle.main.object(forInfoDictionaryKey: "Skype meeting URL") as! String
 }
 }
 
 var getMeetingDisplayName: String {
 get {
     
-    return (NSUserDefaults.standardUserDefaults().objectForKey(USER_DISPLAY_NAME) as? String) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("Skype meeting display name") as! String
+    return (UserDefaults.standard.object(forKey: USER_DISPLAY_NAME) as? String) ?? Bundle.main.object(forInfoDictionaryKey: "Skype meeting display name") as! String
 }
 
 }
@@ -34,3 +34,22 @@ extension SfBAlert {
     }
 
 }
+
+func leaveMeetingWithSuccess(_ conversation:SfBConversation) -> Bool {
+    do{
+        try conversation.leave()
+    }
+    catch let error as NSError {
+        print(error.localizedDescription)
+        return false
+    }
+    return true
+}
+
+func showErrorAlert(_ readableErrorDescription:String, InViewController viewController:UIViewController)  {
+    let alertController:UIAlertController = UIAlertController(title: "ERROR!", message: readableErrorDescription, preferredStyle: .alert)
+    
+    alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+    viewController.present(alertController, animated: true, completion:nil)
+}
+

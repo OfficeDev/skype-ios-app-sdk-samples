@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F261FEF1D91CF2D00BCAB09 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F261FEE1D91CF2D00BCAB09 /* Util.m */; };
 		96101E6F1C90AC8B004CE997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E6E1C90AC8B004CE997 /* main.m */; };
 		96101E721C90AC8B004CE997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E711C90AC8B004CE997 /* AppDelegate.m */; };
 		96101E781C90AC8B004CE997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96101E761C90AC8B004CE997 /* Main.storyboard */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F261FED1D91CF2D00BCAB09 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		5F261FEE1D91CF2D00BCAB09 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		96101E6A1C90AC8B004CE997 /* BankingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96101E6E1C90AC8B004CE997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96101E701C90AC8B004CE997 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,6 +74,8 @@
 			children = (
 				9683CE461CD2C3F5008351E4 /* ChatHandler.h */,
 				9683CE471CD2C3F5008351E4 /* ChatHandler.m */,
+				5F261FED1D91CF2D00BCAB09 /* Util.h */,
+				5F261FEE1D91CF2D00BCAB09 /* Util.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				9683CE481CD2C3F5008351E4 /* ChatHandler.m in Sources */,
 				96101E6F1C90AC8B004CE997 /* main.m in Sources */,
 				96101E891C90B4D4004CE997 /* MainViewController.m in Sources */,
+				5F261FEF1D91CF2D00BCAB09 /* Util.m in Sources */,
 				962058951C9724C100D35390 /* VideoViewController.m in Sources */,
 				96844E5F1C91F011003F6562 /* AccountTableViewController.m in Sources */,
 			);
@@ -372,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -382,6 +389,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp-";
 				PRODUCT_NAME = BankingApp;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -389,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -399,6 +408,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp-";
 				PRODUCT_NAME = BankingApp;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
