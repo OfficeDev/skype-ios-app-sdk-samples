@@ -32,14 +32,19 @@ class IdentityViewController: UIViewController, SfBAlertDelegate {
         alert.show()
     }
 
+	func loadMeeting(meetingUrl: String, displayName: String) -> Bool {
+		do {
+			let url = NSURL(string: meetingUrl)!;
+			conversation = try sfb.joinMeetingAnonymousWithUri(url, displayName: displayName)
+			return true
+		} catch {
+			UIAlertView(title: "Join failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+			return false
+		}
+	}
+
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        do {
-            conversation = try sfb.joinMeetingAnonymousWithUri(NSURL(string: meetingUrl.text!)!, displayName: displayName.text!)
-            return true
-        } catch {
-            UIAlertView(title: "Join failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
-            return false
-        }
+		return loadMeeting(meetingUrl.text!, displayName: displayName.text!)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

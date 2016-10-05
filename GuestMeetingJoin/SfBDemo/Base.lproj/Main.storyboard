@@ -37,7 +37,7 @@
                                 <rect key="frame" x="285" y="323" width="30" height="30"/>
                                 <state key="normal" title="Join"/>
                                 <connections>
-                                    <segue destination="CQB-gl-sgB" kind="show" id="VWG-4q-3oL"/>
+                                    <segue destination="CQB-gl-sgB" kind="show" identifier="JoinConversation" id="VWG-4q-3oL"/>
                                 </connections>
                             </button>
                         </subviews>
