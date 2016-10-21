@@ -108,7 +108,7 @@ static NSString* const DisplayNameInfo = @"displayName";
     SfBApplication *sfb = SfBApplication.sharedApplication;
     SfBConversation *conversation = [sfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
                                                          displayName:meetingDisplayName
-                                                               error:&error];
+                                                               error:&error].conversation;
     
     if (conversation) {
         [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
