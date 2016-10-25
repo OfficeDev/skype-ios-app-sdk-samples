@@ -116,7 +116,7 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
         do {
              let urlText:String = meetingURLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
             let url = NSURL(string:urlText)
-            let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName)
+            let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName).conversation
             self.chatHandler = ChatHandler(conversation: conversation,
                                            delegate: self,
                                            userInfo: [DisplayNameInfo:meetingDisplayName])

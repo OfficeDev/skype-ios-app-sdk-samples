@@ -34,7 +34,7 @@ class IdentityViewController: UIViewController, SfBAlertDelegate {
 
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         do {
-            conversation = try sfb.joinMeetingAnonymousWithUri(NSURL(string: meetingUrl.text!)!, displayName: displayName.text!)
+            conversation = try sfb.joinMeetingAnonymousWithUri(NSURL(string: meetingUrl.text!)!, displayName: displayName.text!).conversation
             return true
         } catch {
             UIAlertView(title: "Join failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
