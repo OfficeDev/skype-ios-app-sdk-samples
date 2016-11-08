@@ -25,6 +25,7 @@ class IdentityViewController: UIViewController, SfBAlertDelegate {
         sfb.configurationManager.maxVideoChannels = 1
         sfb.configurationManager.requireWifiForAudio = false
         sfb.configurationManager.requireWifiForVideo = false
+        sfb.configurationManager.enablePreviewFeatures = true
         sfb.alertDelegate = self
     }
 
