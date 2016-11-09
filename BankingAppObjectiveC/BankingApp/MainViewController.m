@@ -68,6 +68,7 @@
     SfBApplication *sfb = SfBApplication.sharedApplication;
     sfb.configurationManager.maxVideoChannels = 1;
     sfb.devicesManager.selectedSpeaker.activeEndpoint = SfBSpeakerEndpointLoudspeaker;
+    sfb.configurationManager.enablePreviewFeatures = true;
 }
 
 

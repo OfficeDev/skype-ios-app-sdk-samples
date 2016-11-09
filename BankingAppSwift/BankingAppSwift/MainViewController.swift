@@ -60,6 +60,7 @@ class MainViewController: UIViewController,SfBAlertDelegate {
         if let sfb = sfb{
             sfb.configurationManager.maxVideoChannels = 1
             sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
+            sfb.configurationManager.enablePreviewFeatures = true
             sfb.alertDelegate = self
         }
         
