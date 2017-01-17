@@ -1,15 +1,16 @@
+
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  MainViewController.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/9/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
-//
+// Module name: OnPremMeetingViewController.swift
+//----------------------------------------------------------------
 
 import UIKit
 
-class MainViewController: UIViewController,SfBAlertDelegate {
-
+class OnPremMeetingViewController: UIViewController,SfBAlertDelegate {
+    
+    private var sfb: SfBApplication?
+    private var conversation: SfBConversation?
     @IBOutlet weak var askAgentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,18 +48,24 @@ class MainViewController: UIViewController,SfBAlertDelegate {
     }
     
     func askAgentText()  {
+        if(shouldJoinMeeting()){
         self.performSegueWithIdentifier("askAgentText", sender: nil)
+        }
     }
     
     func askAgentVideo()  {
+         if(shouldJoinMeeting()){
         self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+        }
     }
     
     func initializeSkype(){
-        let sfb:SfBApplication? = SfBApplication.sharedApplication()
+         sfb = SfBApplication.sharedApplication()
         
         if let sfb = sfb{
             sfb.configurationManager.maxVideoChannels = 1
+            sfb.configurationManager.requireWifiForAudio = false
+            sfb.configurationManager.requireWifiForVideo = false
             sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
             sfb.configurationManager.enablePreviewFeatures = true
             sfb.alertDelegate = self
@@ -75,14 +82,45 @@ class MainViewController: UIViewController,SfBAlertDelegate {
         alert.show()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+     func shouldJoinMeeting() -> Bool {
+        
+        let meetingURLString:String = getMeetingURLString
+        let meetingDisplayName:String = getMeetingDisplayName
+        
+        do {
+            let urlText:String = meetingURLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            let url = NSURL(string:urlText)
+            conversation = try sfb!.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName).conversation
+            return true
+        }
+        catch {
+            UIAlertView(title: "Join failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+            return false
+        }
+       
     }
-    */
+
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if(segue.identifier == "askAgentText"){
+            guard let destination = segue.destinationViewController as? ChatViewController else {
+                return
+            }
+            destination.conversation = self.conversation
+        }
+        else if(segue.identifier == "askAgentVideo"){
+            guard let destination = segue.destinationViewController as? VideoViewController else {
+                return
+            }
+            destination.deviceManagerInstance = sfb!.devicesManager
+           destination.conversationInstance = conversation
+            
+        }
+     conversation = nil
+    }
+
 
 }

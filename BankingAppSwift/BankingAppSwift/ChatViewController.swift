@@ -9,10 +9,10 @@
 import UIKit
 
 
-class ChatViewController: UIViewController,ChatHandlerDelegate {
+class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate{
     let DisplayNameInfo: String = "displayName"
     
-    
+      var conversation:SfBConversation?
     
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var endButton: UIBarButtonItem!
@@ -21,6 +21,12 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
     
     var chatTableViewController:ChatTableViewController? = nil
     var chatHandler:ChatHandler? = nil
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.registerForNotifications()
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,20 +38,36 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        }
+
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.registerForKeyboardNotifications()
+        
     }
     
     //MARK: Keyboard Handling
     
-    func registerForKeyboardNotifications() {
+    func registerForNotifications() {
+
+        
+       NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(ChatViewController.leaveMeetingWhenAppTerminates(_:)), name:UIApplicationWillTerminateNotification, object:nil)
+        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
+    
+    func leaveMeetingWhenAppTerminates(aNotification:NSNotification) {
+        if let conversation = self.chatHandler?.conversation{
+            leaveMeetingWithSuccess(conversation)
+        }
+    }
+
     
     func keyboardWillShow(aNotification:NSNotification) {
         
@@ -53,8 +75,9 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
         let keyboardFrame: CGRect = ((info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue())!
         self.spaceConstraint.constant = keyboardFrame.size.height
         self.view.layoutIfNeeded()
-        let newOffSet: CGPoint = CGPointMake(0, (self.chatTableViewController?.tableView.contentOffset.y)! + keyboardFrame.size.height)
-        self.chatTableViewController?.tableView.setContentOffset(newOffSet, animated: true)
+        // To scroll table up
+        //let newOffSet: CGPoint = CGPointMake(0, (self.chatTableViewController?.tableView.contentOffset.y)! + keyboardFrame.size.height)
+        // self.chatTableViewController?.tableView.setContentOffset(newOffSet, animated: true)
         
     }
     
@@ -71,21 +94,24 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
     }
     
     @IBAction func endChat(sender: AnyObject) {
-        self.leaveMeeting()
+        self.endMeeting()
     }
     
-    func leaveMeeting() {
-        do{
-            try chatHandler?.conversation.leave()
-            self.chatHandler?.conversation.removeObserver(self, forKeyPath: "canLeave")
-            self.navigationController!.popViewControllerAnimated(true)
+   
+    func endMeeting() {
+        if let conversation = self.chatHandler?.conversation{
+            if(leaveMeetingWithSuccess(conversation)){
+                self.chatHandler?.conversation.removeObserver(self, forKeyPath: "canLeave")
+                
+            }
+            else{
+                showErrorAlert("Could Not Leave Meeting", viewController: self)
+               
+            }
         }
-        catch let error as NSError {
-            print(error.localizedDescription)
-            self.handleError("Could Not Leave Meeting!")
-            
-        }
+        self.navigationController?.popViewControllerAnimated(true)
     }
+
     
     func sendChatMessage(message: String) {
         var error: NSError? = nil
@@ -107,33 +133,19 @@ class ChatViewController: UIViewController,ChatHandlerDelegate {
     //Joins a Skype meeting.
     func joinMeeting() {
         
-        let meetingURLString:String = getMeetingURLString
-        let meetingDisplayName:String = getMeetingDisplayName
+
+        conversation?.alertDelegate = self
+        self.chatHandler = ChatHandler(conversation: self.conversation!,
+                                       delegate: self,
+                                       userInfo: [DisplayNameInfo:"Jake"])
         
-        let sfb: SfBApplication = SfBApplication.sharedApplication()!
         
+        conversation!.addObserver(self, forKeyPath: "canLeave", options: [.Initial, .New] , context: nil)
         
-        do {
-             let urlText:String = meetingURLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-            let url = NSURL(string:urlText)
-            let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName).conversation
-            self.chatHandler = ChatHandler(conversation: conversation,
-                                           delegate: self,
-                                           userInfo: [DisplayNameInfo:meetingDisplayName])
-            
-            
-            conversation.addObserver(self, forKeyPath: "canLeave", options: [.Initial, .New] , context: nil)
-            
-            
-            
-        }
-        catch let error as NSError {
-            print(error.localizedDescription)
-            self.handleError("Could Not Join Meeting!(System Error)")
-            
-            
-        }
+    }
+    func didReceiveAlert(alert: SfBAlert){
         
+        alert.show()
     }
     
     

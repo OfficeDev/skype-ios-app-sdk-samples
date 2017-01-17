@@ -26,6 +26,28 @@ get {
 
 }
 
+
+func leaveMeetingWithSuccess(conversation:SfBConversation) -> Bool {
+    do{
+        try conversation.leave()
+    }
+    catch let error as NSError {
+        print(error.localizedDescription)
+        return false
+    }
+    return true
+}
+
+func showErrorAlert(readableErrorDescription:String,viewController:UIViewController)  {
+   let alertController:UIAlertController =  UIAlertController(title:  "ERROR!", message: readableErrorDescription, preferredStyle: .Alert)
+    
+    alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
+    
+    viewController.presentViewController(alertController, animated: true, completion: nil)
+  }
+
+
+
 extension SfBAlert {
 
     func show() {

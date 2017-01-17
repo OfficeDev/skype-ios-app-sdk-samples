@@ -19,7 +19,7 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
         super.viewDidLoad()
         self.meetingDisplayName.delegate = self
         self.meetingUrl.delegate = self
-        self.showCurrentMeetingUrl()
+        self.showCurrentMeetingUrlAndDisplayName()
         // Do any additional setup after loading the view.
     }
     
@@ -29,7 +29,7 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     }
     
     // Display saved meeting url on screen
-    func showCurrentMeetingUrl(){
+    func showCurrentMeetingUrlAndDisplayName(){
         if (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) != nil) {
             
             meetingUrl.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) as! String)
@@ -38,6 +38,16 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
         else{
             
             meetingUrl.text = meetingUrl.placeholder
+            
+        }
+        if (NSUserDefaults.standardUserDefaults().objectForKey(USER_DISPLAY_NAME) != nil) {
+            
+            meetingDisplayName.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_DISPLAY_NAME) as! String)
+            
+        }
+        else{
+            
+            meetingDisplayName.text = meetingDisplayName.placeholder
             
         }
         
