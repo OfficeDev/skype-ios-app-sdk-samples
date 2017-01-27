@@ -124,7 +124,8 @@ static NSString* const DisplayNameInfo = @"displayName";
 
 - (IBAction)toggleMute:(id)sender {
     // Toggle audio mute. The result(updated state) is handled as a delegate callback.
-    [_conversationHelper toggleAudioMuted:nil];
+    [_conversationHelper.conversation.audioService toggleMute:nil];
+    
 }
 
 #pragma mark - Skype Delegates
@@ -145,15 +146,18 @@ static NSString* const DisplayNameInfo = @"displayName";
 }
 
 // When the audio status changes, reflect in UI
-- (void)conversationHelper:(SfBConversationHelper *)avHelper selfAudio:(SfBParticipantAudio *)audio didChangeIsMuted:(BOOL)isMuted {
-
-    if (!isMuted) {
+- (void)conversationHelper:(SfBConversationHelper *)conversationHelper
+              audioService:(SfBAudioService *)audioService
+            didChangeMuted:(SfBAudioServiceMuteState)muted{
+    if (muted == SfBAudioServiceMuteStateMuted) {
         [self.muteButton setTitle:@"Unmute" forState:UIControlStateNormal];
     }
     else {
         [self.muteButton setTitle:@"Mute" forState:UIControlStateNormal];
     }
+    
 }
+
 
 
 #pragma mark - Additional KVO
