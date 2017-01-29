@@ -10,6 +10,8 @@ import SkypeForBusiness
 
 let USER_MEETING_URL = "userMeetingUrl"
 let USER_DISPLAY_NAME = "userDisplayName"
+let SFB_ONLINE_MEETING_STATE = "SfBOnlineSwitchState"
+let ENABLE_PREVIEW_STATE = "enablePreviewSwitchState"
 
 var getMeetingURLString : String {
 get {
@@ -24,6 +26,20 @@ get {
     return (NSUserDefaults.standardUserDefaults().objectForKey(USER_DISPLAY_NAME) as? String) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("Skype meeting display name") as! String
 }
 
+}
+
+var getEnablePreviewSwitchState : Bool {
+get {
+    
+    return (NSUserDefaults.standardUserDefaults().objectForKey(ENABLE_PREVIEW_STATE) as? Bool) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("Enable Preview Switch State") as! Bool
+}
+}
+
+var getSfBOnlineSwitchState : Bool {
+get {
+    
+    return (NSUserDefaults.standardUserDefaults().objectForKey(SFB_ONLINE_MEETING_STATE) as? Bool) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("SfB Online Switch State") as! Bool
+}
 }
 
 

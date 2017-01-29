@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F030CEA1CE6689D002B2E14 /* ChatHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F030CE91CE6689D002B2E14 /* ChatHandler.m */; };
 		5F030CF81CEA4186002B2E14 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F030CF71CEA4186002B2E14 /* AccountTableViewController.swift */; };
-		5F0357E01CE1337D009044F4 /* OnPremMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0357DF1CE1337D009044F4 /* OnPremMeetingViewController.swift */; };
+		5F0357E01CE1337D009044F4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0357DF1CE1337D009044F4 /* MainViewController.swift */; };
 		5F0357E21CE13E1E009044F4 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0357E11CE13E1E009044F4 /* VideoViewController.swift */; };
 		5F0357E81CE147AD009044F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0357E71CE147AD009044F4 /* LoginViewController.swift */; };
 		5F1E1B611CE0EB8D00AE3D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1E1B601CE0EB8D00AE3D31 /* AppDelegate.swift */; };
@@ -22,30 +22,19 @@
 		5F2087221CF8BE8A00D2DA2D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2087211CF8BE8A00D2DA2D /* Utils.swift */; };
 		5F9790B81E2CB52E00C223BA /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9790B31E2CB51C00C223BA /* SkypeForBusiness.framework */; };
 		5F9790D51E2CBDBC00C223BA /* OnlineMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9790D41E2CBDBC00C223BA /* OnlineMeetingViewController.swift */; };
+		5FA8EC9E1E3AC0B500A86BA6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */; };
+		5FBF17A61E2DF47F00442505 /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF17A51E2DF47F00442505 /* SkypeForBusiness.framework */; };
 		5FEF3BB41CEBA39600F8C72F /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEF3BB31CEBA39600F8C72F /* ChatCell.swift */; };
 		5FFC3E591CE50535001AC5C6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC3E581CE50535001AC5C6 /* ChatViewController.swift */; };
 		5FFC3E5E1CE5065C001AC5C6 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC3E5D1CE5065C001AC5C6 /* ChatTableViewController.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		5F9790BA1E2CB52E00C223BA /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5F030CE81CE6689D002B2E14 /* ChatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatHandler.h; sourceTree = "<group>"; };
 		5F030CE91CE6689D002B2E14 /* ChatHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatHandler.m; sourceTree = "<group>"; };
 		5F030CF71CEA4186002B2E14 /* AccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		5F0357D41CE102F0009044F4 /* BankingAppSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BankingAppSwift-Bridging-Header.h"; sourceTree = "<group>"; };
-		5F0357DF1CE1337D009044F4 /* OnPremMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnPremMeetingViewController.swift; sourceTree = "<group>"; };
+		5F0357DF1CE1337D009044F4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5F0357E11CE13E1E009044F4 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		5F0357E71CE147AD009044F4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5F1E1B5D1CE0EB8D00AE3D31 /* BankingAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankingAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +49,8 @@
 		5F2087211CF8BE8A00D2DA2D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		5F9790B31E2CB51C00C223BA /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = "/Users/aasveenkaur/skype-ios-app-sdk-samples/BankingAppSwift/SkypeForBusiness.framework"; sourceTree = "<absolute>"; };
 		5F9790D41E2CBDBC00C223BA /* OnlineMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineMeetingViewController.swift; sourceTree = "<group>"; };
+		5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		5FBF17A51E2DF47F00442505 /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = "/Users/aasveenkaur/skype-ios-app-sdk-samples/BankingAppSwift/SkypeForBusiness.framework"; sourceTree = "<absolute>"; };
 		5FEF3BB31CEBA39600F8C72F /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		5FFC3E581CE50535001AC5C6 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		5FFC3E5D1CE5065C001AC5C6 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F2086BA1CEBAD3500D2DA2D /* GLKit.framework in Frameworks */,
+				5FBF17A61E2DF47F00442505 /* SkypeForBusiness.framework in Frameworks */,
 				5F9790B81E2CB52E00C223BA /* SkypeForBusiness.framework in Frameworks */,
 				5F2086B81CEBAD2800D2DA2D /* AVFoundation.framework in Frameworks */,
 			);
@@ -138,14 +130,15 @@
 		5F2086BD1CEBBF6D00D2DA2D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5F9790D61E2DDA6500C223BA /* On-prem Meeting */,
 				5F9790D31E2CBDAB00C223BA /* Online Meeting */,
 				5F030CFA1CEA41D6002B2E14 /* AV Chat */,
 				5FFC3E5A1CE5053E001AC5C6 /* Text Chat */,
 				5F1E1B601CE0EB8D00AE3D31 /* AppDelegate.swift */,
 				5F030CF71CEA4186002B2E14 /* AccountTableViewController.swift */,
+				5F0357DF1CE1337D009044F4 /* MainViewController.swift */,
 				5F0357E71CE147AD009044F4 /* LoginViewController.swift */,
 				5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */,
+				5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -177,14 +170,6 @@
 			name = "Online Meeting";
 			sourceTree = "<group>";
 		};
-		5F9790D61E2DDA6500C223BA /* On-prem Meeting */ = {
-			isa = PBXGroup;
-			children = (
-				5F0357DF1CE1337D009044F4 /* OnPremMeetingViewController.swift */,
-			);
-			name = "On-prem Meeting";
-			sourceTree = "<group>";
-		};
 		5FFC3E5A1CE5053E001AC5C6 /* Text Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,7 +189,6 @@
 				5F1E1B591CE0EB8D00AE3D31 /* Sources */,
 				5F1E1B5A1CE0EB8D00AE3D31 /* Frameworks */,
 				5F1E1B5B1CE0EB8D00AE3D31 /* Resources */,
-				5F9790BA1E2CB52E00C223BA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,9 +265,10 @@
 				5F2087221CF8BE8A00D2DA2D /* Utils.swift in Sources */,
 				5F1E1B611CE0EB8D00AE3D31 /* AppDelegate.swift in Sources */,
 				5F030CEA1CE6689D002B2E14 /* ChatHandler.m in Sources */,
+				5FA8EC9E1E3AC0B500A86BA6 /* SettingsViewController.swift in Sources */,
 				5FFC3E591CE50535001AC5C6 /* ChatViewController.swift in Sources */,
 				5F0357E21CE13E1E009044F4 /* VideoViewController.swift in Sources */,
-				5F0357E01CE1337D009044F4 /* OnPremMeetingViewController.swift in Sources */,
+				5F0357E01CE1337D009044F4 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

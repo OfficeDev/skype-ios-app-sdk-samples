@@ -23,7 +23,7 @@ import SkypeForBusiness
 
 class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFieldDelegate {
     
-    private var kvo = 0
+   
     
     private var sfb: SfBApplication?
     private var conversation: SfBConversation?
@@ -50,7 +50,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
             sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
             
             // For OnPrem topolgies enablePreview features should be enabled for Audio/Video.
-            sfb.configurationManager.enablePreviewFeatures = false
+            sfb.configurationManager.enablePreviewFeatures = getEnablePreviewSwitchState
             
         }
         // Setup UI
@@ -89,7 +89,8 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                     self.sendPostRequestForTokenAndDiscoveryURI();
                 } catch {
                     print("ERROR! Getting meeting URL failed>\(error)")
-                    UIAlertView(title: "Getting meeting URL failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+                    UIAlertView(title: "Getting meeting URL failed. Try again later!", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+                    self.navigationController?.popViewControllerAnimated(true)
                 }
                 
                 
@@ -125,7 +126,9 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                     
                 } catch {
                     print("ERROR! Getting token and discovery URI failed>\(error)")
-                    UIAlertView(title: "Getting Discover URI failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+                    UIAlertView(title: "Getting Discover URI failed. Try again later!", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
                 }
                 
                 
@@ -175,7 +178,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
             return true
         } catch {
             print("ERROR! Joining online meeting>\(error)")
-            UIAlertView(title: "Joining online meeting failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+            UIAlertView(title: "Joining online meeting failed. Try again later!", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
             return false
         }
     }
@@ -228,6 +231,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                 return
             }
             destination.conversation = self.conversation
+           
         }
         else if(segue.identifier == "joinOnlineAudioVideoChat"){
             guard let destination = segue.destinationViewController as? VideoViewController else {
@@ -235,12 +239,13 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
             }
             destination.deviceManagerInstance = sfb!.devicesManager
             destination.conversationInstance = conversation
-            conversation = nil
+            destination.displayName = displayName.text!
+            
             discoveryURI = nil
             token = nil
             
         }
-        
+        conversation = nil
     }
     
     //MARK: Lifecycle and helper functions

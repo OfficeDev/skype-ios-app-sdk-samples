@@ -29,6 +29,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     
     var conversationInstance:SfBConversation? = nil
     var deviceManagerInstance: SfBDevicesManager? = nil
+    var displayName: String? = nil
 
     
     var conversationHelper:SfBConversationHelper? = nil
@@ -100,7 +101,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     func joinMeeting() {
         
 
-        let meetingDisplayName:String = getMeetingDisplayName
+       
         conversationInstance!.alertDelegate = self
         
         self.conversationHelper = SfBConversationHelper(conversation: conversationInstance!,
@@ -108,7 +109,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
                                                         devicesManager: deviceManagerInstance!,
                                                         outgoingVideoView: self.selfVideoView,
                                                         incomingVideoLayer: self.participantVideoView.layer as! CAEAGLLayer,
-                                                        userInfo: [DisplayNameInfo:meetingDisplayName])
+                                                        userInfo: [DisplayNameInfo:displayName!])
         
         conversationInstance!.addObserver(self, forKeyPath: "canLeave", options: .Initial , context: nil)
         
@@ -139,7 +140,8 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     
     @IBAction func toggleMute(sender: AnyObject) {
         do{
-            try self.conversationHelper?.toggleAudioMuted()
+            try self.conversationHelper?.conversation.audioService.toggleMute()
+            
         }
         catch let error as NSError {
             print(error.localizedDescription)
@@ -178,15 +180,16 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     
     // When the audio status changes, reflect in UI
     
-    func conversationHelper(avHelper: SfBConversationHelper, selfAudio audio: SfBParticipantAudio, didChangeIsMuted isMuted: Bool) {
-        if !isMuted {
+  
+    
+    func conversationHelper(conversationHelper: SfBConversationHelper, audioService: SfBAudioService, didChangeMuted muted: SfBAudioServiceMuteState) {
+        if muted == .Muted {
             self.muteButton.setTitle("Unmute", forState: .Normal)
         }
         else {
             self.muteButton.setTitle("Mute", forState: .Normal)
         }
     }
-    
     
     
     

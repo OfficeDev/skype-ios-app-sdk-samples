@@ -2,12 +2,12 @@
 //+----------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //
-// Module name: OnPremMeetingViewController.swift
+// Module name: MainViewController.swift
 //----------------------------------------------------------------
 
 import UIKit
 
-class OnPremMeetingViewController: UIViewController,SfBAlertDelegate {
+class MainViewController: UIViewController,SfBAlertDelegate {
     
     private var sfb: SfBApplication?
     private var conversation: SfBConversation?
@@ -67,7 +67,7 @@ class OnPremMeetingViewController: UIViewController,SfBAlertDelegate {
             sfb.configurationManager.requireWifiForAudio = false
             sfb.configurationManager.requireWifiForVideo = false
             sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
-            sfb.configurationManager.enablePreviewFeatures = true
+            sfb.configurationManager.enablePreviewFeatures = getEnablePreviewSwitchState
             sfb.alertDelegate = self
         }
         
@@ -116,7 +116,8 @@ class OnPremMeetingViewController: UIViewController,SfBAlertDelegate {
                 return
             }
             destination.deviceManagerInstance = sfb!.devicesManager
-           destination.conversationInstance = conversation
+            destination.conversationInstance = conversation
+            destination.displayName = getMeetingDisplayName
             
         }
      conversation = nil
