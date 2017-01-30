@@ -100,14 +100,14 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
    
     func endMeeting() {
         if let conversation = self.chatHandler?.conversation{
-            if(leaveMeetingWithSuccess(conversation)){
-                self.chatHandler?.conversation.removeObserver(self, forKeyPath: "canLeave")
+            if(!leaveMeetingWithSuccess(conversation)){
                 
-            }
-            else{
+           
                 showErrorAlert("Could Not Leave Meeting", viewController: self)
                
             }
+            self.chatHandler?.conversation.removeObserver(self, forKeyPath: "canLeave")
+
         }
         self.navigationController?.popViewControllerAnimated(true)
     }

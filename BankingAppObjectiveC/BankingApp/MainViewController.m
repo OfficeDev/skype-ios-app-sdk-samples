@@ -4,15 +4,18 @@
  */
 
 #import "MainViewController.h"
+#import "ChatViewController.h"
 #import "VideoViewController.h"
+#import "Util.h"
 
-#import <SkypeForBusiness/SkypeForBusiness.h>
 
 @interface MainViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *askAgentButton;
 @end
 
 @implementation MainViewController
+SfBConversation* onPremConversation;
+SfBApplication * onPremSfb;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,11 +52,15 @@
 }
 
 - (void)askAgentVideo {
+    if([self shouldJoinMeeting]){
     [self performSegueWithIdentifier:@"askAgentVideo" sender:nil];
+    }
 }
 
 - (void)askAgentText {
+     if([self shouldJoinMeeting]){
     [self performSegueWithIdentifier:@"askAgentText" sender:nil];
+     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -61,15 +68,58 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
+- (void)didReceiveAlert:(SfBAlert *)alert{
+    [Util showErrorAlert:alert.error inView:self];
+}
+
+
 /**
  *  Initialize Skype
  */
 - (void)initializeSkype {
-    SfBApplication *sfb = SfBApplication.sharedApplication;
-    sfb.configurationManager.maxVideoChannels = 1;
-    sfb.devicesManager.selectedSpeaker.activeEndpoint = SfBSpeakerEndpointLoudspeaker;
-    sfb.configurationManager.enablePreviewFeatures = true;
+    onPremSfb = SfBApplication.sharedApplication;
+    onPremSfb.configurationManager.maxVideoChannels = 1;
+    onPremSfb.configurationManager.requireWifiForAudio = false;
+    onPremSfb.configurationManager.requireWifiForVideo = false;
+    onPremSfb.devicesManager.selectedSpeaker.activeEndpoint = SfBSpeakerEndpointLoudspeaker;
+    onPremSfb.configurationManager.enablePreviewFeatures = [Util getEnablePreviewSwitchState];
+    onPremSfb.alertDelegate = self;
 }
 
+-(bool)shouldJoinMeeting{
+    
+    NSError *error = nil;
+    NSString *meetingURLString =  [Util getMeetingURLString];
+    NSString *meetingDisplayName = [Util getMeetingDisplayName];
+  
+        onPremConversation = [onPremSfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
+                                                             displayName:meetingDisplayName
+                                                                   error:&error].conversation;
+    
+        if (onPremConversation) {
+            return true;
+        } else {
+            [Util showErrorAlert:error inView:self ];
+        }
+    return false;
+}
+
+#pragma mark -Segue navigation functions
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"askAgentText"]){
+        ChatViewController* destination = segue.destinationViewController;
+        destination.conversation = onPremConversation;
+        
+       
+    }
+    else if([segue.identifier isEqualToString:@"askAgentVideo"]){
+        VideoViewController* destination = segue.destinationViewController;
+        destination.deviceManagerInstance = onPremSfb.devicesManager;
+        destination.conversationInstance = onPremConversation;
+        destination.displayName = [Util getMeetingDisplayName];
+       
+    }
+     onPremConversation = nil;
+}
 
 @end

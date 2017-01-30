@@ -125,12 +125,11 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         // Need to check for canLeave property of conversation,
         // in this case happens in KVO
         if let conversation = self.conversationHelper?.conversation{
-            if(leaveMeetingWithSuccess(conversation)){
-                self.conversationHelper?.conversation.removeObserver(self, forKeyPath: "canLeave")
-            }
-            else{
+            if(!leaveMeetingWithSuccess(conversation)){
+                
             showErrorAlert("Could Not Leave Meeting!", viewController: self)
-        }
+           }
+            self.conversationHelper?.conversation.removeObserver(self, forKeyPath: "canLeave")
         }
     self.navigationController?.popViewControllerAnimated(true)
 }
