@@ -3,7 +3,8 @@
 //  BankingAppSwift
 //
 //  Created by Aasveen Kaur on 5/23/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
+// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+// See LICENSE in the project root for license information.
 //
 
 import UIKit
