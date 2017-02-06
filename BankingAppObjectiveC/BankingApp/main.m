@@ -2,9 +2,10 @@
 //  main.m
 //  SkypeDemo
 //
-//  Created by Jason Kim on 3/9/16.
-//  Copyright © 2016 Jason Kim. All rights reserved.
-//
+/*
+ * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+ * See LICENSE in the project root for license information.
+ */
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
