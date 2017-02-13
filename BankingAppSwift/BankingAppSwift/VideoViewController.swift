@@ -221,7 +221,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
      */
     
     func didReceiveAlert(alert: SfBAlert) {
-        print("aasveen di galti")
+       
         alert.show()
     }
     
