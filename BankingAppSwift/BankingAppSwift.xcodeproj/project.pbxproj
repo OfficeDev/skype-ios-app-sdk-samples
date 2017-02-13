@@ -130,12 +130,12 @@
 		5F2086BD1CEBBF6D00D2DA2D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5F0357DF1CE1337D009044F4 /* MainViewController.swift */,
 				5F9790D31E2CBDAB00C223BA /* Online Meeting */,
 				5F030CFA1CEA41D6002B2E14 /* AV Chat */,
 				5FFC3E5A1CE5053E001AC5C6 /* Text Chat */,
 				5F1E1B601CE0EB8D00AE3D31 /* AppDelegate.swift */,
 				5F030CF71CEA4186002B2E14 /* AccountTableViewController.swift */,
-				5F0357DF1CE1337D009044F4 /* MainViewController.swift */,
 				5F0357E71CE147AD009044F4 /* LoginViewController.swift */,
 				5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */,
 				5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */,

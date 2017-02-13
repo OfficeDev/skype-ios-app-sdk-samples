@@ -12,6 +12,7 @@ let USER_MEETING_URL = "userMeetingUrl"
 let USER_DISPLAY_NAME = "userDisplayName"
 let SFB_ONLINE_MEETING_STATE = "SfBOnlineSwitchState"
 let ENABLE_PREVIEW_STATE = "enablePreviewSwitchState"
+typealias completionBlock = (   data: NSData?, error: NSError?) -> Void
 
 var getMeetingURLString : String {
 get {
@@ -39,6 +40,19 @@ var getSfBOnlineSwitchState : Bool {
 get {
     
     return (NSUserDefaults.standardUserDefaults().objectForKey(SFB_ONLINE_MEETING_STATE) as? Bool) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("SfB Online Switch State") as! Bool
+}
+}
+
+var getTokenAndDiscoveryURIRequestURL: String {
+get {
+    return NSBundle.mainBundle().objectForInfoDictionaryKey("Token and discovery URI request URL") as! String
+}
+}
+
+var getOnlineMeetingRequestURL: String {
+get {
+    
+    return NSBundle.mainBundle().objectForInfoDictionaryKey("Online Meeting request URL") as! String
 }
 }
 

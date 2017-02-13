@@ -1,9 +1,8 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  VideoViewController.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/9/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
+// Module name: VideoViewController.swift
+//----------------------------------------------------------------
 //
 
 import UIKit
@@ -226,8 +225,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
    
     
     func didReceiveAlert(alert: SfBAlert) {
-        print("aasveen di galti")
-        alert.show()
+       alert.show()
     }
     
 }

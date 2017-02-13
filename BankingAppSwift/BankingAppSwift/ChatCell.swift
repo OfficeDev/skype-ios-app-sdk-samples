@@ -1,10 +1,8 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  ChatCell.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/13/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
-//
+// Module name: ChatCell.swift
+//----------------------------------------------------------------
 
 import UIKit
 

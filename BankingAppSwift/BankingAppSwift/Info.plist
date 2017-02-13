@@ -30,12 +30,16 @@
 	<string>Access to your address book is required for making calls to contacts.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Access to the microphone is required for making calls.</string>
+	<key>Online Meeting request URL</key>
+	<string>OnlineMeetingRequestURL</string>
 	<key>SfB Online Switch State</key>
 	<false/>
 	<key>Skype meeting URL</key>
 	<string>SkypeMeetingUrl</string>
 	<key>Skype meeting display name</key>
 	<string>Jake</string>
+	<key>Token and discovery URI request URL</key>
+	<string>TokenAndDiscoveryURIRequestURL</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

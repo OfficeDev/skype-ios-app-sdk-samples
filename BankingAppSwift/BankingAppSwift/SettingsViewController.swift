@@ -1,33 +1,34 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  SettingsViewController.swift
-//  BankingAppSwift
+// Module name: SettingsViewController.swift
+//----------------------------------------------------------------
 //
-//  Created by Aasveen Kaur on 1/26/17.
-//  Copyright © 2017 Aasveen Kaur. All rights reserved.
-//
-
+/**
+ *  SettingsViewController configures the meeting type and enablePreviewFeature.
+ *   Meeting type - Online/On-Prem
+ *   enablePreviewSwitch - True/False
+ *   Default settings are - On-prem meeting with enablePreviewFeature = false
+ */
 import UIKit
 
 class SettingsViewController: UIViewController {
-
-   
+    
     
     @IBOutlet weak var SfBOnlineSwitch: UISwitch!
-    
-    
     @IBOutlet weak var enablePreviewSwitch: UISwitch!
+    
     let defaults = NSUserDefaults.standardUserDefaults()
-
+    
     
     @IBAction func skypeForBusinessOnlineValueChangeAction(sender: AnyObject) {
-        
         
         if SfBOnlineSwitch.on {
             defaults.setBool(true, forKey:SFB_ONLINE_MEETING_STATE)
         } else {
             defaults.setBool(false, forKey:SFB_ONLINE_MEETING_STATE)
         }
-         defaults.synchronize()
+        defaults.synchronize()
         
     }
     @IBAction func enablePreviewValueChangeAction(sender: AnyObject) {
@@ -44,12 +45,12 @@ class SettingsViewController: UIViewController {
         self.enablePreviewSwitch.tintColor = UIColor.whiteColor()
         
         if let SfBOnlineSwitchState:Bool = defaults.objectForKey(SFB_ONLINE_MEETING_STATE) as? Bool {
-        self.SfBOnlineSwitch.on = SfBOnlineSwitchState
+            self.SfBOnlineSwitch.on = SfBOnlineSwitchState
         }
         if let enablePreviewSwitchState:Bool = defaults.objectForKey(ENABLE_PREVIEW_STATE) as? Bool {
             self.enablePreviewSwitch.on = enablePreviewSwitchState
         }
     }
-
-   
+    
+    
 }

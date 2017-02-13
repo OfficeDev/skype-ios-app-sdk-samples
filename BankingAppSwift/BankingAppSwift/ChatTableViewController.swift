@@ -1,10 +1,8 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  ChatTableViewController.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/12/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
-//
+// Module name: ChatTableViewController.swift
+//----------------------------------------------------------------
 
 import UIKit
 

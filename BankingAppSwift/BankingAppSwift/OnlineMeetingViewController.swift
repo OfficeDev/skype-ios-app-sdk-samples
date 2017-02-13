@@ -10,11 +10,7 @@
  *
  */
 
-// Trusted Application API Service Application's endpoints
-let TOKEN_AND_DISCOVERYURI_REQUEST_URL = "https://metiobank.cloudapp.net/GetAnonTokenJob"
-let MEETING_URL_REQUEST_URL = "https://imbridge.cloudapp.net/GetAdhocMeetingJob"
 
-typealias completionBlock = (   data: NSData?, error: NSError?) -> Void
 
 import Foundation
 import UIKit
@@ -22,8 +18,6 @@ import SkypeForBusiness
 
 
 class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFieldDelegate {
-    
-   
     
     private var sfb: SfBApplication?
     private var conversation: SfBConversation?
@@ -38,6 +32,13 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
      //MARK: Lifecycle and helper functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initializeSkype()
+        // Setup UI
+        join.titleLabel?.textAlignment = NSTextAlignment.Center
+        displayName.delegate = self
+    }
+    
+    func initializeSkype(){
         
         // Configure Shared application instance for Online meeting
         sfb = SfBApplication.sharedApplication()
@@ -53,9 +54,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
             sfb.configurationManager.enablePreviewFeatures = getEnablePreviewSwitchState
             
         }
-        // Setup UI
-        join.titleLabel?.textAlignment = NSTextAlignment.Center
-        displayName.delegate = self
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -69,7 +68,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     func sendPostRequestForMeetingURL(){
         
         // request to Trusted Application API Service Application endpoint
-        let meetingUrlRequest = NSMutableURLRequest(URL: NSURL(string: MEETING_URL_REQUEST_URL)!)
+        let meetingUrlRequest = NSMutableURLRequest(URL: NSURL(string: getOnlineMeetingRequestURL)!)
         meetingUrlRequest.HTTPMethod = "POST"
         meetingUrlRequest.HTTPBody = "Subject=adhocMeeting&Description=adhocMeeting&AccessLevel=".dataUsingEncoding(NSUTF8StringEncoding)
         
@@ -102,7 +101,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     func sendPostRequestForTokenAndDiscoveryURI()  {
         
         // request to Trusted Application API Service Application endpoint
-        let request = NSMutableURLRequest(URL: NSURL(string: TOKEN_AND_DISCOVERYURI_REQUEST_URL)!)
+        let request = NSMutableURLRequest(URL: NSURL(string: getTokenAndDiscoveryURIRequestURL)!)
         request.HTTPMethod = "POST"
         let meetintURL = meetingUrl.text!;
         request.HTTPBody = "ApplicationSessionId=AnonMeeting&AllowedOrigins=http%3a%2f%2flocalhost%2f&MeetingUrl=\(meetintURL)".dataUsingEncoding(NSUTF8StringEncoding)
@@ -167,27 +166,6 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
         task.resume()
     }
     
-    //MARK: Join online meeting anonymous with discover URI and token function
-    
-    func shouldJoinMeeting() -> Bool {
-        do {
-            
-            let session = try sfb!.joinMeetingAnonymousWithDiscoverUrl(NSURL(string: discoveryURI!)!, authToken: token!, displayName: displayName.text!)
-            conversation = session.conversation
-            conversation?.alertDelegate = self
-            return true
-        } catch {
-            print("ERROR! Joining online meeting>\(error)")
-            UIAlertView(title: "Joining online meeting failed. Try again later!", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
-            return false
-        }
-    }
-    
-    //MARK: SfBAlertDelegate alert function
-    func didReceiveAlert(alert: SfBAlert) {
-        alert.show()
-    }
-    
     //MARK: User button actions
     // press "Join online meeting" button to join text or video online meeting
     @IBAction func JoinOnlineMeetingPressed(sender: AnyObject) {
@@ -213,16 +191,33 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     }
     
     func joinOnlineChat()  {
-        if(shouldJoinMeeting()){
+        if(didJoinMeeting()){
             self.performSegueWithIdentifier("joinOnlineChat", sender: nil)
         }
     }
     
     func joinOnlineVideoChat()  {
-        if(shouldJoinMeeting()){
+        if(didJoinMeeting()){
             self.performSegueWithIdentifier("joinOnlineAudioVideoChat", sender: nil)
         }
     }
+    
+    //MARK: Join online meeting anonymous with discover URI and token function
+    
+    func didJoinMeeting() -> Bool {
+        do {
+            
+            let session = try sfb!.joinMeetingAnonymousWithDiscoverUrl(NSURL(string: discoveryURI!)!, authToken: token!, displayName: displayName.text!)
+            conversation = session.conversation
+            conversation?.alertDelegate = self
+            return true
+        } catch {
+            print("ERROR! Joining online meeting>\(error)")
+            UIAlertView(title: "Joining online meeting failed. Try again later!", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+            return false
+        }
+    }
+
    //MARK: Segue navigation functions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -262,6 +257,12 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    
+    //MARK: SfBAlertDelegate alert function
+    func didReceiveAlert(alert: SfBAlert) {
+        alert.show()
     }
     
 }

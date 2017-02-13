@@ -4,21 +4,26 @@
 //
 // Module name: MainViewController.swift
 //----------------------------------------------------------------
-
+/*
+MainViewController implements the meeting call flow for 
+Onprem CU4 / Onprem CU3 / {Online meeting-enablePreviewFeatures = True} scenarios.
+ */
 import UIKit
 
 class MainViewController: UIViewController,SfBAlertDelegate {
     
     private var sfb: SfBApplication?
     private var conversation: SfBConversation?
+    
     @IBOutlet weak var askAgentButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self .initializeSkype()
-
+        self.initializeSkype()
+        
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func askAgent(sender: AnyObject) {
         let alertController:UIAlertController = UIAlertController(title: "Ask Agent", message: nil, preferredStyle: .ActionSheet)
         
@@ -32,36 +37,35 @@ class MainViewController: UIViewController,SfBAlertDelegate {
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-    
+        
         
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = sender as? UIView
             popoverController.sourceRect = sender.bounds
         }
         self.presentViewController(alertController, animated: true, completion: nil)
-        
-    
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func askAgentText()  {
-        if(shouldJoinMeeting()){
-        self.performSegueWithIdentifier("askAgentText", sender: nil)
+        if(didJoinMeeting()){
+            self.performSegueWithIdentifier("askAgentText", sender: nil)
         }
     }
     
     func askAgentVideo()  {
-         if(shouldJoinMeeting()){
-        self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+        if(didJoinMeeting()){
+            self.performSegueWithIdentifier("askAgentVideo", sender: nil)
         }
     }
     
     func initializeSkype(){
-         sfb = SfBApplication.sharedApplication()
-        
+        sfb = SfBApplication.sharedApplication()
         if let sfb = sfb{
             sfb.configurationManager.maxVideoChannels = 1
             sfb.configurationManager.requireWifiForAudio = false
@@ -78,11 +82,10 @@ class MainViewController: UIViewController,SfBAlertDelegate {
     }
     
     func didReceiveAlert(alert: SfBAlert) {
-        
         alert.show()
     }
-
-     func shouldJoinMeeting() -> Bool {
+    
+    func didJoinMeeting() -> Bool {
         
         let meetingURLString:String = getMeetingURLString
         let meetingDisplayName:String = getMeetingDisplayName
@@ -97,11 +100,8 @@ class MainViewController: UIViewController,SfBAlertDelegate {
             UIAlertView(title: "Join failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
             return false
         }
-       
+        
     }
-
-    
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -120,8 +120,6 @@ class MainViewController: UIViewController,SfBAlertDelegate {
             destination.displayName = getMeetingDisplayName
             
         }
-     conversation = nil
+        conversation = nil
     }
-
-
 }

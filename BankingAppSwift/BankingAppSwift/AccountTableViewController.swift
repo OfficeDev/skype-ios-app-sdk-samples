@@ -1,9 +1,8 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  AccountTableViewController.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/16/16.
-//  Copyright © 2016 Aasveen Kaur. All rights reserved.
+// Module name: AccountTableViewController.swift
+//----------------------------------------------------------------
 //
 
 import UIKit
