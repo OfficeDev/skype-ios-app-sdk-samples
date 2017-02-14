@@ -1,8 +1,9 @@
 //+----------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
-//
 // Module name: ChatCell.swift
 //----------------------------------------------------------------
+
+
 
 import UIKit
 

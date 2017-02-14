@@ -1,9 +1,8 @@
 //+----------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
-//
 // Module name: AccountTableViewController.swift
 //----------------------------------------------------------------
-//
+
 
 import UIKit
 

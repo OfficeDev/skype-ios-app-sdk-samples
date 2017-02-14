@@ -1,8 +1,8 @@
 //+----------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
-//
 // Module name: ChatTableViewController.swift
 //----------------------------------------------------------------
+
 
 import UIKit
 
