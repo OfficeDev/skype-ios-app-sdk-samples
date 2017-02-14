@@ -1813,6 +1813,87 @@ an agent</string>
             </objects>
             <point key="canvasLocation" x="830" y="119"/>
         </scene>
+        <!--Microsoft License View Controller-->
+        <scene sceneID="9fa-9W-q4z">
+            <objects>
+                <viewController storyboardIdentifier="MicrosoftLicenseViewController" id="Uh2-7y-kwq" customClass="MicrosoftLicenseViewController" customModule="BankingAppSwift" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UMs-dY-UX0"/>
+                        <viewControllerLayoutGuide type="bottom" id="fU3-SV-tiT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Udd-Qy-MVa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRe-VV-dQu">
+                                <rect key="frame" x="0.0" y="74" width="375" height="527"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="b2a-Bc-tbi">
+                                <rect key="frame" x="88" y="616" width="200" height="43"/>
+                                <color key="backgroundColor" red="0.27256241440000001" green="0.58256793019999997" blue="0.99852830169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="PIc-0i-Lqk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="15" maxY="15"/>
+                                <state key="normal" title="Accept to have a video call with your agent">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="licenseAccepted:" destination="Uh2-7y-kwq" eventType="touchUpInside" id="Usp-5l-6ca"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsn-iI-jf9">
+                                <rect key="frame" x="20" y="28" width="62" height="38"/>
+                                <color key="backgroundColor" red="0.27256241440000001" green="0.58256793019999997" blue="0.99852830169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closeButtonPressed:" destination="Uh2-7y-kwq" eventType="touchUpInside" id="EaP-vv-H8E"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="q6g-6x-hg9">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aRe-VV-dQu" secondAttribute="trailing" id="DWe-UJ-at9"/>
+                            <constraint firstItem="aRe-VV-dQu" firstAttribute="leading" secondItem="Udd-Qy-MVa" secondAttribute="leading" id="Iji-Zi-agh"/>
+                            <constraint firstItem="hsn-iI-jf9" firstAttribute="leading" secondItem="Udd-Qy-MVa" secondAttribute="leading" constant="20" symbolic="YES" id="OY2-R4-kNl"/>
+                            <constraint firstItem="q6g-6x-hg9" firstAttribute="centerX" secondItem="Udd-Qy-MVa" secondAttribute="centerX" id="PGE-Kl-HF7"/>
+                            <constraint firstItem="b2a-Bc-tbi" firstAttribute="centerX" secondItem="Udd-Qy-MVa" secondAttribute="centerX" id="Suo-vD-Uiw"/>
+                            <constraint firstItem="b2a-Bc-tbi" firstAttribute="top" secondItem="aRe-VV-dQu" secondAttribute="bottom" constant="15" id="bve-Ar-OsA"/>
+                            <constraint firstItem="hsn-iI-jf9" firstAttribute="top" secondItem="UMs-dY-UX0" secondAttribute="bottom" constant="8" symbolic="YES" id="gzh-g2-HbV"/>
+                            <constraint firstItem="fU3-SV-tiT" firstAttribute="top" secondItem="b2a-Bc-tbi" secondAttribute="bottom" constant="8" symbolic="YES" id="kLf-hk-Y0k"/>
+                            <constraint firstItem="q6g-6x-hg9" firstAttribute="centerY" secondItem="Udd-Qy-MVa" secondAttribute="centerY" id="o5u-mO-8qK"/>
+                            <constraint firstItem="aRe-VV-dQu" firstAttribute="top" secondItem="hsn-iI-jf9" secondAttribute="bottom" constant="8" symbolic="YES" id="y3F-A4-FsW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="q6g-6x-hg9" id="Ieb-9c-7Lx"/>
+                        <outlet property="microsoftLicensePDFWebView" destination="aRe-VV-dQu" id="zJe-o9-RrZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ngo-9b-qHF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-879.20000000000005" y="-680.5097451274363"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background" width="640" height="960"/>

@@ -10,7 +10,7 @@ Onprem CU4 / Onprem CU3 / {Online meeting-enablePreviewFeatures = True} scenario
  */
 import UIKit
 
-class MainViewController: UIViewController,SfBAlertDelegate {
+class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseViewControllerDelegate {
     
     private var sfb: SfBApplication?
     private var conversation: SfBConversation?
@@ -59,9 +59,29 @@ class MainViewController: UIViewController,SfBAlertDelegate {
     }
     
     func askAgentVideo()  {
-        if(didJoinMeeting()){
-            self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+        
+        if let sfb = sfb{
+            let config = sfb.configurationManager
+            let key = "AcceptedVideoLicense"
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            if defaults.boolForKey(key) {
+                config.setEndUserAcceptedVideoLicense()
+                if(didJoinMeeting()){
+                    self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+                }
+
+            } else {
+                
+                
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MicrosoftLicenseViewController") as! MicrosoftLicenseViewController
+                vc.delegate = self
+                
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            
         }
+
     }
     
     func initializeSkype(){
@@ -121,5 +141,19 @@ class MainViewController: UIViewController,SfBAlertDelegate {
             
         }
         conversation = nil
+    }
+    
+    func controller(controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {
+        if(acceptedLicense){
+            if let sfb = sfb{
+                let config = sfb.configurationManager
+                config.setEndUserAcceptedVideoLicense()
+                
+                if(didJoinMeeting()){
+                    self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+                }
+                
+            }
+        }
     }
 }

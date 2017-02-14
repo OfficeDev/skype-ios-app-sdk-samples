@@ -17,7 +17,7 @@ import UIKit
 import SkypeForBusiness
 
 
-class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFieldDelegate {
+class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFieldDelegate, MicrosoftLicenseViewControllerDelegate {
     
     private var sfb: SfBApplication?
     private var conversation: SfBConversation?
@@ -29,7 +29,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     @IBOutlet var join: UIButton!
     @IBOutlet var tokenAndDiscoveryURISuccessLabel: UILabel!
     
-     //MARK: Lifecycle and helper functions
+    //MARK: Lifecycle and helper functions
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initializeSkype()
@@ -63,7 +63,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
         
     }
     
-     //MARK:Send POST requests for online meeting call flow functions
+    //MARK:Send POST requests for online meeting call flow functions
     //  POST request to fetch ad hoc Meeting URL
     func sendPostRequestForMeetingURL(){
         
@@ -157,7 +157,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                     completionHandler(data: nil,error: error as NSError?)
                 }
                 else {
-                completionHandler(data: nil,error: error as NSError?)
+                    completionHandler(data: nil,error: error as NSError?)
                 }
                 
             }
@@ -197,9 +197,32 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     }
     
     func joinOnlineVideoChat()  {
-        if(didJoinMeeting()){
-            self.performSegueWithIdentifier("joinOnlineAudioVideoChat", sender: nil)
+        
+        
+        if let sfb = sfb{
+            let config = sfb.configurationManager
+            let key = "AcceptedVideoLicense"
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            if defaults.boolForKey(key) {
+                config.setEndUserAcceptedVideoLicense()
+                if(didJoinMeeting()){
+                    self.performSegueWithIdentifier("joinOnlineAudioVideoChat", sender: nil)
+                }
+                
+            } else {
+                
+                
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MicrosoftLicenseViewController") as! MicrosoftLicenseViewController
+                vc.delegate = self
+                
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            
         }
+        
+        
+        
     }
     
     //MARK: Join online meeting anonymous with discover URI and token function
@@ -217,8 +240,8 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
             return false
         }
     }
-
-   //MARK: Segue navigation functions
+    
+    //MARK: Segue navigation functions
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if(segue.identifier == "joinOnlineChat"){
@@ -226,7 +249,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                 return
             }
             destination.conversation = self.conversation
-           
+            
         }
         else if(segue.identifier == "joinOnlineAudioVideoChat"){
             guard let destination = segue.destinationViewController as? VideoViewController else {
@@ -263,6 +286,18 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     //MARK: SfBAlertDelegate alert function
     func didReceiveAlert(alert: SfBAlert) {
         alert.show()
+    }
+    
+    func controller(controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {
+        if(acceptedLicense){
+            if let sfb = self.sfb{
+                let config = sfb.configurationManager
+                config.setEndUserAcceptedVideoLicense()
+                if(didJoinMeeting()){
+                    self.performSegueWithIdentifier("joinOnlineAudioVideoChat", sender: nil)
+                }
+            }
+        }
     }
     
 }

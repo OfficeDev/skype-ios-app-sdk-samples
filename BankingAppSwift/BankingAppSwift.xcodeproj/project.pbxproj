@@ -12,6 +12,7 @@
 		5F0357E01CE1337D009044F4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0357DF1CE1337D009044F4 /* MainViewController.swift */; };
 		5F0357E21CE13E1E009044F4 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0357E11CE13E1E009044F4 /* VideoViewController.swift */; };
 		5F0357E81CE147AD009044F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0357E71CE147AD009044F4 /* LoginViewController.swift */; };
+		5F1198481E52808D002742E7 /* Skype for Business App SDK Codec End User License Terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5F1198471E52808D002742E7 /* Skype for Business App SDK Codec End User License Terms.pdf */; };
 		5F1E1B611CE0EB8D00AE3D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1E1B601CE0EB8D00AE3D31 /* AppDelegate.swift */; };
 		5F1E1B6B1CE0EB8D00AE3D31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1E1B691CE0EB8D00AE3D31 /* LaunchScreen.storyboard */; };
 		5F2086AB1CEBA60B00D2DA2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2086A91CEBA60B00D2DA2D /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		5F2086C41CEE302900D2DA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2086C31CEE302900D2DA2D /* Assets.xcassets */; };
 		5F2086D31CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */; };
 		5F2087221CF8BE8A00D2DA2D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2087211CF8BE8A00D2DA2D /* Utils.swift */; };
+		5F327CF61E527983001C3F2B /* MicrosoftLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F327CF51E527983001C3F2B /* MicrosoftLicenseViewController.swift */; };
 		5F9790B81E2CB52E00C223BA /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9790B31E2CB51C00C223BA /* SkypeForBusiness.framework */; };
 		5F9790D51E2CBDBC00C223BA /* OnlineMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9790D41E2CBDBC00C223BA /* OnlineMeetingViewController.swift */; };
 		5FA8EC9E1E3AC0B500A86BA6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */; };
@@ -37,6 +39,7 @@
 		5F0357DF1CE1337D009044F4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5F0357E11CE13E1E009044F4 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		5F0357E71CE147AD009044F4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5F1198471E52808D002742E7 /* Skype for Business App SDK Codec End User License Terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Skype for Business App SDK Codec End User License Terms.pdf"; sourceTree = "<group>"; };
 		5F1E1B5D1CE0EB8D00AE3D31 /* BankingAppSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankingAppSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F1E1B601CE0EB8D00AE3D31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F1E1B6A1CE0EB8D00AE3D31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		5F2086C31CEE302900D2DA2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterMeetingCredentialsViewController.swift; sourceTree = "<group>"; };
 		5F2087211CF8BE8A00D2DA2D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5F327CF51E527983001C3F2B /* MicrosoftLicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrosoftLicenseViewController.swift; sourceTree = "<group>"; };
 		5F9790B31E2CB51C00C223BA /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = "/Users/aasveenkaur/skype-ios-app-sdk-samples/BankingAppSwift/SkypeForBusiness.framework"; sourceTree = "<absolute>"; };
 		5F9790D41E2CBDBC00C223BA /* OnlineMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineMeetingViewController.swift; sourceTree = "<group>"; };
 		5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				5F0357E71CE147AD009044F4 /* LoginViewController.swift */,
 				5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */,
 				5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */,
+				5F327CF51E527983001C3F2B /* MicrosoftLicenseViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 		5F2086BF1CEBC03900D2DA2D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F1198471E52808D002742E7 /* Skype for Business App SDK Codec End User License Terms.pdf */,
 				5F2086C31CEE302900D2DA2D /* Assets.xcassets */,
 				5F1E1B6C1CE0EB8D00AE3D31 /* Info.plist */,
 			);
@@ -246,6 +252,7 @@
 				5F1E1B6B1CE0EB8D00AE3D31 /* LaunchScreen.storyboard in Resources */,
 				5F2086C41CEE302900D2DA2D /* Assets.xcassets in Resources */,
 				5F2086AB1CEBA60B00D2DA2D /* Main.storyboard in Resources */,
+				5F1198481E52808D002742E7 /* Skype for Business App SDK Codec End User License Terms.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +270,7 @@
 				5F9790D51E2CBDBC00C223BA /* OnlineMeetingViewController.swift in Sources */,
 				5F2086D31CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift in Sources */,
 				5F2087221CF8BE8A00D2DA2D /* Utils.swift in Sources */,
+				5F327CF61E527983001C3F2B /* MicrosoftLicenseViewController.swift in Sources */,
 				5F1E1B611CE0EB8D00AE3D31 /* AppDelegate.swift in Sources */,
 				5F030CEA1CE6689D002B2E14 /* ChatHandler.m in Sources */,
 				5FA8EC9E1E3AC0B500A86BA6 /* SettingsViewController.swift in Sources */,
