@@ -13,6 +13,7 @@
 @end
 
 @implementation MainViewController
+SfBApplication * sfb;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,9 +49,24 @@
 
 }
 
+
 - (void)askAgentVideo {
-    [self performSegueWithIdentifier:@"askAgentVideo" sender:nil];
+    
+    SfBConfigurationManager *config = sfb.configurationManager;
+    NSString *key = @"AcceptedVideoLicense";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if([defaults boolForKey:key]){
+        [config setEndUserAcceptedVideoLicense];
+        [self performSegueWithIdentifier:@"askAgentVideo" sender:nil];
+        
+    }else{
+        MicrosoftLicenseViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MicrosoftLicenseViewController"];
+        vc.delegate = self;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
 }
+
 
 - (void)askAgentText {
     [self performSegueWithIdentifier:@"askAgentText" sender:nil];
@@ -65,11 +81,21 @@
  *  Initialize Skype
  */
 - (void)initializeSkype {
-    SfBApplication *sfb = SfBApplication.sharedApplication;
+    sfb = SfBApplication.sharedApplication;
     sfb.configurationManager.maxVideoChannels = 1;
     sfb.devicesManager.selectedSpeaker.activeEndpoint = SfBSpeakerEndpointLoudspeaker;
     sfb.configurationManager.enablePreviewFeatures = true;
 }
 
+#pragma mark - MicrosoftLicenseViewController delegate function
+- (void)controller:(MicrosoftLicenseViewController* )controller
+  didAcceptLicense:(BOOL)acceptedLicense{
+    if(acceptedLicense){
+        SfBConfigurationManager *config = sfb.configurationManager;
+        [config setEndUserAcceptedVideoLicense];
+        [self performSegueWithIdentifier:@"askAgentVideo" sender:nil];
+        
+    }
+}
 
 @end
