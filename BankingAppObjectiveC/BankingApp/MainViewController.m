@@ -14,8 +14,8 @@
 @end
 
 @implementation MainViewController
-SfBConversation* onPremConversation;
-SfBApplication * onPremSfb;
+SfBConversation* mainConversation;
+SfBApplication * mainSfb;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,7 +53,7 @@ SfBApplication * onPremSfb;
 
 - (void)askAgentVideo {
     
-    SfBConfigurationManager *config = onPremSfb.configurationManager;
+    SfBConfigurationManager *config = mainSfb.configurationManager;
     NSString *key = @"AcceptedVideoLicense";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
    
@@ -89,13 +89,13 @@ SfBApplication * onPremSfb;
  *  Initialize Skype
  */
 - (void)initializeSkype {
-    onPremSfb = SfBApplication.sharedApplication;
-    onPremSfb.configurationManager.maxVideoChannels = 1;
-    onPremSfb.configurationManager.requireWifiForAudio = false;
-    onPremSfb.configurationManager.requireWifiForVideo = false;
-    onPremSfb.devicesManager.selectedSpeaker.activeEndpoint = SfBSpeakerEndpointLoudspeaker;
-    onPremSfb.configurationManager.enablePreviewFeatures = [Util getEnablePreviewSwitchState];
-    onPremSfb.alertDelegate = self;
+    mainSfb = SfBApplication.sharedApplication;
+    mainSfb.configurationManager.maxVideoChannels = 1;
+    mainSfb.configurationManager.requireWifiForAudio = false;
+    mainSfb.configurationManager.requireWifiForVideo = false;
+    mainSfb.devicesManager.selectedSpeaker.activeEndpoint = SfBSpeakerEndpointLoudspeaker;
+    mainSfb.configurationManager.enablePreviewFeatures = [Util getEnablePreviewSwitchState];
+    mainSfb.alertDelegate = self;
 }
 
 -(bool)didJoinMeeting{
@@ -104,11 +104,11 @@ SfBApplication * onPremSfb;
     NSString *meetingURLString =  [Util getMeetingURLString];
     NSString *meetingDisplayName = [Util getMeetingDisplayName];
   
-        onPremConversation = [onPremSfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
+        mainConversation = [mainSfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
                                                              displayName:meetingDisplayName
                                                                    error:&error].conversation;
     
-        if (onPremConversation) {
+        if (mainConversation) {
             return true;
         } else {
             [Util showErrorAlert:error inView:self ];
@@ -120,25 +120,25 @@ SfBApplication * onPremSfb;
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"askAgentText"]){
         ChatViewController* destination = segue.destinationViewController;
-        destination.conversation = onPremConversation;
+        destination.conversation = mainConversation;
         
        
     }
     else if([segue.identifier isEqualToString:@"askAgentVideo"]){
         VideoViewController* destination = segue.destinationViewController;
-        destination.deviceManagerInstance = onPremSfb.devicesManager;
-        destination.conversationInstance = onPremConversation;
+        destination.deviceManagerInstance = mainSfb.devicesManager;
+        destination.conversationInstance = mainConversation;
         destination.displayName = [Util getMeetingDisplayName];
        
     }
-     onPremConversation = nil;
+     mainConversation = nil;
 }
 
 #pragma mark - MicrosoftLicenseViewController delegate function
 - (void)controller:(MicrosoftLicenseViewController* )controller
   didAcceptLicense:(BOOL)acceptedLicense{
     if(acceptedLicense){
-        SfBConfigurationManager *config = onPremSfb.configurationManager;
+        SfBConfigurationManager *config = mainSfb.configurationManager;
         [config setEndUserAcceptedVideoLicense];
         if([self didJoinMeeting]){
             [self performSegueWithIdentifier:@"askAgentVideo" sender:nil];
