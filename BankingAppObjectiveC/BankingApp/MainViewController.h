@@ -4,7 +4,8 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MicrosoftLicenseViewController.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<MicrosoftLicenseViewControllerDelegate>
 
 @end

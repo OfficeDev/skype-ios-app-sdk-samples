@@ -20,6 +20,8 @@
 		5F2086C41CEE302900D2DA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F2086C31CEE302900D2DA2D /* Assets.xcassets */; };
 		5F2086D31CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */; };
 		5F2087221CF8BE8A00D2DA2D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2087211CF8BE8A00D2DA2D /* Utils.swift */; };
+		5F36BDFA1E52465C00B2233B /* Skype for Business App SDK Codec End User License Terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5F36BDF91E52465C00B2233B /* Skype for Business App SDK Codec End User License Terms.pdf */; };
+		5F36BDFC1E52521600B2233B /* MicrosoftLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36BDFB1E52521600B2233B /* MicrosoftLicenseViewController.swift */; };
 		5FEF3BB41CEBA39600F8C72F /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEF3BB31CEBA39600F8C72F /* ChatCell.swift */; };
 		5FFC3E591CE50535001AC5C6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC3E581CE50535001AC5C6 /* ChatViewController.swift */; };
 		5FFC3E5E1CE5065C001AC5C6 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC3E5D1CE5065C001AC5C6 /* ChatTableViewController.swift */; };
@@ -43,6 +45,8 @@
 		5F2086C31CEE302900D2DA2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterMeetingCredentialsViewController.swift; sourceTree = "<group>"; };
 		5F2087211CF8BE8A00D2DA2D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5F36BDF91E52465C00B2233B /* Skype for Business App SDK Codec End User License Terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Skype for Business App SDK Codec End User License Terms.pdf"; sourceTree = "<group>"; };
+		5F36BDFB1E52521600B2233B /* MicrosoftLicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrosoftLicenseViewController.swift; sourceTree = "<group>"; };
 		5FEF3BB31CEBA39600F8C72F /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		5FFC3E581CE50535001AC5C6 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		5FFC3E5D1CE5065C001AC5C6 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 				5F0357D41CE102F0009044F4 /* BankingAppSwift-Bridging-Header.h */,
 				5F030CE81CE6689D002B2E14 /* ChatHandler.h */,
 				5F030CE91CE6689D002B2E14 /* ChatHandler.m */,
+				5F36BDFB1E52521600B2233B /* MicrosoftLicenseViewController.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 		5F2086BF1CEBC03900D2DA2D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F36BDF91E52465C00B2233B /* Skype for Business App SDK Codec End User License Terms.pdf */,
 				5F2086C31CEE302900D2DA2D /* Assets.xcassets */,
 				5F1E1B6C1CE0EB8D00AE3D31 /* Info.plist */,
 			);
@@ -226,6 +232,7 @@
 				5F1E1B6B1CE0EB8D00AE3D31 /* LaunchScreen.storyboard in Resources */,
 				5F2086C41CEE302900D2DA2D /* Assets.xcassets in Resources */,
 				5F2086AB1CEBA60B00D2DA2D /* Main.storyboard in Resources */,
+				5F36BDFA1E52465C00B2233B /* Skype for Business App SDK Codec End User License Terms.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +250,7 @@
 				5F2086D31CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift in Sources */,
 				5F2087221CF8BE8A00D2DA2D /* Utils.swift in Sources */,
 				5F1E1B611CE0EB8D00AE3D31 /* AppDelegate.swift in Sources */,
+				5F36BDFC1E52521600B2233B /* MicrosoftLicenseViewController.swift in Sources */,
 				5F030CEA1CE6689D002B2E14 /* ChatHandler.m in Sources */,
 				5FFC3E591CE50535001AC5C6 /* ChatViewController.swift in Sources */,
 				5F0357E21CE13E1E009044F4 /* VideoViewController.swift in Sources */,
@@ -359,6 +367,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UYUY4NQE32;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -366,11 +375,12 @@
 				INFOPLIST_FILE = BankingAppSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.BankingAppSwift-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.BankingAppSwift.-";
 				PRODUCT_NAME = BankingAppSwift;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BankingAppSwift/BankingAppSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -381,6 +391,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UYUY4NQE32;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -388,10 +399,11 @@
 				INFOPLIST_FILE = BankingAppSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.BankingAppSwift-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.BankingAppSwift.-";
 				PRODUCT_NAME = BankingAppSwift;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BankingAppSwift/BankingAppSwift-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

@@ -9,8 +9,8 @@
 
 import UIKit
 
-class MainViewController: UIViewController,SfBAlertDelegate {
-
+class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseViewControllerDelegate {
+   var sfb:SfBApplication?
     @IBOutlet weak var askAgentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +52,30 @@ class MainViewController: UIViewController,SfBAlertDelegate {
     }
     
     func askAgentVideo()  {
-        self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+        if let sfb = sfb{
+        let config = sfb.configurationManager
+        let key = "AcceptedVideoLicense"
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if defaults.boolForKey(key) {
+            config.setEndUserAcceptedVideoLicense()
+            self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+        } else {
+
+           
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MicrosoftLicenseViewController") as! MicrosoftLicenseViewController
+            vc.delegate = self
+            
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
+
+        }
     }
     
+  
+    
     func initializeSkype(){
-        let sfb:SfBApplication? = SfBApplication.sharedApplication()
+         sfb = SfBApplication.sharedApplication()
         
         if let sfb = sfb{
             sfb.configurationManager.maxVideoChannels = 1
@@ -76,14 +95,13 @@ class MainViewController: UIViewController,SfBAlertDelegate {
         alert.show()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func controller(controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {
+        if(acceptedLicense){
+            if let sfb = sfb{
+            let config = sfb.configurationManager
+            config.setEndUserAcceptedVideoLicense()
+            self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+        }
+        }
     }
-    */
-
 }

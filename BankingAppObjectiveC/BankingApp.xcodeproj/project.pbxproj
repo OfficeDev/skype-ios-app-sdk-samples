@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F365EC41E54D0F200B7024C /* MicrosoftLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F365EC31E54D0F200B7024C /* MicrosoftLicenseViewController.m */; };
+		5F365ECD1E54D38C00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5F365ECC1E54D38C00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf */; };
 		96101E6F1C90AC8B004CE997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E6E1C90AC8B004CE997 /* main.m */; };
 		96101E721C90AC8B004CE997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E711C90AC8B004CE997 /* AppDelegate.m */; };
 		96101E781C90AC8B004CE997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96101E761C90AC8B004CE997 /* Main.storyboard */; };
@@ -24,7 +26,23 @@
 		96844E6E1C922A9A003F6562 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96844E6D1C922A9A003F6562 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5F365EC81E54D25E00B7024C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5F365EC21E54D0F200B7024C /* MicrosoftLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicrosoftLicenseViewController.h; sourceTree = "<group>"; };
+		5F365EC31E54D0F200B7024C /* MicrosoftLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicrosoftLicenseViewController.m; sourceTree = "<group>"; };
+		5F365ECC1E54D38C00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Skype for Business App SDK Codec End User License Terms.pdf"; sourceTree = "<group>"; };
 		96101E6A1C90AC8B004CE997 /* BankingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96101E6E1C90AC8B004CE997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96101E701C90AC8B004CE997 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -155,6 +173,7 @@
 		962239B61CA148EA0068CE3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F365ECC1E54D38C00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf */,
 				96101E7E1C90AC8B004CE997 /* Info.plist */,
 				96101E791C90AC8B004CE997 /* Assets.xcassets */,
 			);
@@ -174,6 +193,8 @@
 				96844E5E1C91F011003F6562 /* AccountTableViewController.m */,
 				9629F0E51C92C17A00957E74 /* LoginViewController.h */,
 				9629F0E61C92C17A00957E74 /* LoginViewController.m */,
+				5F365EC21E54D0F200B7024C /* MicrosoftLicenseViewController.h */,
+				5F365EC31E54D0F200B7024C /* MicrosoftLicenseViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +209,7 @@
 				96101E661C90AC8B004CE997 /* Sources */,
 				96101E671C90AC8B004CE997 /* Frameworks */,
 				96101E681C90AC8B004CE997 /* Resources */,
+				5F365EC81E54D25E00B7024C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,6 +231,7 @@
 				TargetAttributes = {
 					96101E691C90AC8B004CE997 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = UYUY4NQE32;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -243,6 +266,7 @@
 				96101E7D1C90AC8B004CE997 /* LaunchScreen.storyboard in Resources */,
 				96101E7A1C90AC8B004CE997 /* Assets.xcassets in Resources */,
 				96101E781C90AC8B004CE997 /* Main.storyboard in Resources */,
+				5F365ECD1E54D38C00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +287,7 @@
 				96101E891C90B4D4004CE997 /* MainViewController.m in Sources */,
 				962058951C9724C100D35390 /* VideoViewController.m in Sources */,
 				96844E5F1C91F011003F6562 /* AccountTableViewController.m in Sources */,
+				5F365EC41E54D0F200B7024C /* MicrosoftLicenseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UYUY4NQE32;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -380,7 +406,7 @@
 				);
 				INFOPLIST_FILE = BankingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp.-";
 				PRODUCT_NAME = BankingApp;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -390,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UYUY4NQE32;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -398,7 +425,7 @@
 				);
 				INFOPLIST_FILE = BankingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp.-";
 				PRODUCT_NAME = BankingApp;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
