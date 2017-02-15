@@ -1,10 +1,8 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  EnterMeetingCredentialsViewController.h
-//  BankingApp
-//
-//  Created by Aasveen Kaur on 1/18/17.
-//  Copyright © 2017 Jason Kim. All rights reserved.
-//
+// Module name: EnterMeetingCredentialsViewController.h
+//----------------------------------------------------------------
 
 #import <UIKit/UIKit.h>
 

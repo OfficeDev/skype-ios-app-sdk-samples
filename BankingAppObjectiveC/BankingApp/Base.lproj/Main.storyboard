@@ -103,6 +103,9 @@
                                         <include reference="E4F-r0-t5B"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="signInButtonPressed:" destination="aNV-Qh-6Qq" eventType="touchUpInside" id="DMJ-0V-Iai"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Cw0-LZ-idy">
                                 <rect key="frame" x="273" y="559" width="100" height="100"/>
@@ -262,7 +265,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5UM-qh-uvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QmV-sG-fso" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-239" y="459"/>
+            <point key="canvasLocation" x="-239.19999999999999" y="458.32083958020991"/>
         </scene>
         <!--Enter Meeting Credentials View Controller-->
         <scene sceneID="Idd-9J-xgL">
@@ -420,10 +423,10 @@
             </objects>
             <point key="canvasLocation" x="-913" y="1635"/>
         </scene>
-        <!--On-prem meeting -->
+        <!--Woodgrove Bank-->
         <scene sceneID="01w-xV-8ij">
             <objects>
-                <viewController id="oCW-lP-wHy" userLabel="On-prem meeting " customClass="OnPremMeetingViewController" sceneMemberID="viewController">
+                <viewController id="oCW-lP-wHy" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4yn-OH-Jsa"/>
                         <viewControllerLayoutGuide type="bottom" id="Sg2-T4-2T1"/>
@@ -1723,7 +1726,7 @@ an agent</string>
         <!--Settings View Controller-->
         <scene sceneID="kEr-wn-b6r">
             <objects>
-                <viewController id="Nwh-sR-5Ty" customClass="SettingsViewController" customModule="BankingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Nwh-sR-5Ty" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hwm-aQ-TWg"/>
                         <viewControllerLayoutGuide type="bottom" id="q4v-DJ-LN7"/>
@@ -1754,14 +1757,14 @@ an agent</string>
                                 <rect key="frame" x="310" y="239" width="51" height="31"/>
                                 <color key="onTintColor" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <action selector="skypeForBusinessOnlineValueChangeAction:" destination="Nwh-sR-5Ty" eventType="valueChanged" id="0o5-Qp-B2s"/>
+                                    <action selector="skypeForBusinessOnlineValueChangeAction:" destination="Nwh-sR-5Ty" eventType="valueChanged" id="PoX-HJ-mUA"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KvG-xD-Tjk">
                                 <rect key="frame" x="310" y="318" width="51" height="31"/>
                                 <color key="onTintColor" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <action selector="enablePreviewValueChangeAction:" destination="Nwh-sR-5Ty" eventType="valueChanged" id="TnN-bI-V1X"/>
+                                    <action selector="enablePreviewValueChangeAction:" destination="Nwh-sR-5Ty" eventType="valueChanged" id="TEX-YC-ayw"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nia-eW-KoN">
@@ -1815,13 +1818,94 @@ an agent</string>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="SfBOnlineSwitch" destination="K4v-bb-u4n" id="Tn4-Y9-TdU"/>
-                        <outlet property="enablePreviewSwitch" destination="KvG-xD-Tjk" id="fkB-Ij-NtH"/>
+                        <outlet property="SfBOnlineSwitch" destination="K4v-bb-u4n" id="t18-6q-B3l"/>
+                        <outlet property="enablePreviewSwitch" destination="KvG-xD-Tjk" id="5z2-k1-GjF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mLY-wH-Bdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="58" y="-498"/>
+            <point key="canvasLocation" x="56.799999999999997" y="-498.80059970014997"/>
+        </scene>
+        <!--Microsoft License View Controller-->
+        <scene sceneID="xgD-GV-ue3">
+            <objects>
+                <viewController storyboardIdentifier="MicrosoftLicenseViewController" id="RCO-Nt-UKx" customClass="MicrosoftLicenseViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L5r-qK-Phu"/>
+                        <viewControllerLayoutGuide type="bottom" id="4rs-VK-kmp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6QW-9G-YPc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FSj-8s-Pbv">
+                                <rect key="frame" x="0.0" y="74" width="375" height="527"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-FH-XQ1">
+                                <rect key="frame" x="88" y="616" width="200" height="43"/>
+                                <color key="backgroundColor" red="0.27256241440000001" green="0.58256793019999997" blue="0.99852830169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="4K1-eZ-HW8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="15" maxY="15"/>
+                                <state key="normal" title="Accept to have a video call with your agent">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="licenseAccepted:" destination="RCO-Nt-UKx" eventType="touchUpInside" id="eQa-Aj-0VK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbc-cE-E4U">
+                                <rect key="frame" x="20" y="28" width="62" height="38"/>
+                                <color key="backgroundColor" red="0.27256241440000001" green="0.58256793019999997" blue="0.99852830169999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="closeButtonPressed:" destination="RCO-Nt-UKx" eventType="touchUpInside" id="mCw-SZ-HrI"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="y2B-7F-Xp7">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="FSj-8s-Pbv" firstAttribute="leading" secondItem="6QW-9G-YPc" secondAttribute="leading" id="9nQ-aE-4Lu"/>
+                            <constraint firstItem="y2B-7F-Xp7" firstAttribute="centerX" secondItem="6QW-9G-YPc" secondAttribute="centerX" id="CGR-al-KmK"/>
+                            <constraint firstItem="FSj-8s-Pbv" firstAttribute="top" secondItem="fbc-cE-E4U" secondAttribute="bottom" constant="8" symbolic="YES" id="UzX-6X-CSa"/>
+                            <constraint firstItem="f2f-FH-XQ1" firstAttribute="top" secondItem="FSj-8s-Pbv" secondAttribute="bottom" constant="15" id="VrY-lN-dib"/>
+                            <constraint firstItem="fbc-cE-E4U" firstAttribute="top" secondItem="L5r-qK-Phu" secondAttribute="bottom" constant="8" symbolic="YES" id="YGy-wf-1cy"/>
+                            <constraint firstItem="f2f-FH-XQ1" firstAttribute="centerX" secondItem="6QW-9G-YPc" secondAttribute="centerX" id="Za3-tY-TYq"/>
+                            <constraint firstItem="4rs-VK-kmp" firstAttribute="top" secondItem="f2f-FH-XQ1" secondAttribute="bottom" constant="8" symbolic="YES" id="eeE-XM-Pgn"/>
+                            <constraint firstItem="fbc-cE-E4U" firstAttribute="leading" secondItem="6QW-9G-YPc" secondAttribute="leading" constant="20" symbolic="YES" id="ffK-6b-cRE"/>
+                            <constraint firstAttribute="trailing" secondItem="FSj-8s-Pbv" secondAttribute="trailing" id="ovC-Xe-Vwn"/>
+                            <constraint firstItem="y2B-7F-Xp7" firstAttribute="centerY" secondItem="6QW-9G-YPc" secondAttribute="centerY" id="xQn-dv-Dny"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingIndicator" destination="y2B-7F-Xp7" id="DL7-dM-Ly4"/>
+                        <outlet property="microsoftLicensePDFWebView" destination="FSj-8s-Pbv" id="Q5i-QN-DvA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cAm-gq-N1K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1081" y="-499"/>
         </scene>
     </scenes>
     <resources>

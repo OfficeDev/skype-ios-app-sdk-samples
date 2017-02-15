@@ -1,10 +1,8 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  SettingsViewController.m
-//  BankingApp
-//
-//  Created by Aasveen Kaur on 1/29/17.
-//  Copyright © 2017 Jason Kim. All rights reserved.
-//
+// Module name: SettingsViewController.m
+//+----------------------------------------------------------------
 
 #import "SettingsViewController.h"
 #import "Util.h"

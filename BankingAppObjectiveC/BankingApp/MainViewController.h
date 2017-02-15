@@ -5,7 +5,8 @@
 
 #import <UIKit/UIKit.h>
 #import <SkypeForBusiness/SkypeForBusiness.h>
+#import "MicrosoftLicenseViewController.h"
 
-@interface MainViewController : UIViewController<SfBAlertDelegate>
+@interface MainViewController : UIViewController<SfBAlertDelegate,MicrosoftLicenseViewControllerDelegate>
 
 @end

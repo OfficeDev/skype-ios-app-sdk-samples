@@ -1,10 +1,8 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  Util.m
-//  BankingApp
-//
-//  Created by Aasveen Kaur on 1/18/17.
-//  Copyright © 2017 Jason Kim. All rights reserved.
-//
+// Module name: Util.m
+//+----------------------------------------------------------------
 
 #import "Util.h"
 
@@ -25,8 +23,6 @@
 +(NSString*) getMeetingURLString  {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@USER_MEETING_URL] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Skype meeting URL"];
         
-    
-    
 }
 
 +(NSString*) getMeetingDisplayName {
@@ -56,21 +52,33 @@
     
     return SfBOnlineSwitchStateUserDefault ?: SfBOnlineSwitchStateInfoList ;
     
-    
-        
 }
 
++(NSString*) getTokenAndDiscoveryURIRequestURL {
+    
+    
+    return  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Token and discovery URI request URL"];
+
+}
+
++(NSString*) getOnlineMeetingRequestURL {
+    
+    
+    return  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Online Meeting request URL"];
+    
+}
 
 + (void)showErrorAlert:(NSError *)error inView:(UIViewController*)controller  {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error: Try again later!"
                                                                              message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Close"
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok"
                                                         style:UIAlertActionStyleCancel
                                                       handler:nil]];
     
     [controller presentViewController:alertController animated:YES completion:nil];
 }
 
-
 @end
+
+

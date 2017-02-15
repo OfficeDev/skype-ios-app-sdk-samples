@@ -1,13 +1,8 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  OnlineMeetingViewController.m
-//  BankingApp
-//
-//  Created by Aasveen Kaur on 1/16/17.
-//  Copyright © 2017 Jason Kim. All rights reserved.
-//
-#define TOKEN_AND_DISCOVERYURI_REQUEST_URL "https://metiobank.cloudapp.net/GetAnonTokenJob"
-
-#define MEETING_URL_REQUEST_URL "https://imbridge.cloudapp.net/GetAdhocMeetingJob"
+// Module name: OnlineMeetingViewController.m
+//+----------------------------------------------------------------
 
 
 #import "OnlineMeetingViewController.h"
@@ -63,8 +58,11 @@ NSString *discoveryURI;
 //  POST request to fetch ad hoc Meeting URL
 -(void) sendPostRequestForMeetingURL{
 // request to Trusted Application API Service Application endpoint
+    NSString* meetingUrlRequestString = [Util getOnlineMeetingRequestURL];
+    NSMutableURLRequest *meetingUrlRequest = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:meetingUrlRequestString]];
+
     
-    NSMutableURLRequest *meetingUrlRequest = [[NSMutableURLRequest alloc]initWithURL:([[NSURL alloc]initWithString:@MEETING_URL_REQUEST_URL])];
+    
     meetingUrlRequest.HTTPMethod = @"POST";
     meetingUrlRequest.HTTPBody = [@"Subject=adhocMeeting&Description=adhocMeeting&AccessLevel=" dataUsingEncoding:NSUTF8StringEncoding];
     [self SendHttpRequest:meetingUrlRequest withBlock:^(NSData *data, NSError *error) {
@@ -99,7 +97,7 @@ NSString *discoveryURI;
 -(void) sendPostRequestForTokenAndDiscoveryURI  {
      // request to Trusted Application API Service Application endpoint
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:([[NSURL alloc]initWithString:@TOKEN_AND_DISCOVERYURI_REQUEST_URL])];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:([[NSURL alloc]initWithString:[Util getTokenAndDiscoveryURIRequestURL]])];
     request.HTTPMethod = @"POST";
     NSString * HTTPBodyString = [NSString stringWithFormat:@"ApplicationSessionId=AnonMeeting&AllowedOrigins=http%%3a%%2f%%2flocalhost%%2f&MeetingUrl=%@", self.meetingURL.text];
     request.HTTPBody = [HTTPBodyString dataUsingEncoding:NSUTF8StringEncoding];
@@ -164,7 +162,7 @@ NSString *discoveryURI;
 
 #pragma mark - Join online meeting anonymous with discover URI and token function
 
--(bool) shouldJoinMeeting  {
+-(bool) didJoinMeeting  {
     NSError *e = nil;
      SfBConversation *conversationInstance =   [ onlineMeetingsfb joinMeetingAnonymousWithDiscoverUrl:[[NSURL alloc] initWithString:discoveryURI] authToken:token displayName:self.displayName.text error:&e].conversation;
     if(conversationInstance){
@@ -181,7 +179,7 @@ NSString *discoveryURI;
 }
 
 - (void)didReceiveAlert:(SfBAlert *)alert{
-    [Util showErrorAlert:alert.error inView:self];
+    [alert showSfBAlertInController:self];
 }
 #pragma mark -  User button actions
 // press "Join online meeting" button to join text or video online meeting
@@ -205,16 +203,27 @@ NSString *discoveryURI;
 }
 
 -(void)joinOnlineChat{
-    if([self shouldJoinMeeting]){
+    if([self didJoinMeeting]){
         [self performSegueWithIdentifier:@"joinOnlineChat" sender:nil];
         
     }
 }
 
 -(void)joinOnlineVideoChat{
-    if([self shouldJoinMeeting]){
-        [self performSegueWithIdentifier:@"joinOnlineAudioVideoChat" sender:nil];
-        
+    
+    SfBConfigurationManager *config = onlineMeetingsfb.configurationManager;
+    NSString *key = @"AcceptedVideoLicense";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if([defaults boolForKey:key]){
+        [config setEndUserAcceptedVideoLicense];
+        if([self didJoinMeeting]){
+            [self performSegueWithIdentifier:@"joinOnlineAudioVideoChat" sender:nil];
+        }
+    }else{
+        MicrosoftLicenseViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MicrosoftLicenseViewController"];
+        vc.delegate = self;
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
@@ -255,7 +264,17 @@ NSString *discoveryURI;
     return false;
 }
 
-
+#pragma mark - MicrosoftLicenseViewController delegate function
+- (void)controller:(MicrosoftLicenseViewController* )controller
+  didAcceptLicense:(BOOL)acceptedLicense{
+    if(acceptedLicense){
+        SfBConfigurationManager *config = onlineMeetingsfb.configurationManager;
+        [config setEndUserAcceptedVideoLicense];
+        if([self didJoinMeeting]){
+            [self performSegueWithIdentifier:@"joinOnlineAudioVideoChat" sender:nil];
+        }
+    }
+}
 
 
 @end

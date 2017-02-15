@@ -1,14 +1,14 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  OnlineMeetingViewController.h
-//  BankingApp
-//
-//  Created by Aasveen Kaur on 1/16/17.
-//  Copyright © 2017 Jason Kim. All rights reserved.
-//
+// Module name: OnlineMeetingViewController.h
+//----------------------------------------------------------------
+
 
 #import <UIKit/UIKit.h>
 #import <SkypeForBusiness/SkypeForBusiness.h>
-
-@interface OnlineMeetingViewController : UIViewController<UITextFieldDelegate,SfBAlertDelegate>
+#import "MicrosoftLicenseViewController.h"
+#import "Util.h"
+@interface OnlineMeetingViewController : UIViewController<UITextFieldDelegate,SfBAlertDelegate, MicrosoftLicenseViewControllerDelegate>
 
 @end

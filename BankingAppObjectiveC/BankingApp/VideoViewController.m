@@ -130,7 +130,7 @@ static NSString* const DisplayNameInfo = @"displayName";
 }
 
 - (void)didReceiveAlert:(SfBAlert *)alert{
-    [Util showErrorAlert:alert.error inView:self];
+    [alert showSfBAlertInController:self];
 }
 
 

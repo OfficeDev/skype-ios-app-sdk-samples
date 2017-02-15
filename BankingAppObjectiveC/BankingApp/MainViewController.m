@@ -52,13 +52,25 @@ SfBApplication * onPremSfb;
 }
 
 - (void)askAgentVideo {
-    if([self shouldJoinMeeting]){
-    [self performSegueWithIdentifier:@"askAgentVideo" sender:nil];
+    
+    SfBConfigurationManager *config = onPremSfb.configurationManager;
+    NSString *key = @"AcceptedVideoLicense";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+   
+    if([defaults boolForKey:key]){
+        [config setEndUserAcceptedVideoLicense];
+        if([self didJoinMeeting]){
+            [self performSegueWithIdentifier:@"askAgentVideo" sender:nil];
+        }
+    }else{
+        MicrosoftLicenseViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MicrosoftLicenseViewController"];
+        vc.delegate = self;
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 
 - (void)askAgentText {
-     if([self shouldJoinMeeting]){
+     if([self didJoinMeeting]){
     [self performSegueWithIdentifier:@"askAgentText" sender:nil];
      }
 }
@@ -69,7 +81,7 @@ SfBApplication * onPremSfb;
 }
 
 - (void)didReceiveAlert:(SfBAlert *)alert{
-    [Util showErrorAlert:alert.error inView:self];
+    [alert showSfBAlertInController:self];
 }
 
 
@@ -86,7 +98,7 @@ SfBApplication * onPremSfb;
     onPremSfb.alertDelegate = self;
 }
 
--(bool)shouldJoinMeeting{
+-(bool)didJoinMeeting{
     
     NSError *error = nil;
     NSString *meetingURLString =  [Util getMeetingURLString];
@@ -120,6 +132,18 @@ SfBApplication * onPremSfb;
        
     }
      onPremConversation = nil;
+}
+
+#pragma mark - MicrosoftLicenseViewController delegate function
+- (void)controller:(MicrosoftLicenseViewController* )controller
+  didAcceptLicense:(BOOL)acceptedLicense{
+    if(acceptedLicense){
+        SfBConfigurationManager *config = onPremSfb.configurationManager;
+        [config setEndUserAcceptedVideoLicense];
+        if([self didJoinMeeting]){
+            [self performSegueWithIdentifier:@"askAgentVideo" sender:nil];
+        }
+    }
 }
 
 @end
