@@ -88,7 +88,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                     self.sendPostRequestForTokenAndDiscoveryURI();
                 } catch {
                     print("ERROR! Getting meeting URL failed>\(error)")
-                    UIAlertView(title: "Getting meeting URL failed. Try again later!", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+                    showErrorAlert("Getting meeting URL failed. Try again later!", viewController: self)
                     self.navigationController?.popViewControllerAnimated(true)
                 }
                 
@@ -125,7 +125,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                     
                 } catch {
                     print("ERROR! Getting token and discovery URI failed>\(error)")
-                    UIAlertView(title: "Getting Discover URI failed. Try again later!", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+                    showErrorAlert("Getting Discover URI failed. Try again later!", viewController: self)
                     self.navigationController?.popViewControllerAnimated(true)
                     
                 }
@@ -236,7 +236,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
             return true
         } catch {
             print("ERROR! Joining online meeting>\(error)")
-            UIAlertView(title: "Joining online meeting failed. Try again later!", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+            showErrorAlert("Joining online meeting failed. Try again later!", viewController: self)
             return false
         }
     }
@@ -285,7 +285,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     
     //MARK: SfBAlertDelegate alert function
     func didReceiveAlert(alert: SfBAlert) {
-        alert.show()
+       alert.showSfBAlertInController(self)
     }
     
     func controller(controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {

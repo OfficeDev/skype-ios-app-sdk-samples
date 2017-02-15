@@ -101,7 +101,7 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
     }
     
     func didReceiveAlert(alert: SfBAlert) {
-        alert.show()
+        alert.showSfBAlertInController(self)
     }
     
     func didJoinMeeting() -> Bool {
@@ -115,8 +115,8 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
             conversation = try sfb!.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName).conversation
             return true
         }
-        catch {
-            UIAlertView(title: "Join failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+        catch  {
+            print("Error : Join Failed>\(error)")
             return false
         }
         

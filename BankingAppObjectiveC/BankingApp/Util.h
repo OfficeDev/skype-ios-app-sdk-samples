@@ -35,11 +35,11 @@
 @implementation SfBAlert(MyAdditions)
 
 -(void)showSfBAlertInController:(UIViewController *)controller{
-    NSString *str = @"Error: ";
-    str = [str stringByAppendingString:[self DescriptionOfSfBAlertType]];
+    NSString *errorTitle = @"Error: ";
+    errorTitle = [errorTitle stringByAppendingString:[self DescriptionOfSfBAlertType]];
     NSString *errorDescription = [NSString stringWithFormat: @"%@", self.error.localizedDescription];
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle: str
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle: errorTitle
                                                                              message: errorDescription
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Ok"

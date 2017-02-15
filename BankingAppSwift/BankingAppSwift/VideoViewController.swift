@@ -223,7 +223,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
    
     
     func didReceiveAlert(alert: SfBAlert) {
-       alert.show()
+       alert.showSfBAlertInController(self)
     }
     
 }

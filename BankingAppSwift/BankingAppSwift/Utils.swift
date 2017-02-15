@@ -69,20 +69,60 @@ func leaveMeetingWithSuccess(conversation:SfBConversation) -> Bool {
 }
 
 func showErrorAlert(readableErrorDescription:String,viewController:UIViewController)  {
-   let alertController:UIAlertController =  UIAlertController(title:  "ERROR!", message: readableErrorDescription, preferredStyle: .Alert)
+    let alertController:UIAlertController =  UIAlertController(title:  "ERROR!", message: readableErrorDescription, preferredStyle: .Alert)
     
     alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
     
     viewController.presentViewController(alertController, animated: true, completion: nil)
-  }
+}
 
 
 
 extension SfBAlert {
-
-    func show() {
-        UIAlertView(title: "\(level): \(type)",
-            message: "\(error.localizedDescription)", delegate: nil, cancelButtonTitle: "OK").show()
+    
+    func showSfBAlertInController(viewController:UIViewController) {
+        let errorTitle = "Error: " + self.DescriptionOfSfBAlertType()
+        let errorDescription = self.error.localizedDescription
+        
+        let alertController:UIAlertController =  UIAlertController(title: errorTitle, message: errorDescription, preferredStyle: .Alert)
+        
+        alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        
+        viewController.presentViewController(alertController, animated: true, completion: nil)
+        
     }
+    
+    func DescriptionOfSfBAlertType() -> String {
+        switch type {
+        case .Messaging:return "Messaging"
+        case .UcwaObjectModel:return "UcwaObjectModel"
+        case .AutoDiscovery:return "AutoDiscovery"
+            
+        case .SignIn:return "SignIn"
+        case .SignOut:return "SignOut"
+        case .Connectivity:return "Connectivity"
+            
+        case .Conferencing:return "Conferencing"
+        case .ParticipantMute:return "ParticipantMute"
+        case .ParticipantUnmute:return "ParticipantUnmute"
+        case .ConferenceUnexpectedDisconnect:return "ConferenceUnexpectedDisconnect"
+            
+        case .Video:return "Video"
+        case .VideoOverWiFiBlocked:return "VideoOverWiFiBlocked"
+        case .VideoGenericError:return "VideoGenericError"
+            
+        case .Voice:return "Voice"
+        case .CallFailed:return "CallFailed"
+            
+        case .ConferenceIsRecording:return "ConferenceIsRecording"
+            
+        case .Communication:return "Communication"
+            
+        case .Common:return "Common"
 
+        default:
+            "ERROR!"
+        }
+    }
+    
 }

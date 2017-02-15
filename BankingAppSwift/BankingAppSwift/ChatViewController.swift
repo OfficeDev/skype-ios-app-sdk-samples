@@ -143,7 +143,7 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
     }
     func didReceiveAlert(alert: SfBAlert){
         
-        alert.show()
+        alert.showSfBAlertInController(self)
     }
     
     
