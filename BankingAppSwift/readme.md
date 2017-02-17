@@ -1,11 +1,23 @@
 # Banking App for iOS (Swift)
 
-This sample app illustrates how to integrate Skype for Business text chat, audio/video chat into an iOS application, via "Join Meeting Url".
+This sample app illustrates how to integrate the Skype for Business text chat, audio and video into an iOS application.
+
 ##Prerequisites
 
 1. Download the [**Skype for Business App SDK for iOS**](https://www.microsoft.com/en-us/download/confirmation.aspx?id=51962). 
 
-2. Obtain a [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) for a Skype Business meeting.
+2. Obtain anonymous meeting join resource based on your [**Skype for Business topology and enable preview feature**](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/anonymousmeetingjoin) as follow:
+    
+| Skype for Business (Office 365) user        | Enable preview features           | Meeting join resource  |
+| ------------- |:-------------:| -----:|
+| YES     | TRUE | Obtain a [**SfB Online (Office 365) meeting Url **](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) for a Skype Business meeting.|
+| YES     | FALSE  |   Create and deploy [Trusted Application API- based service application](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/overview) |   |
+| NO | TRUE/FALSE    |    Obtain SfB Server Meeting Url  |
+
+    
+>[!NOTE]
+Please read [Developing Trusted Application API applications for Skype for Business Online](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/developingapplicationsforsfbonline) for more details on Trusted Application API- based service application.
+This service application will provide RESTful Trusted Application API endpoint to creates ad-hoc meetings, provides meeting join Urls, discovery Uris, and anonymous meeting tokens that will be used to run this sample.
 
 ##How to get started
 
@@ -23,13 +35,36 @@ This sample app illustrates how to integrate Skype for Business text chat, audio
 
 5. Go to **"BankingAppSwift-Bridging-Header.h"** file in your source code and uncomment **#import "SfBConversationHelper.h"**
 
-6. Edit Info.plist and replace value of __Skype meeting URL__ and __Skype meeting display name__ with a [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) and any desired name respectively.
-  > Note: You can also add __Skype meeting URL__ and __Skype meeting display name__  at run time by using hidden **Add URL** button on login screen. Simply swipe the Login screen down/up to show/hide the Add URL button and save your credentials.
+6. Based on your [Meeting join resource](##Prerequisites), Edit the sample's Info.plist as follow: 
+
+| Meeting join resource       |  info.plist parameters  |
+| ------------- |:-------------:|
+| [**SfB Online (Office 365) Meeting Url.**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl)    | Replace the value of __Skype meeting URL__  with a [**SfB Online (Office 365) Meeting Url.**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl)
+| [**Trusted Application API- based service application**](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/overview)    | Replace the value of __TokenAndDiscoveryURIRequestURL__ and __Online Meeting request URL__ with your service application Custom listening API. 
+| SfB Server Meeting Url |    Replace the value of __Skype meeting URL__  with a [**SfB Online (Office 365) Meeting Url.**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl)  |
+
+Also replace __Skype meeting display name__ info.plist parameter with any desired name respectively.
+
+>[!NOTE] __TokenAndDiscoveryURIRequestURL__  and __Online Meeting request URL__ are custom listening APIs that your service application will need to implement. 
+<br>__Online Meeting request URL__: POST on this link will return an adhoc-meeting Url.
+</br>__TokenAndDiscoveryURIRequestURL__: POST on this link with your adhoc-meeting Url will receive a response with the DiscoverUri and token.
+
+>[!NOTE] You can also add __Skype meeting URL__ and __Skype meeting display name__  at run time by using  **Add URL** button on login screen. 
+
 7. Build and run the app.
 
-8. Press the **"Sign in"** button to login.  This is a pseudo login screen and does not require a real email and password. 
+8. Press the **"Settings"** button to configure your app for **Skype for Business topology and enable preview feature**. The following table shows you what settings to use for your SfB deployment scenario.
 
-9. Once you sign in, you enter the main screen where you can view pseudo bank account details and can contact a "bank agent" via text or video call.
+|Skype for Business topology|Enable preview features enabled|Enable preview features disabled|Meeting join resource|
+|:----|:----|:----|:----|
+|CU June 2016|Chat, AV|Chat only|Meeting Url|
+|CU December 2016|Chat, AV| Chat, AV|Meeting Url|
+|SfB Online|Chat, AV|n/a|Meeting Url|
+|SfB Online|n/a|Chat, AV|Discover Uri, Anon Token|
+
+9. Press the **"Sign in"** button to login.  This is a pseudo login screen and does not require a real email and password. 
+
+10. Once you sign in, you enter the main screen where you can view pseudo bank account details and can contact a "bank agent" via text or video call.
 
    > Note: To test the app, you need to join the meeting as a "bank agent" yourself by using the Skype for Business application installed on your desktop or mobile device. Join the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) that you configured in the app above.
 
