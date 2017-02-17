@@ -1,17 +1,17 @@
-//
-//  VideoViewController.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/9/16.
-// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
-// See LICENSE in the project root for license information.
-//
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Module name: VideoViewController.swift
+//----------------------------------------------------------------
+
 
 import UIKit
 import GLKit
 
-
-
+/**
+ *  VideoViewController handles AV chat using Skype for Business SDK.
+ *  Namely, it uses a convenient helper SfBConversationHelper.h included in the
+ *  Helpers folder of the SDK.
+ */
 
 class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAlertDelegate {
    
@@ -25,8 +25,19 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var endCallButton: UIButton!
     
+    var conversationInstance:SfBConversation? = nil
+    var deviceManagerInstance: SfBDevicesManager? = nil
+    var displayName: String? = nil
+
+    
     var conversationHelper:SfBConversationHelper? = nil
     let DisplayNameInfo:String = "displayName"
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.registerForAppTerminationNotification()
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +77,10 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         self.joinMeeting()
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     /**
      *  Initialize UI.
      *  Bring information bar from bottom to the visible area of the screen.
@@ -83,41 +98,19 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
      */
     func joinMeeting() {
         
+
+       
+        conversationInstance!.alertDelegate = self
         
+        self.conversationHelper = SfBConversationHelper(conversation: conversationInstance!,
+                                                        delegate: self,
+                                                        devicesManager: deviceManagerInstance!,
+                                                        outgoingVideoView: self.selfVideoView,
+                                                        incomingVideoLayer: self.participantVideoView.layer as! CAEAGLLayer,
+                                                        userInfo: [DisplayNameInfo:displayName!])
         
-        let meetingURLString:String = getMeetingURLString
-        let meetingDisplayName:String = getMeetingDisplayName
+        conversationInstance!.addObserver(self, forKeyPath: "canLeave", options: .Initial , context: nil)
         
-        //Override point for customization after application launch.
-        let sfb: SfBApplication = SfBApplication.sharedApplication()!
-        
-        
-        
-        do {
-            
-            let urlText:String = meetingURLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-            let url = NSURL(string:urlText)
-            let conversation: SfBConversation  = try sfb.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName).conversation
-            conversation.alertDelegate = self
-            
-            self.conversationHelper = SfBConversationHelper(conversation: conversation,
-                                                            delegate: self,
-                                                            devicesManager: sfb.devicesManager,
-                                                            outgoingVideoView: self.selfVideoView,
-                                                            incomingVideoLayer: self.participantVideoView.layer as! CAEAGLLayer,
-                                                            userInfo: [DisplayNameInfo:meetingDisplayName])
-            
-            conversation.addObserver(self, forKeyPath: "canLeave", options: .Initial , context: nil)
-            
-            
-            
-        }
-        catch let error as NSError {
-            print(error.localizedDescription)
-            self.handleError("Could Not Join Meeting!(System Error)")
-            //Enable end call button to let user exit video call screen after failure to join meeting
-            self.endCallButton.enabled = true
-        }
         
     }
     
@@ -129,20 +122,23 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         // Get conversation handle and call leave.
         // Need to check for canLeave property of conversation,
         // in this case happens in KVO
-        do{
-            try self.conversationHelper?.conversation.leave()
+        if let conversation = self.conversationHelper?.conversation{
+            if(!leaveMeetingWithSuccess(conversation)){
+                
+            showErrorAlert("Could Not Leave Meeting!", viewController: self)
+           }
             self.conversationHelper?.conversation.removeObserver(self, forKeyPath: "canLeave")
-            self.navigationController?.popViewControllerAnimated(true)
         }
-        catch let error as NSError {
-            print(error.localizedDescription)
-            self.handleError("Could Not Leave meeting!")
-        }
-    }
+    self.navigationController?.popViewControllerAnimated(true)
+}
+
+
+   
     
     @IBAction func toggleMute(sender: AnyObject) {
         do{
             try self.conversationHelper?.conversation.audioService.toggleMute()
+
         }
         catch let error as NSError {
             print(error.localizedDescription)
@@ -181,7 +177,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     
     // When the audio status changes, reflect in UI
    
-    
+
     func conversationHelper(conversationHelper: SfBConversationHelper, audioService: SfBAudioService, didChangeMuted muted: SfBAudioServiceMuteState) {
         if muted == .Muted {
             self.muteButton.setTitle("Unmute", forState: .Normal)
@@ -191,7 +187,9 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         }
     }
     
+
    //MARK: - Additional KVO
+
     
     // Monitor canLeave property of a conversation to prevent leaving prematurely
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -201,6 +199,19 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         }
     }
     
+    func registerForAppTerminationNotification() {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(VideoViewController.leaveMeetingWhenAppTerminates(_:)), name:UIApplicationWillTerminateNotification, object:nil)
+    }
+    
+    
+    func leaveMeetingWhenAppTerminates(aNotification:NSNotification) {
+        if let conversation = conversationHelper?.conversation{
+            leaveMeetingWithSuccess(conversation)
+        }
+    }
+
+    
     //MARK: - Helper UI
     
     func handleError(readableErrorDescription:String)  {
@@ -209,23 +220,19 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
         presentViewController(alertController, animated: true, completion:nil)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+   
     
     func didReceiveAlert(alert: SfBAlert) {
-        print("aasveen di galti")
-        alert.show()
+       alert.showSfBAlertInController(self)
     }
     
 }
+
+
+    
+
+        
+
 
 
 

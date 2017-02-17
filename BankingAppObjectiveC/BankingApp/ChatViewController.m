@@ -7,7 +7,7 @@
 #import "ChatTableViewController.h"
 #import "ChatHandler.h"
 
-@interface ChatViewController () <ChatHandlerDelegate>
+@interface ChatViewController () <ChatHandlerDelegate,SfBAlertDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *spaceConstraint;
@@ -15,14 +15,28 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *endButton;
 
 @property (weak, nonatomic) ChatTableViewController *chatTableViewController;
-
 @property (strong, nonatomic) ChatHandler *chatHandler;
+
+
 
 @end
 
 static NSString* const DisplayNameInfo = @"displayName";
 
 @implementation ChatViewController
+
+- (id)initWithCoder:(NSCoder*)aDecoder
+{
+    if(self = [super initWithCoder:aDecoder]) {
+        [self registerForNotifications];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,7 +52,7 @@ static NSString* const DisplayNameInfo = @"displayName";
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-    [self registerForKeyboardNotifications];
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -52,8 +66,14 @@ static NSString* const DisplayNameInfo = @"displayName";
 }
 
 #pragma mark - Keyboard notifications
-- (void)registerForKeyboardNotifications
+- (void)registerForNotifications
 {
+   
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(leaveMeetingWhenAppTerminates:)
+                                                 name:UIApplicationWillTerminateNotification object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification object:nil];
@@ -64,6 +84,14 @@ static NSString* const DisplayNameInfo = @"displayName";
     
 }
 
+
+- (void)leaveMeetingWhenAppTerminates:(NSNotification *)aNotification {
+    if(_chatHandler.conversation != nil){
+        [Util leaveMeetingWithSuccess:_chatHandler.conversation];
+        
+    }
+}
+
 - (void)keyboardWillShow:(NSNotification *)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGRect keyboardFrame = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -71,10 +99,8 @@ static NSString* const DisplayNameInfo = @"displayName";
     self.spaceConstraint.constant = keyboardFrame.size.height;
     [self.view layoutIfNeeded];
     
-    CGPoint newOffset = CGPointMake(0, self.chatTableViewController.tableView.contentOffset.y + keyboardFrame.size.height);
-    
-    [self.chatTableViewController.tableView setContentOffset:newOffset
-                                                    animated:YES];
+    //CGPoint newOffset = CGPointMake(0, self.chatTableViewController.tableView.contentOffset.y + keyboardFrame.size.height);
+    //[self.chatTableViewController.tableView setContentOffset:newOffset animated:YES];
     
     
 }
@@ -92,7 +118,7 @@ static NSString* const DisplayNameInfo = @"displayName";
 
 
 - (IBAction)endChat:(id)sender {
-    [self leaveMeeting];
+    [self endMeeting];
 }
 
 
@@ -101,39 +127,54 @@ static NSString* const DisplayNameInfo = @"displayName";
  *  Joins a Skype meeting.
  */
 - (void)joinMeeting {
-    NSError *error = nil;
-    NSString *meetingURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Skype meeting URL"];
+//    NSError *error = nil;
+//    NSString *meetingURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Skype meeting URL"];
     NSString *meetingDisplayName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Skype meeting display name"];
-    
-    SfBApplication *sfb = SfBApplication.sharedApplication;
-    SfBConversation *conversation = [sfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
-                                                         displayName:meetingDisplayName
-                                                               error:&error].conversation;
-    
-    if (conversation) {
-        [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
-        
-        _chatHandler = [[ChatHandler alloc] initWithConversation:conversation
-                                                       delegate:self
-                                                       userInfo:@{DisplayNameInfo:meetingDisplayName}];
-    } else {
-        [self handleError:error];
-    }
-
+//    
+//    SfBApplication *sfb = SfBApplication.sharedApplication;
+//    SfBConversation *conversation = [sfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
+//                                                         displayName:meetingDisplayName
+//                                                               error:&error].conversation;
+//    
+//    if (conversation) {
+//        [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
+//        
+//        _chatHandler = [[ChatHandler alloc] initWithConversation:conversation
+//                                                       delegate:self
+//                                                       userInfo:@{DisplayNameInfo:meetingDisplayName}];
+//    } else {
+//        [self handleError:error];
+//    }
+    self.conversation.alertDelegate = self;
+    _chatHandler = [[ChatHandler alloc] initWithConversation:self.conversation
+                                                                         delegate:self
+                                                                           userInfo:@{DisplayNameInfo:meetingDisplayName}];
+    [_chatHandler.conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
 }
 
+- (void)didReceiveAlert:(SfBAlert *)alert{
+   [alert showSfBAlertInController:self];
+}
+
+- (void)endMeeting {
     
-- (void)leaveMeeting {
-    NSError *error = nil;
-    [_chatHandler.conversation leave:&error];
+    if(![Util leaveMeetingWithSuccess:_chatHandler.conversation] ){
+  
+        NSLog(@"Error leaving meeting");
+    }
+    [_chatHandler.conversation removeObserver:self forKeyPath:@"canLeave"];
+    [self.navigationController popViewControllerAnimated:YES];
     
-    if (error) {
-        [self handleError:error];
-    }
-    else {
-        [_chatHandler.conversation removeObserver:self forKeyPath:@"canLeave"];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+//    NSError *error = nil;
+//    [_chatHandler.conversation leave:&error];
+//    
+//    if (error) {
+//        [self handleError:error];
+//    }
+//    else {
+//        [_chatHandler.conversation removeObserver:self forKeyPath:@"canLeave"];
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
 }
 
 
@@ -185,17 +226,7 @@ static NSString* const DisplayNameInfo = @"displayName";
     
 }
 
-#pragma mark - Helper UI
 
-- (void)handleError:(NSError *)error {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                             message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Close"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:nil]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-}
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation

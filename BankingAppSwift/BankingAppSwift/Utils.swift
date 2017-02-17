@@ -10,6 +10,9 @@ import SkypeForBusiness
 
 let USER_MEETING_URL = "userMeetingUrl"
 let USER_DISPLAY_NAME = "userDisplayName"
+let SFB_ONLINE_MEETING_STATE = "SfBOnlineSwitchState"
+let ENABLE_PREVIEW_STATE = "enablePreviewSwitchState"
+typealias completionBlock = (   data: NSData?, error: NSError?) -> Void
 
 var getMeetingURLString : String {
 get {
@@ -26,11 +29,100 @@ get {
 
 }
 
-extension SfBAlert {
+var getEnablePreviewSwitchState : Bool {
+get {
+    
+    return (NSUserDefaults.standardUserDefaults().objectForKey(ENABLE_PREVIEW_STATE) as? Bool) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("Enable Preview Switch State") as! Bool
+}
+}
 
-    func show() {
-        UIAlertView(title: "\(level): \(type)",
-            message: "\(error.localizedDescription)", delegate: nil, cancelButtonTitle: "OK").show()
+var getSfBOnlineSwitchState : Bool {
+get {
+    
+    return (NSUserDefaults.standardUserDefaults().objectForKey(SFB_ONLINE_MEETING_STATE) as? Bool) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("SfB Online Switch State") as! Bool
+}
+}
+
+var getTokenAndDiscoveryURIRequestURL: String {
+get {
+    return NSBundle.mainBundle().objectForInfoDictionaryKey("Token and discovery URI request URL") as! String
+}
+}
+
+var getOnlineMeetingRequestURL: String {
+get {
+    
+    return NSBundle.mainBundle().objectForInfoDictionaryKey("Online Meeting request URL") as! String
+}
+}
+
+
+func leaveMeetingWithSuccess(conversation:SfBConversation) -> Bool {
+    do{
+        try conversation.leave()
     }
+    catch let error as NSError {
+        print(error.localizedDescription)
+        return false
+    }
+    return true
+}
 
+func showErrorAlert(readableErrorDescription:String,viewController:UIViewController)  {
+    let alertController:UIAlertController =  UIAlertController(title:  "ERROR!", message: readableErrorDescription, preferredStyle: .Alert)
+    
+    alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
+    
+    viewController.presentViewController(alertController, animated: true, completion: nil)
+}
+
+
+
+extension SfBAlert {
+    
+    func showSfBAlertInController(viewController:UIViewController) {
+        let errorTitle = "Error: " + self.DescriptionOfSfBAlertType()
+        let errorDescription = self.error.localizedDescription
+        
+        let alertController:UIAlertController =  UIAlertController(title: errorTitle, message: errorDescription, preferredStyle: .Alert)
+        
+        alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        
+        viewController.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func DescriptionOfSfBAlertType() -> String {
+        switch type {
+        case .Messaging:return "Messaging"
+        case .UcwaObjectModel:return "UcwaObjectModel"
+        case .AutoDiscovery:return "AutoDiscovery"
+            
+        case .SignIn:return "SignIn"
+        case .SignOut:return "SignOut"
+        case .Connectivity:return "Connectivity"
+            
+        case .Conferencing:return "Conferencing"
+        case .ParticipantMute:return "ParticipantMute"
+        case .ParticipantUnmute:return "ParticipantUnmute"
+        case .ConferenceUnexpectedDisconnect:return "ConferenceUnexpectedDisconnect"
+            
+        case .Video:return "Video"
+        case .VideoOverWiFiBlocked:return "VideoOverWiFiBlocked"
+        case .VideoGenericError:return "VideoGenericError"
+            
+        case .Voice:return "Voice"
+        case .CallFailed:return "CallFailed"
+            
+        case .ConferenceIsRecording:return "ConferenceIsRecording"
+            
+        case .Communication:return "Communication"
+            
+        case .Common:return "Common"
+
+        default:
+            "ERROR!"
+        }
+    }
+    
 }

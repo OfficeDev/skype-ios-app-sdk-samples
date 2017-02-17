@@ -1,14 +1,17 @@
 /*
  * Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
  * See LICENSE in the project root for license information.
+ *
+ *  VideoViewController handles AV chat using Skype for Business SDK.
+ *  Namely, it uses a convenient helper SfBConversationHelper.h included in the
+ *  Helpers folder of the SDK.
  */
-
 
 #import "VideoViewController.h"
 #import "SfBConversationHelper.h"
 #import <GLKit/GLKit.h>
 
-@interface VideoViewController () <SfBConversationHelperDelegate>
+@interface VideoViewController () <SfBConversationHelperDelegate,SfBAlertDelegate>
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *infoBarBottomConstraint;
 @property (strong, nonatomic) IBOutlet UIView *infoBar;
@@ -26,6 +29,19 @@ static NSString* const DisplayNameInfo = @"displayName";
 
 @implementation VideoViewController
 
+
+- (id)initWithCoder:(NSCoder*)aDecoder
+{
+    if(self = [super initWithCoder:aDecoder]) {
+        [self registerForAppTerminationNotification];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -78,28 +94,43 @@ static NSString* const DisplayNameInfo = @"displayName";
  *  Joins a Skype meeting.
  */
 - (void)joinMeeting {
-    NSError *error = nil;
+//    NSError *error = nil;
+//    
+//    NSString *meetingURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Skype meeting URL"];
+//    NSString *meetingDisplayName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Skype meeting display name"];
+//    
+//    SfBApplication *sfb = SfBApplication.sharedApplication;
+//    SfBConversation *conversation = [sfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
+//                                                         displayName:meetingDisplayName
+//                                                               error:&error].conversation;
+//    
+//    if (conversation) {
+//        [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
+//        
+//        _conversationHelper = [[SfBConversationHelper alloc] initWithConversation:conversation
+//                                                                         delegate:self
+//                                                                   devicesManager:sfb.devicesManager
+//                                                                outgoingVideoView:self.selfVideoView
+//                                                               incomingVideoLayer:(CAEAGLLayer *) self.participantVideoView.layer
+//                                                                         userInfo:@{DisplayNameInfo:meetingDisplayName}];
+//    } else {
+//        [self handleError:error];
+//    }
+   
+    _conversationInstance.alertDelegate = self;
+    _conversationHelper = [[SfBConversationHelper alloc] initWithConversation:_conversationInstance
+                                                                                                   delegate:self
+                                                                                              devicesManager:_deviceManagerInstance
+                                                                                           outgoingVideoView:self.selfVideoView
+                                                                                          incomingVideoLayer:(CAEAGLLayer *) self.participantVideoView.layer
+                                                                                                    userInfo:@{DisplayNameInfo:_displayName}];
+    [_conversationInstance addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
     
-    NSString *meetingURLString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Skype meeting URL"];
-    NSString *meetingDisplayName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Skype meeting display name"];
     
-    SfBApplication *sfb = SfBApplication.sharedApplication;
-    SfBConversation *conversation = [sfb joinMeetingAnonymousWithUri:[NSURL URLWithString:meetingURLString]
-                                                         displayName:meetingDisplayName
-                                                               error:&error].conversation;
-    
-    if (conversation) {
-        [conversation addObserver:self forKeyPath:@"canLeave" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
-        
-        _conversationHelper = [[SfBConversationHelper alloc] initWithConversation:conversation
-                                                                         delegate:self
-                                                                   devicesManager:sfb.devicesManager
-                                                                outgoingVideoView:self.selfVideoView
-                                                               incomingVideoLayer:(CAEAGLLayer *) self.participantVideoView.layer
-                                                                         userInfo:@{DisplayNameInfo:meetingDisplayName}];
-    } else {
-        [self handleError:error];
-    }
+}
+
+- (void)didReceiveAlert:(SfBAlert *)alert{
+    [alert showSfBAlertInController:self];
 }
 
 
@@ -110,22 +141,44 @@ static NSString* const DisplayNameInfo = @"displayName";
     // Need to check for canLeave property of conversation,
     // in this case happens in KVO
     
-    NSError *error = nil;
-    [_conversationHelper.conversation leave:&error];
-    
-    if (error) {
-        [self handleError:error];
+//    NSError *error = nil;
+//    [_conversationHelper.conversation leave:&error];
+//    
+//    if (error) {
+//        [self handleError:error];
+//    }
+//    else {
+//        [_conversationHelper.conversation removeObserver:self forKeyPath:@"canLeave"];
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
+    if(![Util leaveMeetingWithSuccess:_conversationHelper.conversation] ){
+            NSLog(@"Error leaving meeting");
     }
-    else {
-        [_conversationHelper.conversation removeObserver:self forKeyPath:@"canLeave"];
-        [self.navigationController popViewControllerAnimated:YES];
+    [_conversationHelper.conversation removeObserver:self forKeyPath:@"canLeave"];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+-(void)registerForAppTerminationNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(leaveMeetingWhenAppTerminates:)
+                                                 name:UIApplicationWillTerminateNotification object:nil];
+
+}
+
+- (void)leaveMeetingWhenAppTerminates:(NSNotification *)aNotification {
+    if(_conversationHelper.conversation != nil){
+        [Util leaveMeetingWithSuccess:_conversationHelper.conversation];
+       
     }
 }
 
 - (IBAction)toggleMute:(id)sender {
     // Toggle audio mute. The result(updated state) is handled as a delegate callback.
+
     [_conversationHelper.conversation.audioService toggleMute:nil];
     
+
 }
 
 #pragma mark - Skype Delegates
@@ -169,22 +222,5 @@ static NSString* const DisplayNameInfo = @"displayName";
     }
     
 }
-
-
-#pragma mark - Helper UI
-
-- (void)handleError:(NSError *)error {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                             message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Close"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:nil]];
-    [self presentViewController:alertController animated:YES completion:nil];
-}
-
-
-
-
-
 
 @end

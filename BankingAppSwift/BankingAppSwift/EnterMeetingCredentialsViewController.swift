@@ -1,18 +1,15 @@
-//
-//  EnterMeetingUrlViewController.swift
-//  BankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/23/16.
-// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
-// See LICENSE in the project root for license information.
-//
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Module name: EnterMeetingCredentialsViewController.swift
+//----------------------------------------------------------------
+
 
 import UIKit
 
 
 class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegate {
     
-   
+    
     @IBOutlet weak var meetingDisplayName: UITextField!
     @IBOutlet weak var meetingUrl: UITextField!
     
@@ -20,7 +17,7 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
         super.viewDidLoad()
         self.meetingDisplayName.delegate = self
         self.meetingUrl.delegate = self
-        self.showCurrentMeetingUrl()
+        self.showCurrentMeetingUrlAndDisplayName()
         // Do any additional setup after loading the view.
     }
     
@@ -30,7 +27,7 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     }
     
     // Display saved meeting url on screen
-    func showCurrentMeetingUrl(){
+    func showCurrentMeetingUrlAndDisplayName(){
         if (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) != nil) {
             
             meetingUrl.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_MEETING_URL) as! String)
@@ -41,8 +38,16 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
             meetingUrl.text = meetingUrl.placeholder
             
         }
-        
-        
+        if (NSUserDefaults.standardUserDefaults().objectForKey(USER_DISPLAY_NAME) != nil) {
+            
+            meetingDisplayName.text = (NSUserDefaults.standardUserDefaults().objectForKey(USER_DISPLAY_NAME) as! String)
+            
+        }
+        else{
+            
+            meetingDisplayName.text = meetingDisplayName.placeholder
+            
+        }
     }
     
     @IBAction func okButtonPressed(sender: AnyObject) {
@@ -102,8 +107,8 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if(textField.text == textField.placeholder){
-        textField.placeholder = ""
-        textField.text = ""
+            textField.placeholder = ""
+            textField.text = ""
         }
     }
     
@@ -121,5 +126,5 @@ class EnterMeetingCredentialsViewController: UIViewController,UITextFieldDelegat
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-   
+    
 }

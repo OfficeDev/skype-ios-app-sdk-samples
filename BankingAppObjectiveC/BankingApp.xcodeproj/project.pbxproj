@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F365EB51E54C25100B7024C /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F365EB41E54C25100B7024C /* SkypeForBusiness.framework */; };
+		5F365EBB1E54C70E00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5F365EBA1E54C70E00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf */; };
+		5F5E8B521E538E0A00CE04F3 /* MicrosoftLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5E8B511E538E0A00CE04F3 /* MicrosoftLicenseViewController.m */; };
+		5FA8ECC01E3EB1EF00A86BA6 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8ECBF1E3EB1EF00A86BA6 /* SettingsViewController.m */; };
+		5FBF17B81E2E021000442505 /* OnlineMeetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBF17B71E2E021000442505 /* OnlineMeetingViewController.m */; };
+		5FBF17BB1E30229800442505 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBF17BA1E30229800442505 /* Util.m */; };
+		5FBF17BE1E302D2500442505 /* EnterMeetingCredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBF17BD1E302D2500442505 /* EnterMeetingCredentialsViewController.m */; };
 		96101E6F1C90AC8B004CE997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E6E1C90AC8B004CE997 /* main.m */; };
 		96101E721C90AC8B004CE997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96101E711C90AC8B004CE997 /* AppDelegate.m */; };
 		96101E781C90AC8B004CE997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96101E761C90AC8B004CE997 /* Main.storyboard */; };
@@ -25,6 +32,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F365EB41E54C25100B7024C /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = "/Users/aasveenkaur/skype-ios-app-sdk-samples/BankingAppObjectiveC/SkypeForBusiness.framework"; sourceTree = "<absolute>"; };
+		5F365EBA1E54C70E00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Skype for Business App SDK Codec End User License Terms.pdf"; sourceTree = "<group>"; };
+		5F5E8B501E538E0A00CE04F3 /* MicrosoftLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicrosoftLicenseViewController.h; sourceTree = "<group>"; };
+		5F5E8B511E538E0A00CE04F3 /* MicrosoftLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicrosoftLicenseViewController.m; sourceTree = "<group>"; };
+		5FA8ECBE1E3EB1EF00A86BA6 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		5FA8ECBF1E3EB1EF00A86BA6 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		5FBF17B61E2E021000442505 /* OnlineMeetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMeetingViewController.h; sourceTree = "<group>"; };
+		5FBF17B71E2E021000442505 /* OnlineMeetingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMeetingViewController.m; sourceTree = "<group>"; };
+		5FBF17B91E30229800442505 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		5FBF17BA1E30229800442505 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		5FBF17BC1E302D2500442505 /* EnterMeetingCredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterMeetingCredentialsViewController.h; sourceTree = "<group>"; };
+		5FBF17BD1E302D2500442505 /* EnterMeetingCredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterMeetingCredentialsViewController.m; sourceTree = "<group>"; };
 		96101E6A1C90AC8B004CE997 /* BankingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96101E6E1C90AC8B004CE997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96101E701C90AC8B004CE997 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96844E6E1C922A9A003F6562 /* GLKit.framework in Frameworks */,
+				5F365EB51E54C25100B7024C /* SkypeForBusiness.framework in Frameworks */,
 				96844E6C1C91FCEF003F6562 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,8 +91,19 @@
 			children = (
 				9683CE461CD2C3F5008351E4 /* ChatHandler.h */,
 				9683CE471CD2C3F5008351E4 /* ChatHandler.m */,
+				5FBF17B91E30229800442505 /* Util.h */,
+				5FBF17BA1E30229800442505 /* Util.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		5FBF17B51E2E00EA00442505 /* Online Meeting */ = {
+			isa = PBXGroup;
+			children = (
+				5FBF17B61E2E021000442505 /* OnlineMeetingViewController.h */,
+				5FBF17B71E2E021000442505 /* OnlineMeetingViewController.m */,
+			);
+			name = "Online Meeting";
 			sourceTree = "<group>";
 		};
 		960A88F01CD2147100262EF5 /* Text Chat */ = {
@@ -155,6 +186,7 @@
 		962239B61CA148EA0068CE3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F365EBA1E54C70E00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf */,
 				96101E7E1C90AC8B004CE997 /* Info.plist */,
 				96101E791C90AC8B004CE997 /* Assets.xcassets */,
 			);
@@ -164,16 +196,23 @@
 		962239B81CA148F50068CE3A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				96101E871C90B4D4004CE997 /* MainViewController.h */,
+				96101E881C90B4D4004CE997 /* MainViewController.m */,
+				5FBF17B51E2E00EA00442505 /* Online Meeting */,
 				960A88F11CD2147600262EF5 /* AV Chat */,
 				960A88F01CD2147100262EF5 /* Text Chat */,
 				96101E701C90AC8B004CE997 /* AppDelegate.h */,
 				96101E711C90AC8B004CE997 /* AppDelegate.m */,
-				96101E871C90B4D4004CE997 /* MainViewController.h */,
-				96101E881C90B4D4004CE997 /* MainViewController.m */,
 				96844E5D1C91F011003F6562 /* AccountTableViewController.h */,
 				96844E5E1C91F011003F6562 /* AccountTableViewController.m */,
 				9629F0E51C92C17A00957E74 /* LoginViewController.h */,
 				9629F0E61C92C17A00957E74 /* LoginViewController.m */,
+				5FBF17BC1E302D2500442505 /* EnterMeetingCredentialsViewController.h */,
+				5FBF17BD1E302D2500442505 /* EnterMeetingCredentialsViewController.m */,
+				5FA8ECBE1E3EB1EF00A86BA6 /* SettingsViewController.h */,
+				5FA8ECBF1E3EB1EF00A86BA6 /* SettingsViewController.m */,
+				5F5E8B501E538E0A00CE04F3 /* MicrosoftLicenseViewController.h */,
+				5F5E8B511E538E0A00CE04F3 /* MicrosoftLicenseViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -209,6 +248,7 @@
 				TargetAttributes = {
 					96101E691C90AC8B004CE997 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = UYUY4NQE32;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -243,6 +283,7 @@
 				96101E7D1C90AC8B004CE997 /* LaunchScreen.storyboard in Resources */,
 				96101E7A1C90AC8B004CE997 /* Assets.xcassets in Resources */,
 				96101E781C90AC8B004CE997 /* Main.storyboard in Resources */,
+				5F365EBB1E54C70E00B7024C /* Skype for Business App SDK Codec End User License Terms.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +294,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FBF17BB1E30229800442505 /* Util.m in Sources */,
 				96101E721C90AC8B004CE997 /* AppDelegate.m in Sources */,
 				9634F7211CC9598100F3D29E /* ChatViewController.m in Sources */,
 				9629F0E71C92C17A00957E74 /* LoginViewController.m in Sources */,
+				5F5E8B521E538E0A00CE04F3 /* MicrosoftLicenseViewController.m in Sources */,
+				5FBF17BE1E302D2500442505 /* EnterMeetingCredentialsViewController.m in Sources */,
 				9634F71E1CC9525100F3D29E /* ChatCell.m in Sources */,
 				9634F71B1CC9520700F3D29E /* ChatTableViewController.m in Sources */,
 				9683CE481CD2C3F5008351E4 /* ChatHandler.m in Sources */,
 				96101E6F1C90AC8B004CE997 /* main.m in Sources */,
 				96101E891C90B4D4004CE997 /* MainViewController.m in Sources */,
+				5FBF17B81E2E021000442505 /* OnlineMeetingViewController.m in Sources */,
+				5FA8ECC01E3EB1EF00A86BA6 /* SettingsViewController.m in Sources */,
 				962058951C9724C100D35390 /* VideoViewController.m in Sources */,
 				96844E5F1C91F011003F6562 /* AccountTableViewController.m in Sources */,
 			);
@@ -372,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UYUY4NQE32;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -380,7 +427,7 @@
 				);
 				INFOPLIST_FILE = BankingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp.-";
 				PRODUCT_NAME = BankingApp;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -390,6 +437,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UYUY4NQE32;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -398,7 +446,7 @@
 				);
 				INFOPLIST_FILE = BankingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp-";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.skype.appsdk.samples.bankingapp.-";
 				PRODUCT_NAME = BankingApp;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

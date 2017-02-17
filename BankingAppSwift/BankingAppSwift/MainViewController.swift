@@ -1,24 +1,28 @@
+//+----------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 //
-//  MainViewController.swift
-//  bankingAppSwift
-//
-//  Created by Aasveen Kaur on 5/9/16.
-// Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
-// See LICENSE in the project root for license information.
-//
-
+// Module name: MainViewController.swift
+//----------------------------------------------------------------
+/*
+MainViewController implements the meeting call flow for 
+Onprem CU4 / Onprem CU3 / {Online meeting-enablePreviewFeatures = True} scenarios.
+ */
 import UIKit
 
-class MainViewController: UIViewController,SfBAlertDelegate {
-
+class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseViewControllerDelegate {
+    
+    private var sfb: SfBApplication?
+    private var conversation: SfBConversation?
+    
     @IBOutlet weak var askAgentButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self .initializeSkype()
-
+        self.initializeSkype()
+        
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func askAgent(sender: AnyObject) {
         let alertController:UIAlertController = UIAlertController(title: "Ask Agent", message: nil, preferredStyle: .ActionSheet)
         
@@ -32,36 +36,61 @@ class MainViewController: UIViewController,SfBAlertDelegate {
         }))
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-    
+        
         
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = sender as? UIView
             popoverController.sourceRect = sender.bounds
         }
         self.presentViewController(alertController, animated: true, completion: nil)
-        
-    
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func askAgentText()  {
-        self.performSegueWithIdentifier("askAgentText", sender: nil)
+        if(didJoinMeeting()){
+            self.performSegueWithIdentifier("askAgentText", sender: nil)
+        }
     }
     
     func askAgentVideo()  {
-        self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+        
+        if let sfb = sfb{
+            let config = sfb.configurationManager
+            let key = "AcceptedVideoLicense"
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            if defaults.boolForKey(key) {
+                config.setEndUserAcceptedVideoLicense()
+                if(didJoinMeeting()){
+                    self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+                }
+
+            } else {
+                
+                
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MicrosoftLicenseViewController") as! MicrosoftLicenseViewController
+                vc.delegate = self
+                
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            
+        }
+
     }
     
     func initializeSkype(){
-        let sfb:SfBApplication? = SfBApplication.sharedApplication()
-        
+        sfb = SfBApplication.sharedApplication()
         if let sfb = sfb{
             sfb.configurationManager.maxVideoChannels = 1
+            sfb.configurationManager.requireWifiForAudio = false
+            sfb.configurationManager.requireWifiForVideo = false
             sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
-            sfb.configurationManager.enablePreviewFeatures = true
+            sfb.configurationManager.enablePreviewFeatures = getEnablePreviewSwitchState
             sfb.alertDelegate = self
         }
         
@@ -72,18 +101,59 @@ class MainViewController: UIViewController,SfBAlertDelegate {
     }
     
     func didReceiveAlert(alert: SfBAlert) {
+        alert.showSfBAlertInController(self)
+    }
+    
+    func didJoinMeeting() -> Bool {
         
-        alert.show()
+        let meetingURLString:String = getMeetingURLString
+        let meetingDisplayName:String = getMeetingDisplayName
+        
+        do {
+            let urlText:String = meetingURLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            let url = NSURL(string:urlText)
+            conversation = try sfb!.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName).conversation
+            return true
+        }
+        catch  {
+            print("ERROR! Joining online meeting>\(error)")
+            showErrorAlert("Joining online meeting failed. Try again later!", viewController: self)
+            return false
+        }
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if(segue.identifier == "askAgentText"){
+            guard let destination = segue.destinationViewController as? ChatViewController else {
+                return
+            }
+            destination.conversation = self.conversation
+        }
+        else if(segue.identifier == "askAgentVideo"){
+            guard let destination = segue.destinationViewController as? VideoViewController else {
+                return
+            }
+            destination.deviceManagerInstance = sfb!.devicesManager
+            destination.conversationInstance = conversation
+            destination.displayName = getMeetingDisplayName
+            
+        }
+        conversation = nil
     }
-    */
-
+    
+    func controller(controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {
+        if(acceptedLicense){
+            if let sfb = sfb{
+                let config = sfb.configurationManager
+                config.setEndUserAcceptedVideoLicense()
+                
+                if(didJoinMeeting()){
+                    self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+                }
+                
+            }
+        }
+    }
 }
