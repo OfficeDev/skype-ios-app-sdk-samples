@@ -116,7 +116,8 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
             return true
         }
         catch  {
-            print("Error : Join Failed>\(error)")
+            print("ERROR! Joining online meeting>\(error)")
+            showErrorAlert("Joining online meeting failed. Try again later!", viewController: self)
             return false
         }
         
