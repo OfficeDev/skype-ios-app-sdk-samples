@@ -58,9 +58,9 @@ Also replace __Skype meeting display name__ info.plist parameter with any desire
 |SfB Online|Chat, AV|n/a|Meeting Url|
 |SfB Online|n/a|Chat, AV|Discover Uri, Anon Token|
 
-8. Press the **"Sign in"** button to login.  This is a pseudo login screen and does not require a real email and password. 
+9. Press the **"Sign in"** button to login.  This is a pseudo login screen and does not require a real email and password. 
 
-9. Once you sign in, you enter the main screen where you can view pseudo bank account details and can contact a "bank agent" via text or video call.
+10. Once you sign in, you enter the main screen where you can view pseudo bank account details and can contact a "bank agent" via text or video call.
 
    > Note: To test the app, you need to join the meeting as a "bank agent" yourself by using the Skype for Business application installed on your desktop or mobile device. Join the same [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) that you configured in the app above.
 
