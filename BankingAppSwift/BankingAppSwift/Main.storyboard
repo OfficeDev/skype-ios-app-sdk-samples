@@ -1837,7 +1837,7 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.76982193489999995" green="0.84416147149999998" blue="0.99852830169999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.67940304634855431" green="0.78459605142646893" blue="0.99852830169999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="wCy-Jc-YXc" firstAttribute="top" secondItem="5u1-ZL-CGg" secondAttribute="bottom" constant="8" symbolic="YES" id="0WG-hA-Bpf"/>
                                             <constraint firstItem="8Yj-Tx-KCI" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="1ms-CG-wub"/>
