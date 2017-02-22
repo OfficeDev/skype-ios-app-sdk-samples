@@ -10,6 +10,8 @@ import SkypeForBusiness
 
 let USER_MEETING_URL = "userMeetingUrl"
 let USER_DISPLAY_NAME = "userDisplayName"
+let ONLINE_MEETING_REQUEST_API_URL = "OnlineMeetingRequestAPIURL"
+let TOKEN_AND_DISCOVERY_API_URL = "TokenAndDiscoveryURIRequestAPIURL"
 let SFB_ONLINE_MEETING_STATE = "SfBOnlineSwitchState"
 let ENABLE_PREVIEW_STATE = "enablePreviewSwitchState"
 typealias completionBlock = (   data: NSData?, error: NSError?) -> Void
@@ -29,6 +31,7 @@ get {
 
 }
 
+
 var getEnablePreviewSwitchState : Bool {
 get {
     
@@ -45,14 +48,14 @@ get {
 
 var getTokenAndDiscoveryURIRequestURL: String {
 get {
-    return NSBundle.mainBundle().objectForInfoDictionaryKey("Token and discovery URI request URL") as! String
+return (NSUserDefaults.standardUserDefaults().objectForKey(TOKEN_AND_DISCOVERY_API_URL) as? String) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("Token and discovery URI request API URL") as! String
 }
 }
 
 var getOnlineMeetingRequestURL: String {
 get {
     
-    return NSBundle.mainBundle().objectForInfoDictionaryKey("Online Meeting request URL") as! String
+    return (NSUserDefaults.standardUserDefaults().objectForKey(ONLINE_MEETING_REQUEST_API_URL) as? String) ?? NSBundle.mainBundle().objectForInfoDictionaryKey("Online Meeting request API URL") as! String
 }
 }
 
@@ -71,7 +74,14 @@ func leaveMeetingWithSuccess(conversation:SfBConversation) -> Bool {
 func showErrorAlert(readableErrorDescription:String,viewController:UIViewController)  {
     let alertController:UIAlertController =  UIAlertController(title:  "ERROR!", message: readableErrorDescription, preferredStyle: .Alert)
     
-    alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
+    
+    alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler:{(alert: UIAlertAction!) in
+        if(viewController.isKindOfClass(OnlineMeetingViewController)){
+        viewController.navigationController?.popViewControllerAnimated(true)
+        }
+    }))
+
+    
     
     viewController.presentViewController(alertController, animated: true, completion: nil)
 }

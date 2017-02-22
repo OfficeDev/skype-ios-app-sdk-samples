@@ -19,7 +19,7 @@ import SkypeForBusiness
 
 class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFieldDelegate, MicrosoftLicenseViewControllerDelegate {
     
-    private var sfb: SfBApplication?
+    var sfb: SfBApplication?
     private var conversation: SfBConversation?
     private var token: String?
     private var discoveryURI: String?
@@ -32,28 +32,14 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     //MARK: Lifecycle and helper functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initializeSkype()
         // Setup UI
         join.titleLabel?.textAlignment = NSTextAlignment.Center
         displayName.delegate = self
     }
     
-    func initializeSkype(){
+    override func viewWillAppear(animated: Bool) {
         
-        // Configure Shared application instance for Online meeting
-        sfb = SfBApplication.sharedApplication()
-        
-        if let sfb = sfb{
-            sfb.configurationManager.maxVideoChannels = 1
-            sfb.configurationManager.requireWifiForAudio = false
-            sfb.configurationManager.requireWifiForVideo = false
-            sfb.alertDelegate = self
-            sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
-            
-            // For OnPrem topolgies enablePreview features should be enabled for Audio/Video.
-            sfb.configurationManager.enablePreviewFeatures = getEnablePreviewSwitchState
-            
-        }
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
     }
     
@@ -68,7 +54,8 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     func sendPostRequestForMeetingURL(){
         
         // request to Trusted Application API Service Application endpoint
-        let meetingUrlRequest = NSMutableURLRequest(URL: NSURL(string: getOnlineMeetingRequestURL)!)
+        if let url = NSURL(string: getOnlineMeetingRequestURL){
+        let meetingUrlRequest = NSMutableURLRequest(URL: url)
         meetingUrlRequest.HTTPMethod = "POST"
         meetingUrlRequest.HTTPBody = "Subject=adhocMeeting&Description=adhocMeeting&AccessLevel=".dataUsingEncoding(NSUTF8StringEncoding)
         
@@ -89,11 +76,12 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                 } catch {
                     print("ERROR! Getting meeting URL failed>\(error)")
                     showErrorAlert("Getting meeting URL failed. Try again later!", viewController: self)
-                    self.navigationController?.popViewControllerAnimated(true)
+                   
                 }
                 
                 
             }
+        }
         }
     }
     
@@ -101,7 +89,8 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     func sendPostRequestForTokenAndDiscoveryURI()  {
         
         // request to Trusted Application API Service Application endpoint
-        let request = NSMutableURLRequest(URL: NSURL(string: getTokenAndDiscoveryURIRequestURL)!)
+         if let url = NSURL(string: getTokenAndDiscoveryURIRequestURL){
+        let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         let meetintURL = meetingUrl.text!;
         request.HTTPBody = "ApplicationSessionId=AnonMeeting&AllowedOrigins=http%3a%2f%2flocalhost%2f&MeetingUrl=\(meetintURL)".dataUsingEncoding(NSUTF8StringEncoding)
@@ -126,13 +115,14 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                 } catch {
                     print("ERROR! Getting token and discovery URI failed>\(error)")
                     showErrorAlert("Getting Discover URI failed. Try again later!", viewController: self)
-                    self.navigationController?.popViewControllerAnimated(true)
+                    
                     
                 }
                 
                 
             }
         }
+     }
         
     }
     
@@ -143,9 +133,9 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
         let task = sessionObject.dataTaskWithRequest(request) {  (data, response, error) in
             let httpResponse = response as? NSHTTPURLResponse
             let statusCode = httpResponse?.statusCode
-            print("statusCode->\(statusCode)")
+            print("statusCode-aas>\(statusCode)")
             
-            if (statusCode! == 200 ) {
+            if (statusCode == 200 ) {
                 
                 completionHandler(data: data, error: nil)
                 
