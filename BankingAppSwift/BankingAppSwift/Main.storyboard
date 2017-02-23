@@ -47,7 +47,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="hpw-TA-UBo">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email or user id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2U-sQ-fy8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Woodgrove bank ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2U-sQ-fy8">
                                 <rect key="frame" x="20" y="318.5" width="335" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="KFX-Sh-bsp"/>
@@ -107,7 +107,7 @@
                                     <action selector="signInButtonPressed:" destination="xJ0-Je-lng" eventType="touchUpInside" id="X0f-O1-1Rj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pZl-1y-OZE">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pZl-1y-OZE">
                                 <rect key="frame" x="273" y="559" width="100" height="100"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.37647058820000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -127,7 +127,7 @@
                                     <segue destination="JKG-Tu-NnV" kind="presentation" id="80r-RV-um9"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvK-aU-TuC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Woodgrove bank password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvK-aU-TuC">
                                 <rect key="frame" x="20" y="356.5" width="335" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="8qy-8Q-gGT"/>
@@ -1782,9 +1782,9 @@ an agent</string>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200.5" id="B16-9Q-cvg"/>
                                                 </constraints>
-                                                <mutableString key="text">* - Enter Token And discovery API Url and Meeting request API Url - If you are Office 365 user with enable preview feature = FALSE.                                  Token And discovery API Url and Meeting request API Url are custom listening APIs that your Trusted Application API -based service application will need to implement. 
+                                                <string key="text">* - Enter Token And discovery API Url and Meeting request API Url - If you are Office 365 user with enable preview feature = FALSE.                                  Token And discovery API Url and Meeting request API Url are custom listening APIs that your Trusted Application API -based service application will need to implement. 
 a) Meeting request API Url: POST on this link will return an adhoc-meeting Url. 
-b) Token And discovery API Url : POST on this link with your adhoc-meeting Url will receive a response with the DiscoverUri and token.</mutableString>
+b) Token And discovery API Url : POST on this link with your adhoc-meeting Url will receive a response with the DiscoverUri and token.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.94509803920000002" green="0.37647058820000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
