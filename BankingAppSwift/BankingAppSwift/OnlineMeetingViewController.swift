@@ -29,11 +29,13 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     @IBOutlet var join: UIButton!
     @IBOutlet var tokenAndDiscoveryURISuccessLabel: UILabel!
     
+    @IBOutlet weak var activityIndicatorForServiceApplicationResponse: UIActivityIndicatorView!
     //MARK: Lifecycle and helper functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setup UI
         join.titleLabel?.textAlignment = NSTextAlignment.Center
+        displayName.text = getMeetingDisplayName
         displayName.delegate = self
     }
     
@@ -110,6 +112,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                     self.token = json["Token"]
                     self.join.enabled = true
                     self.join.alpha = 1
+                    self.activityIndicatorForServiceApplicationResponse.stopAnimating()
                     print("Successful! token and discovery URI>> \(json["Token"]),\(json["DiscoverUri"])");
                     
                 } catch {

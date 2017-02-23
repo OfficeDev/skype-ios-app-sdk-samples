@@ -47,7 +47,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="hpw-TA-UBo">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Woodgrove bank ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2U-sQ-fy8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Woodgrove bank ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2U-sQ-fy8">
                                 <rect key="frame" x="20" y="318.5" width="335" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="KFX-Sh-bsp"/>
@@ -127,7 +127,7 @@
                                     <segue destination="JKG-Tu-NnV" kind="presentation" id="80r-RV-um9"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Woodgrove bank password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvK-aU-TuC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Woodgrove bank password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvK-aU-TuC">
                                 <rect key="frame" x="20" y="356.5" width="335" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="8qy-8Q-gGT"/>
@@ -1693,44 +1693,44 @@ an agent</string>
                                 <rect key="frame" x="0.0" y="64" width="375" height="936"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9n-w2-ntq">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="838.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1) Skype for Business Online. Are you a Skype for Business Online (Office 365) user?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2c-U9-9fy">
-                                                <rect key="frame" x="73" y="89" width="229" height="61"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skype for Business Online. Are you a Skype for Business Online (Office 365) user?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2c-U9-9fy">
+                                                <rect key="frame" x="20" y="20" width="250" height="81"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="61" id="IFJ-gB-BLa"/>
-                                                    <constraint firstAttribute="width" constant="229" id="he6-Ra-aR3"/>
+                                                    <constraint firstAttribute="height" constant="81" id="IFJ-gB-BLa"/>
+                                                    <constraint firstAttribute="width" constant="250" id="he6-Ra-aR3"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2) Enable Skype for Business server preview features" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rac-Mj-A6H">
-                                                <rect key="frame" x="73" y="178" width="220" height="61"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Skype for Business server preview features" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rac-Mj-A6H">
+                                                <rect key="frame" x="20" y="109" width="220" height="61"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="220" id="PoZ-ml-dIp"/>
                                                     <constraint firstAttribute="height" constant="61" id="uw7-zl-MhY"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3CN-C4-Xa0" userLabel="Skype For Business Online value">
-                                                <rect key="frame" x="310" y="104" width="51" height="31"/>
+                                                <rect key="frame" x="306" y="35" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                             </switch>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YLm-s2-zoF">
-                                                <rect key="frame" x="310" y="193" width="51" height="31"/>
+                                                <rect key="frame" x="306" y="124" width="51" height="31"/>
                                                 <color key="onTintColor" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting url*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCr-00-h2O">
-                                                <rect key="frame" x="20" y="324" width="101" height="21"/>
+                                                <rect key="frame" x="20" y="255" width="101" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meeting URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cr2-9W-Urd">
-                                                <rect key="frame" x="20" y="353" width="335" height="30"/>
+                                                <rect key="frame" x="20" y="284" width="335" height="30"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1739,22 +1739,22 @@ an agent</string>
                                                 </variation>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    b) Enter SfB Server meeting Url - If You are NOT Office 365 user." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5u1-ZL-CGg">
-                                                <rect key="frame" x="20" y="432.5" width="335" height="33.5"/>
+                                                <rect key="frame" x="20" y="363.5" width="335" height="33.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="33.5" id="uid-34-cPn"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.94509803920000002" green="0.37647058820000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token and discovery API Url*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jz-6i-b2a">
-                                                <rect key="frame" x="20" y="484" width="236" height="21"/>
+                                                <rect key="frame" x="20" y="415" width="236" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Token and discovery request API Url" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0cm-gI-NyS">
-                                                <rect key="frame" x="20" y="513" width="335" height="30"/>
+                                                <rect key="frame" x="20" y="444" width="335" height="30"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1763,13 +1763,13 @@ an agent</string>
                                                 </variation>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting request API Url*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZq-f6-Qt4">
-                                                <rect key="frame" x="20" y="551" width="203" height="21"/>
+                                                <rect key="frame" x="20" y="482" width="203" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meeting request API Url" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fRD-Zb-HlV">
-                                                <rect key="frame" x="20" y="580" width="335" height="30"/>
+                                                <rect key="frame" x="20" y="511" width="335" height="30"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1778,19 +1778,17 @@ an agent</string>
                                                 </variation>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00W-YE-2ql">
-                                                <rect key="frame" x="20" y="618" width="335" height="200.5"/>
+                                                <rect key="frame" x="20" y="549" width="335" height="70"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200.5" id="B16-9Q-cvg"/>
+                                                    <constraint firstAttribute="height" constant="70" id="B16-9Q-cvg"/>
                                                 </constraints>
-                                                <string key="text">* - Enter Token And discovery API Url and Meeting request API Url - If you are Office 365 user with enable preview feature = FALSE.                                  Token And discovery API Url and Meeting request API Url are custom listening APIs that your Trusted Application API -based service application will need to implement. 
-a) Meeting request API Url: POST on this link will return an adhoc-meeting Url. 
-b) Token And discovery API Url : POST on this link with your adhoc-meeting Url will receive a response with the DiscoverUri and token.</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.94509803920000002" green="0.37647058820000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <string key="text">* Enter Token And discovery API Url and Meeting request API Url - If you are Office 365 user with enable preview feature = FALSE.                                  </string>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5HX-ib-2zn">
-                                                <rect key="frame" x="20" y="276" width="335" height="30"/>
+                                                <rect key="frame" x="20" y="207" width="335" height="30"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1799,65 +1797,63 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
                                                 </variation>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meeting display name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yj-Tx-KCI">
-                                                <rect key="frame" x="20" y="247" width="179" height="21"/>
+                                                <rect key="frame" x="20" y="178" width="179" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCy-Jc-YXc">
-                                                <rect key="frame" x="20" y="474" width="335" height="2"/>
+                                                <rect key="frame" x="20" y="405" width="335" height="2"/>
                                                 <color key="backgroundColor" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="cGa-ss-P8H"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40B-aH-BrL">
-                                                <rect key="frame" x="20" y="314" width="335" height="2"/>
+                                                <rect key="frame" x="20" y="245" width="335" height="2"/>
                                                 <color key="backgroundColor" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="g8S-kI-ltw"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* - a) Enter SfB Online meeting Url - If you are Office 365 user with enable preview feature = true" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNf-XE-2vk">
-                                                <rect key="frame" x="19" y="391" width="335" height="33.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*  a) Enter SfB Online meeting Url - If you are Office 365 user with enable preview feature = true" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNf-XE-2vk">
+                                                <rect key="frame" x="19" y="322" width="335" height="33.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="33.5" id="tm9-be-VTH"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" red="0.94509803920000002" green="0.37647058820000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skype for Business topology and enable preview feature" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofn-zx-wvZ">
-                                                <rect key="frame" x="20" y="20" width="335" height="61"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="61" id="VPM-2N-NWt"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBI-0U-0Ne">
+                                                <rect key="frame" x="20" y="627" width="335" height="30"/>
+                                                <state key="normal" title="Click here to learn more"/>
+                                                <connections>
+                                                    <segue destination="9dC-HN-xJX" kind="presentation" identifier="segueToWebView" id="jwl-Le-Osq"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.67940304634855431" green="0.78459605142646893" blue="0.99852830169999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="wCy-Jc-YXc" firstAttribute="top" secondItem="5u1-ZL-CGg" secondAttribute="bottom" constant="8" symbolic="YES" id="0WG-hA-Bpf"/>
+                                            <constraint firstItem="Q2c-U9-9fy" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="0u8-BD-rZk"/>
+                                            <constraint firstAttribute="bottom" secondItem="nBI-0U-0Ne" secondAttribute="bottom" constant="20" symbolic="YES" id="1Vm-ra-fQH"/>
                                             <constraint firstItem="8Yj-Tx-KCI" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="1ms-CG-wub"/>
                                             <constraint firstAttribute="trailing" secondItem="Cr2-9W-Urd" secondAttribute="trailing" constant="20" symbolic="YES" id="2OS-RW-Ub9"/>
                                             <constraint firstItem="wCy-Jc-YXc" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="4E0-2r-lS6"/>
                                             <constraint firstItem="vCr-00-h2O" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="4as-XD-qrB"/>
                                             <constraint firstItem="fRD-Zb-HlV" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="4mF-o0-BFw"/>
                                             <constraint firstItem="40B-aH-BrL" firstAttribute="top" secondItem="5HX-ib-2zn" secondAttribute="bottom" constant="8" symbolic="YES" id="7ZB-Be-7Ky"/>
-                                            <constraint firstItem="3CN-C4-Xa0" firstAttribute="leading" secondItem="Q2c-U9-9fy" secondAttribute="trailing" constant="8" symbolic="YES" id="8Fa-g6-NEm"/>
-                                            <constraint firstItem="3CN-C4-Xa0" firstAttribute="centerY" secondItem="Q2c-U9-9fy" secondAttribute="centerY" id="8QF-XY-er2"/>
+                                            <constraint firstItem="3CN-C4-Xa0" firstAttribute="centerY" secondItem="Q2c-U9-9fy" secondAttribute="centerY" constant="-10" id="8QF-XY-er2"/>
                                             <constraint firstItem="rac-Mj-A6H" firstAttribute="leading" secondItem="Q2c-U9-9fy" secondAttribute="leading" id="8hY-Dc-WDG"/>
                                             <constraint firstItem="5HX-ib-2zn" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="9d4-L6-ILC"/>
                                             <constraint firstItem="vCr-00-h2O" firstAttribute="top" secondItem="40B-aH-BrL" secondAttribute="bottom" constant="8" symbolic="YES" id="BRR-33-NxX"/>
                                             <constraint firstAttribute="trailing" secondItem="fRD-Zb-HlV" secondAttribute="trailing" constant="20" symbolic="YES" id="BnK-Ed-DDx"/>
                                             <constraint firstItem="fRD-Zb-HlV" firstAttribute="top" secondItem="HZq-f6-Qt4" secondAttribute="bottom" constant="8" symbolic="YES" id="C6J-L8-bBZ"/>
                                             <constraint firstAttribute="trailing" secondItem="bNf-XE-2vk" secondAttribute="trailing" constant="21" id="C6Y-ph-BrL"/>
-                                            <constraint firstItem="rac-Mj-A6H" firstAttribute="top" secondItem="Q2c-U9-9fy" secondAttribute="bottom" constant="28" id="ChM-br-veD"/>
+                                            <constraint firstItem="rac-Mj-A6H" firstAttribute="top" secondItem="Q2c-U9-9fy" secondAttribute="bottom" constant="8" id="ChM-br-veD"/>
                                             <constraint firstItem="5u1-ZL-CGg" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="Cut-fC-B1x"/>
                                             <constraint firstAttribute="trailing" secondItem="5HX-ib-2zn" secondAttribute="trailing" constant="20" symbolic="YES" id="Dr9-Qp-zem"/>
-                                            <constraint firstAttribute="bottom" secondItem="00W-YE-2ql" secondAttribute="bottom" constant="20" symbolic="YES" id="E6Y-Y8-Qbs"/>
                                             <constraint firstItem="2Jz-6i-b2a" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="HFu-uz-gx9"/>
                                             <constraint firstItem="Cr2-9W-Urd" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="IRx-Y1-CV3"/>
                                             <constraint firstItem="8Yj-Tx-KCI" firstAttribute="top" secondItem="rac-Mj-A6H" secondAttribute="bottom" constant="8" symbolic="YES" id="JFb-ss-r2n"/>
@@ -1866,6 +1862,8 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
                                             <constraint firstItem="bNf-XE-2vk" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="19" id="LWq-cs-KHN"/>
                                             <constraint firstItem="bNf-XE-2vk" firstAttribute="top" secondItem="Cr2-9W-Urd" secondAttribute="bottom" constant="8" id="LcP-nn-GBb"/>
                                             <constraint firstItem="0cm-gI-NyS" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="MmN-pR-DlF"/>
+                                            <constraint firstItem="nBI-0U-0Ne" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="MvK-6q-Wuz"/>
+                                            <constraint firstAttribute="trailing" secondItem="nBI-0U-0Ne" secondAttribute="trailing" constant="20" symbolic="YES" id="PYg-25-Sil"/>
                                             <constraint firstItem="40B-aH-BrL" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="Q3v-0o-2uL"/>
                                             <constraint firstItem="Cr2-9W-Urd" firstAttribute="top" secondItem="vCr-00-h2O" secondAttribute="bottom" constant="8" symbolic="YES" id="SAZ-GR-7Vd"/>
                                             <constraint firstItem="00W-YE-2ql" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="SDU-M1-OOB"/>
@@ -1875,21 +1873,20 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
                                             <constraint firstItem="2Jz-6i-b2a" firstAttribute="top" secondItem="wCy-Jc-YXc" secondAttribute="bottom" constant="8" symbolic="YES" id="aTs-Pa-Zad"/>
                                             <constraint firstItem="YLm-s2-zoF" firstAttribute="leading" secondItem="3CN-C4-Xa0" secondAttribute="leading" id="c3J-1g-u0q"/>
                                             <constraint firstAttribute="trailing" secondItem="00W-YE-2ql" secondAttribute="trailing" constant="20" symbolic="YES" id="cGh-8l-WZh"/>
-                                            <constraint firstItem="Ofn-zx-wvZ" firstAttribute="top" secondItem="u9n-w2-ntq" secondAttribute="top" constant="20" id="dT5-3r-eP6"/>
                                             <constraint firstItem="YLm-s2-zoF" firstAttribute="top" secondItem="3CN-C4-Xa0" secondAttribute="bottom" constant="58" id="gUa-cU-Evp"/>
-                                            <constraint firstItem="Q2c-U9-9fy" firstAttribute="centerX" secondItem="u9n-w2-ntq" secondAttribute="centerX" id="gjT-qK-3nt"/>
                                             <constraint firstAttribute="trailing" secondItem="0cm-gI-NyS" secondAttribute="trailing" constant="20" symbolic="YES" id="hew-Ls-PDu"/>
-                                            <constraint firstItem="Ofn-zx-wvZ" firstAttribute="leading" secondItem="u9n-w2-ntq" secondAttribute="leading" constant="20" symbolic="YES" id="hv1-Z5-dm9"/>
+                                            <constraint firstItem="Q2c-U9-9fy" firstAttribute="top" secondItem="u9n-w2-ntq" secondAttribute="top" constant="20" id="hni-ui-Sbs"/>
                                             <constraint firstItem="HZq-f6-Qt4" firstAttribute="top" secondItem="0cm-gI-NyS" secondAttribute="bottom" constant="8" symbolic="YES" id="jb2-tw-ePF"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ofn-zx-wvZ" secondAttribute="trailing" constant="20" symbolic="YES" id="osb-DX-f8V"/>
+                                            <constraint firstAttribute="trailing" secondItem="3CN-C4-Xa0" secondAttribute="trailing" constant="20" symbolic="YES" id="oTU-kb-CeB"/>
+                                            <constraint firstItem="nBI-0U-0Ne" firstAttribute="top" secondItem="00W-YE-2ql" secondAttribute="bottom" constant="8" symbolic="YES" id="ogW-5f-FFv"/>
                                             <constraint firstItem="5HX-ib-2zn" firstAttribute="top" secondItem="8Yj-Tx-KCI" secondAttribute="bottom" constant="8" symbolic="YES" id="qMx-NJ-6Kq"/>
                                             <constraint firstItem="0cm-gI-NyS" firstAttribute="top" secondItem="2Jz-6i-b2a" secondAttribute="bottom" constant="8" symbolic="YES" id="rfw-yW-Ul1"/>
                                             <constraint firstAttribute="trailing" secondItem="wCy-Jc-YXc" secondAttribute="trailing" constant="20" symbolic="YES" id="sSo-Ql-Zeg"/>
-                                            <constraint firstItem="Q2c-U9-9fy" firstAttribute="top" secondItem="Ofn-zx-wvZ" secondAttribute="bottom" constant="8" symbolic="YES" id="w8t-PL-7AO"/>
                                             <constraint firstItem="00W-YE-2ql" firstAttribute="top" secondItem="fRD-Zb-HlV" secondAttribute="bottom" constant="8" symbolic="YES" id="yYp-Xl-OFA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.67940304630000004" green="0.78459605139999999" blue="0.99852830169999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="u9n-w2-ntq" firstAttribute="top" secondItem="Ad9-wt-ObJ" secondAttribute="top" id="a3r-bd-yqk"/>
                                     <constraint firstItem="u9n-w2-ntq" firstAttribute="leading" secondItem="Ad9-wt-ObJ" secondAttribute="leading" id="ozs-kn-iHY"/>
@@ -1936,8 +1933,63 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQt-Gr-XkV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6cL-eo-CBq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="581.60000000000002" y="-907.1964017991005"/>
+            <point key="canvasLocation" x="581.60000000000002" y="-907.64617691154433"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="MhQ-OT-420">
+            <objects>
+                <viewController id="9dC-HN-xJX" customClass="WebViewController" customModule="BankingAppSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hhU-Fk-Y4N"/>
+                        <viewControllerLayoutGuide type="bottom" id="dXp-z6-tj4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lHe-ZO-Pp6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3V-s3-eXx">
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62m-4m-GDW">
+                                <rect key="frame" x="20" y="20" width="98" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="SPr-rT-oU5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="6cL-eo-CBq" kind="unwind" unwindAction="prepareForUnwind:" id="uYa-dV-N2U"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="clw-1W-CQa">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="N3V-s3-eXx" secondAttribute="trailing" id="CbZ-rv-Er4"/>
+                            <constraint firstItem="62m-4m-GDW" firstAttribute="leading" secondItem="lHe-ZO-Pp6" secondAttribute="leading" constant="20" symbolic="YES" id="JcI-o8-qdO"/>
+                            <constraint firstItem="dXp-z6-tj4" firstAttribute="top" secondItem="N3V-s3-eXx" secondAttribute="bottom" id="MjS-eD-PL3"/>
+                            <constraint firstItem="N3V-s3-eXx" firstAttribute="top" secondItem="62m-4m-GDW" secondAttribute="bottom" id="PGk-JP-RgL"/>
+                            <constraint firstItem="clw-1W-CQa" firstAttribute="centerX" secondItem="lHe-ZO-Pp6" secondAttribute="centerX" id="Zoa-ZE-b6r"/>
+                            <constraint firstItem="62m-4m-GDW" firstAttribute="top" secondItem="hhU-Fk-Y4N" secondAttribute="bottom" id="d05-FL-ivv"/>
+                            <constraint firstItem="clw-1W-CQa" firstAttribute="centerY" secondItem="lHe-ZO-Pp6" secondAttribute="centerY" id="hkK-nY-KXR"/>
+                            <constraint firstItem="N3V-s3-eXx" firstAttribute="leading" secondItem="lHe-ZO-Pp6" secondAttribute="leading" id="nMT-98-aYZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myActivityIndicator" destination="clw-1W-CQa" id="YFK-7A-8hn"/>
+                        <outlet property="myWebView" destination="N3V-s3-eXx" id="2Ig-uc-1fh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xJE-eg-DMH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1440.8" y="-801.0494752623689"/>
         </scene>
         <!--Online Meeting-->
         <scene sceneID="yVT-Rd-VlQ">
@@ -1994,27 +2046,44 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Getting response from your Trusted Application API Service Application." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYC-ol-zvL">
+                                <rect key="frame" x="20" y="84" width="335" height="41"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="o3O-Dh-EOP">
+                                <rect key="frame" x="169" y="175" width="37" height="37"/>
+                                <color key="color" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.82683705191250834" green="0.87230003002288647" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="clL-oa-4mn" secondAttribute="trailing" id="0gf-89-c8L"/>
                             <constraint firstAttribute="trailing" secondItem="O8X-G4-Ty7" secondAttribute="trailing" constant="20" symbolic="YES" id="A36-QZ-o0l"/>
                             <constraint firstAttribute="trailing" secondItem="e68-pr-gGi" secondAttribute="trailing" constant="14" id="Oqg-Yr-Hsh"/>
+                            <constraint firstItem="o3O-Dh-EOP" firstAttribute="top" secondItem="cYC-ol-zvL" secondAttribute="bottom" constant="50" id="Qd9-bJ-4i4"/>
                             <constraint firstItem="e68-pr-gGi" firstAttribute="top" secondItem="clL-oa-4mn" secondAttribute="bottom" constant="20" id="WsK-J0-bJI"/>
                             <constraint firstItem="O8X-G4-Ty7" firstAttribute="top" secondItem="e68-pr-gGi" secondAttribute="bottom" constant="8" symbolic="YES" id="ZTT-ol-37K"/>
+                            <constraint firstItem="clL-oa-4mn" firstAttribute="top" relation="lessThanOrEqual" secondItem="o3O-Dh-EOP" secondAttribute="bottom" constant="50" id="a2I-Wn-tDy"/>
                             <constraint firstItem="e68-pr-gGi" firstAttribute="centerX" secondItem="a3o-6g-PWU" secondAttribute="centerX" id="aLA-3T-tCz"/>
                             <constraint firstItem="e68-pr-gGi" firstAttribute="leading" secondItem="a3o-6g-PWU" secondAttribute="leading" constant="14" id="aiI-AD-QL8"/>
                             <constraint firstItem="vfD-0s-9AX" firstAttribute="top" secondItem="s19-n6-cZ5" secondAttribute="bottom" constant="8" symbolic="YES" id="bYq-74-PId"/>
+                            <constraint firstItem="cYC-ol-zvL" firstAttribute="leading" secondItem="a3o-6g-PWU" secondAttribute="leading" constant="20" symbolic="YES" id="dXi-iO-ATb"/>
+                            <constraint firstItem="cYC-ol-zvL" firstAttribute="top" secondItem="i8H-uV-zmi" secondAttribute="bottom" constant="20" id="iDY-v5-cJk"/>
                             <constraint firstItem="clL-oa-4mn" firstAttribute="leading" secondItem="a3o-6g-PWU" secondAttribute="leadingMargin" id="k7Z-7G-oHX"/>
                             <constraint firstItem="O8X-G4-Ty7" firstAttribute="leading" secondItem="a3o-6g-PWU" secondAttribute="leading" constant="20" symbolic="YES" id="p0I-0J-OBu"/>
+                            <constraint firstItem="o3O-Dh-EOP" firstAttribute="centerX" secondItem="a3o-6g-PWU" secondAttribute="centerX" id="qEx-eI-XhK"/>
                             <constraint firstItem="e68-pr-gGi" firstAttribute="centerY" secondItem="a3o-6g-PWU" secondAttribute="centerY" id="qUF-fM-ftP"/>
                             <constraint firstAttribute="trailing" secondItem="s19-n6-cZ5" secondAttribute="trailing" constant="2" id="t5l-dQ-Ye9"/>
+                            <constraint firstAttribute="trailing" secondItem="cYC-ol-zvL" secondAttribute="trailing" constant="20" symbolic="YES" id="unV-Ex-FNq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Online Meeting" id="yEz-c7-Adw">
                         <barButtonItem key="backBarButtonItem" title="Leave" id="7M3-Ff-ybY"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorForServiceApplicationResponse" destination="o3O-Dh-EOP" id="o8u-dc-WAJ"/>
                         <outlet property="displayName" destination="clL-oa-4mn" id="r1J-UY-sW1"/>
                         <outlet property="join" destination="s19-n6-cZ5" id="6c2-OT-KxO"/>
                         <outlet property="meetingUrl" destination="e68-pr-gGi" id="6mj-bb-bu6"/>
@@ -2025,7 +2094,7 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E4V-c0-p7n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1905" y="117"/>
+            <point key="canvasLocation" x="1904.8" y="116.49175412293854"/>
         </scene>
         <!--Microsoft License View Controller-->
         <scene sceneID="9fa-9W-q4z">
@@ -2082,7 +2151,7 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="q6g-6x-hg9">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="color" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -2113,9 +2182,9 @@ b) Token And discovery API Url : POST on this link with your adhoc-meeting Url w
         <image name="background" width="640" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Byh-I3-ngC"/>
         <segue reference="2L1-ul-4dD"/>
         <segue reference="1z4-6U-B2v"/>
-        <segue reference="1hJ-S3-U8V"/>
+        <segue reference="92m-Xc-Bam"/>
+        <segue reference="VD8-vj-7zq"/>
     </inferredMetricsTieBreakers>
 </document>

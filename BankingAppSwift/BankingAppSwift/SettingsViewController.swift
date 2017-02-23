@@ -202,7 +202,9 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
             }
         }
     }
-
+    @IBAction func prepareForUnwind(segue:UIStoryboardSegue){
+        
+    }
     
 
     
