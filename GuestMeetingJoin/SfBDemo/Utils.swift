@@ -118,3 +118,33 @@ extension SfBAlert {
     }
 
 }
+
+extension SfBMessageStatus {
+
+    public var backgroundColor: UIColor {
+        switch (self) {
+        case .Failed:
+            return UIColor.redColor()
+        case .Pending:
+            return UIColor.yellowColor()
+        case .Succeeded:
+            return UIColor.clearColor()
+        }
+    }
+
+}
+
+extension SfBAudioServiceMuteState: CustomStringConvertible {
+
+    public var description: String {
+        switch self {
+        case .Unmuted:
+            return "Unmuted"
+        case .Muted:
+            return "Muted"
+        case .Unmuting:
+            return "Unmuting"
+        }
+    }
+
+}
