@@ -549,7 +549,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02f-Y2-OYd">
-                                <rect key="frame" x="0.0" y="94" width="375" height="493"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="523"/>
                                 <connections>
                                     <segue destination="8ZB-sS-ZeA" kind="embed" identifier="chatTable" id="2EK-e8-po5"/>
                                 </connections>
@@ -566,7 +566,7 @@
                             <constraint firstItem="02f-Y2-OYd" firstAttribute="top" secondItem="hhn-ss-4PP" secondAttribute="bottom" id="wKh-BJ-66O"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Woodgrove Bank" prompt="Text Chat" id="JBY-8K-2Am">
+                    <navigationItem key="navigationItem" title="Woodgrove Bank" id="JBY-8K-2Am">
                         <barButtonItem key="rightBarButtonItem" title="End" id="iD5-gv-Acc">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -610,7 +610,7 @@ an agent</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <glkView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sF-UB-Nos" userLabel="Participant View">
-                                <rect key="frame" x="0.0" y="94" width="375" height="573"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </glkView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgM-eg-wQG" userLabel="Self Video View">
                                 <rect key="frame" x="235" y="527" width="120" height="120"/>
@@ -715,7 +715,7 @@ an agent</string>
                             <constraint firstItem="9lt-RZ-mTP" firstAttribute="centerX" secondItem="Qbq-09-Mo0" secondAttribute="centerX" id="x79-oA-51I"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Woodgrove Bank" prompt="Live Chat" id="1i7-xg-cUg"/>
+                    <navigationItem key="navigationItem" title="Woodgrove Bank" id="1i7-xg-cUg"/>
                     <connections>
                         <outlet property="dateLabel" destination="b3d-nR-7aj" id="CZ4-fq-CFb"/>
                         <outlet property="endCallButton" destination="9lt-RZ-mTP" id="xNE-KO-tyD"/>
@@ -735,7 +735,7 @@ an agent</string>
             <objects>
                 <tableViewController id="8ZB-sS-ZeA" customClass="ChatTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ATp-lk-9jj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="493"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="523"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -1644,7 +1644,7 @@ an agent</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" text="John Doe" placeholder="John Doe" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xii-vR-ycv">
-                                <rect key="frame" x="16" y="218" width="343" height="63"/>
+                                <rect key="frame" x="16" y="260" width="343" height="21"/>
                                 <color key="backgroundColor" red="0.82683705190000001" green="0.87230003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1687,13 +1687,13 @@ an agent</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Getting response from your Trusted Application API Service Application." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2L-kn-qxy">
-                                <rect key="frame" x="20" y="40" width="335" height="41"/>
+                                <rect key="frame" x="20" y="84" width="335" height="41"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DX7-Eb-FG4">
-                                <rect key="frame" x="169" y="131" width="37" height="37"/>
+                                <rect key="frame" x="169" y="175" width="37" height="37"/>
                                 <color key="color" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -1705,7 +1705,7 @@ an agent</string>
                             <constraint firstItem="S2L-kn-qxy" firstAttribute="top" secondItem="5Ny-cw-wsf" secondAttribute="bottom" constant="20" id="DaZ-XQ-uql"/>
                             <constraint firstItem="xii-vR-ycv" firstAttribute="leading" secondItem="4cO-93-TUA" secondAttribute="leadingMargin" id="GQi-LS-GFv"/>
                             <constraint firstItem="fVE-h1-lRi" firstAttribute="leading" secondItem="4cO-93-TUA" secondAttribute="leading" constant="14" id="MZ4-vN-fpa"/>
-                            <constraint firstItem="xii-vR-ycv" firstAttribute="top" secondItem="DX7-Eb-FG4" secondAttribute="bottom" constant="50" id="X7P-xX-qKH"/>
+                            <constraint firstItem="xii-vR-ycv" firstAttribute="top" relation="lessThanOrEqual" secondItem="DX7-Eb-FG4" secondAttribute="bottom" constant="50" id="X7P-xX-qKH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xii-vR-ycv" secondAttribute="trailing" id="ZIk-uh-ish"/>
                             <constraint firstItem="DX7-Eb-FG4" firstAttribute="centerX" secondItem="4cO-93-TUA" secondAttribute="centerX" id="ZnP-vL-j6A"/>
                             <constraint firstItem="VBN-md-hCv" firstAttribute="top" secondItem="lPR-43-hb4" secondAttribute="bottom" constant="8" symbolic="YES" id="ddU-xE-khM"/>
@@ -1824,7 +1824,7 @@ an agent</string>
         <!--Online Meeting Main-->
         <scene sceneID="4wh-By-dlZ">
             <objects>
-                <viewController id="FTQ-Rd-1Uv" userLabel="Online Meeting Main" customClass="OnlineMainViewController" customModule="BankingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FTQ-Rd-1Uv" userLabel="Online Meeting Main" customClass="OnlineMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eyv-6c-6OW"/>
                         <viewControllerLayoutGuide type="bottom" id="jqK-Mw-lEC"/>
@@ -1880,7 +1880,7 @@ an agent</string>
         <!--Settings-->
         <scene sceneID="Abz-xm-3xc">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fKg-8v-FoT" customClass="SettingsViewController" customModule="BankingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fKg-8v-FoT" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eBK-Qt-2uu"/>
                         <viewControllerLayoutGuide type="bottom" id="B8J-S9-QeH"/>

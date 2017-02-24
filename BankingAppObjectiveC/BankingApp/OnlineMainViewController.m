@@ -19,12 +19,13 @@ SfBApplication *sfb ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self initializeSkype];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBarHidden = true;
+ [self.navigationController setNavigationBarHidden:YES animated:YES];   
 }
 - (IBAction)joinOnlineMeeting:(id)sender {
     [self performSegueWithIdentifier:@"segueToOnlineMeeting" sender:nil];

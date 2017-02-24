@@ -47,7 +47,7 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     if (_microsoftLicensePDFWebView.isLoading)
-        return
+        return;
     
     [_loadingIndicator stopAnimating];
 

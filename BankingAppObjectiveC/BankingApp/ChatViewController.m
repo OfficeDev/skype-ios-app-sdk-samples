@@ -168,7 +168,7 @@ static NSString* const DisplayNameInfo = @"displayName";
     for (UIViewController *viewController in allViewControllers) {
         if ([viewController isKindOfClass:[OnlineMainViewController class]]) {
             presentedFromOnlineMeetingViewController = YES;
-            [self.navigationController popToViewController:viewController animated:NO];
+            [self.navigationController popToViewController:viewController animated:YES];
             break;
         }
     }

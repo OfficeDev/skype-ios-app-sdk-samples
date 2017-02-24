@@ -45,7 +45,11 @@ NSString *discoveryURI;
 - (void)viewDidAppear:(BOOL)animated{
      // First POST request to fetch meeting URL
     [self sendPostRequestForMeetingURL];
-    self.navigationController.navigationBarHidden = false;
+   
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma mark - Send POST requests for online meeting call flow functions
