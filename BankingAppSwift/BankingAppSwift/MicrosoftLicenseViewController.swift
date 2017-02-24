@@ -12,7 +12,7 @@ protocol MicrosoftLicenseViewControllerDelegate {
     func controller(controller: MicrosoftLicenseViewController , didAcceptLicense acceptedLicense:Bool)
 }
 
-class MicrosoftLicenseViewController: UIViewController {
+class MicrosoftLicenseViewController: UIViewController,UIWebViewDelegate  {
     var delegate: MicrosoftLicenseViewControllerDelegate?
     var request:NSURLRequest?
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
@@ -31,6 +31,7 @@ class MicrosoftLicenseViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        microsoftLicensePDFWebView.delegate = self
         if let licensePDFPath = NSBundle.mainBundle().URLForResource("Skype for Business App SDK Codec End User License Terms", withExtension: "pdf"){
              request = NSURLRequest(URL: licensePDFPath)
             
@@ -42,14 +43,17 @@ class MicrosoftLicenseViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         microsoftLicensePDFWebView.loadRequest(request!)
-        loadingIndicator.stopAnimating()
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func webViewDidFinishLoad(webView: UIWebView) {
+        if (microsoftLicensePDFWebView.loading){
+            return
+        }
+        loadingIndicator.stopAnimating()
+        
     }
     
     

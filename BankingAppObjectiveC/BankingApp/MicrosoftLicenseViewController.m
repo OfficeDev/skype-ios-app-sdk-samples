@@ -33,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+            _microsoftLicensePDFWebView.delegate = self;
     if( [[NSBundle mainBundle] URLForResource:@"Skype for Business App SDK Codec End User License Terms" withExtension:@"pdf"] != nil){
         request = [[NSURLRequest alloc]initWithURL:[[NSBundle mainBundle] URLForResource:@"Skype for Business App SDK Codec End User License Terms" withExtension:@"pdf"]];
     }
@@ -40,23 +41,15 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [_microsoftLicensePDFWebView loadRequest:request];
-    [_loadingIndicator stopAnimating];
+    
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    if (_microsoftLicensePDFWebView.isLoading)
+        return;
+    
+    [_loadingIndicator stopAnimating];
+
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

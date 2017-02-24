@@ -163,18 +163,21 @@ static NSString* const DisplayNameInfo = @"displayName";
         NSLog(@"Error leaving meeting");
     }
     [_chatHandler.conversation removeObserver:self forKeyPath:@"canLeave"];
-    [self.navigationController popViewControllerAnimated:YES];
+    bool presentedFromOnlineMeetingViewController = NO;
+    NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
+    for (UIViewController *viewController in allViewControllers) {
+        if ([viewController isKindOfClass:[OnlineMainViewController class]]) {
+            presentedFromOnlineMeetingViewController = YES;
+            [self.navigationController popToViewController:viewController animated:YES];
+            break;
+        }
+    }
+    if(!presentedFromOnlineMeetingViewController){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
-//    NSError *error = nil;
-//    [_chatHandler.conversation leave:&error];
-//    
-//    if (error) {
-//        [self handleError:error];
-//    }
-//    else {
-//        [_chatHandler.conversation removeObserver:self forKeyPath:@"canLeave"];
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
+   
+
 }
 
 

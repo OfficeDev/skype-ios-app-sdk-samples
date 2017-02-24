@@ -137,25 +137,24 @@ static NSString* const DisplayNameInfo = @"displayName";
 #pragma mark - User button actions
 
 - (IBAction)endCall:(id)sender {
-    // Get conversation handle and call leave.
-    // Need to check for canLeave property of conversation,
-    // in this case happens in KVO
     
-//    NSError *error = nil;
-//    [_conversationHelper.conversation leave:&error];
-//    
-//    if (error) {
-//        [self handleError:error];
-//    }
-//    else {
-//        [_conversationHelper.conversation removeObserver:self forKeyPath:@"canLeave"];
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
     if(![Util leaveMeetingWithSuccess:_conversationHelper.conversation] ){
             NSLog(@"Error leaving meeting");
     }
     [_conversationHelper.conversation removeObserver:self forKeyPath:@"canLeave"];
-    [self.navigationController popViewControllerAnimated:YES];
+    bool presentedFromOnlineMeetingViewController = NO;
+    NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:[self.navigationController viewControllers]];
+    for (UIViewController *viewController in allViewControllers) {
+        if ([viewController isKindOfClass:[OnlineMainViewController class]]) {
+            presentedFromOnlineMeetingViewController = YES;
+            [self.navigationController popToViewController:viewController animated:YES];
+            break;
+        }
+    }
+    if(!presentedFromOnlineMeetingViewController){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
     
 }
 

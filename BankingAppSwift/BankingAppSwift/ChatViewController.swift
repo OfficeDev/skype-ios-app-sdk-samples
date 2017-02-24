@@ -107,7 +107,20 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
             self.chatHandler?.conversation.removeObserver(self, forKeyPath: "canLeave")
 
         }
-        self.navigationController?.popViewControllerAnimated(true)
+        var presentedFromOnlineMeetingViewController = false
+        let allViewControllers = self.navigationController?.viewControllers
+        for viewController in allViewControllers!{
+        if(viewController.isKindOfClass(OnlineMainViewController)){
+            presentedFromOnlineMeetingViewController = true
+            self.navigationController?.popToViewController(viewController, animated: true)
+        break;
+        }
+       }
+        if(!presentedFromOnlineMeetingViewController){
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+        
+      
     }
 
     

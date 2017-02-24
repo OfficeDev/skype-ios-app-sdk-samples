@@ -19,7 +19,7 @@
 
 @end
 
-@interface MicrosoftLicenseViewController : UIViewController
+@interface MicrosoftLicenseViewController : UIViewController<UIWebViewDelegate>
 @property (weak)  id<MicrosoftLicenseViewControllerDelegate> delegate;
 @end
 
