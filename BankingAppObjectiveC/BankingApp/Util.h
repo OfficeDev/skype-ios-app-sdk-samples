@@ -8,10 +8,13 @@
 
 #define USER_MEETING_URL  "userMeetingUrl"
 #define USER_DISPLAY_NAME "userDisplayName"
+#define TOKEN_AND_DISCOVERY_API_URL  "TokenAndDiscoveryURIRequestAPIURL"
+#define ONLINE_MEETING_REQUEST_API_URL  "OnlineMeetingRequestAPIURL"
 #define SFB_ONLINE_MEETING_STATE "SfBOnlineSwitchState"
 #define ENABLE_PREVIEW_STATE  "enablePreviewSwitchState"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "OnlineMeetingViewController.h"
 #import <SkypeForBusiness/SkypeForBusiness.h>
 
 @interface Util : NSObject

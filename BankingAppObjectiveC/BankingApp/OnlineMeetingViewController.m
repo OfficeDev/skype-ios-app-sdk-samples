@@ -18,13 +18,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *displayName;
 @property (weak, nonatomic) IBOutlet UIButton *join;
 @property (weak, nonatomic) IBOutlet UILabel *tokenAndDiscoveryURISuccessLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorForServiceApplicationResponse;
 
 typedef void (^completionBlock)( NSData *data ,NSError *error);
 @end
 
 @implementation OnlineMeetingViewController
 
-SfBApplication *onlineMeetingsfb ;
+
 SfBConversation *onlineMeetingConversation ;
 NSString *token;
 NSString *discoveryURI;
@@ -34,24 +35,17 @@ NSString *discoveryURI;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // Configure Shared application instance for Online meeting
-    onlineMeetingsfb = SfBApplication.sharedApplication;
-    onlineMeetingsfb.configurationManager.maxVideoChannels = 1;
-    onlineMeetingsfb.configurationManager.requireWifiForAudio = false;
-    onlineMeetingsfb.configurationManager.requireWifiForVideo = false;
-    onlineMeetingsfb.alertDelegate = self;
-    onlineMeetingsfb.devicesManager.selectedSpeaker.activeEndpoint = SfBSpeakerEndpointLoudspeaker;
-    
-    // For OnPrem topolgies enablePreview features should be enabled for Audio/Video.
-    onlineMeetingsfb.configurationManager.enablePreviewFeatures = [Util getEnablePreviewSwitchState];
-    
+        
     // Setup UI
     self.join.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.displayName.text = [Util getMeetingDisplayName];
     self.displayName.delegate = self;
     }
 
 - (void)viewDidAppear:(BOOL)animated{
      // First POST request to fetch meeting URL
     [self sendPostRequestForMeetingURL];
+    self.navigationController.navigationBarHidden = false;
 }
 
 #pragma mark - Send POST requests for online meeting call flow functions
@@ -86,7 +80,7 @@ NSString *discoveryURI;
                 NSLog(@"ERROR! Getting meeting URL failed>%@",error);
                 
                 [Util showErrorAlert:error inView:self];
-                [self.navigationController popViewControllerAnimated:YES];
+                
             }
         });
     }];
@@ -119,13 +113,14 @@ NSString *discoveryURI;
                     token = json[@"Token"];
                     self.join.enabled = true;
                     self.join.alpha = 1;
+                    [self.activityIndicatorForServiceApplicationResponse stopAnimating];
                     NSLog(@"Successful! token and discovery URI:%@, %@",json[@"Token"],json[@"DiscoverUri"]);
                 }
             }
             else{
                 NSLog(@"ERROR! Getting token and discovery URI failed>%@",error);
                [Util showErrorAlert:error inView:self];
-                 [self.navigationController popViewControllerAnimated:YES];
+                 
             }
         });
     }];
@@ -164,7 +159,7 @@ NSString *discoveryURI;
 
 -(bool) didJoinMeeting  {
     NSError *e = nil;
-     SfBConversation *conversationInstance =   [ onlineMeetingsfb joinMeetingAnonymousWithDiscoverUrl:[[NSURL alloc] initWithString:discoveryURI] authToken:token displayName:self.displayName.text error:&e].conversation;
+     SfBConversation *conversationInstance =   [ _onlineMeetingsfb joinMeetingAnonymousWithDiscoverUrl:[[NSURL alloc] initWithString:discoveryURI] authToken:token displayName:self.displayName.text error:&e].conversation;
     if(conversationInstance){
     onlineMeetingConversation = conversationInstance;
     
@@ -211,7 +206,7 @@ NSString *discoveryURI;
 
 -(void)joinOnlineVideoChat{
     
-    SfBConfigurationManager *config = onlineMeetingsfb.configurationManager;
+    SfBConfigurationManager *config = _onlineMeetingsfb.configurationManager;
     NSString *key = @"AcceptedVideoLicense";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -236,7 +231,7 @@ NSString *discoveryURI;
     }
     else if([segue.identifier isEqualToString:@"joinOnlineAudioVideoChat"]){
         VideoViewController* destination = segue.destinationViewController;
-        destination.deviceManagerInstance = onlineMeetingsfb.devicesManager;
+        destination.deviceManagerInstance = _onlineMeetingsfb.devicesManager;
         destination.conversationInstance = onlineMeetingConversation;
         destination.displayName = self.displayName.text;
         
@@ -268,7 +263,7 @@ NSString *discoveryURI;
 - (void)controller:(MicrosoftLicenseViewController* )controller
   didAcceptLicense:(BOOL)acceptedLicense{
     if(acceptedLicense){
-        SfBConfigurationManager *config = onlineMeetingsfb.configurationManager;
+        SfBConfigurationManager *config = _onlineMeetingsfb.configurationManager;
         [config setEndUserAcceptedVideoLicense];
         if([self didJoinMeeting]){
             [self performSegueWithIdentifier:@"joinOnlineAudioVideoChat" sender:nil];

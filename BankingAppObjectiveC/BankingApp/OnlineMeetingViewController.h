@@ -11,4 +11,5 @@
 #import "Util.h"
 @interface OnlineMeetingViewController : UIViewController<UITextFieldDelegate,SfBAlertDelegate, MicrosoftLicenseViewControllerDelegate>
 
+@property (strong, nonatomic) SfBApplication *onlineMeetingsfb ;
 @end

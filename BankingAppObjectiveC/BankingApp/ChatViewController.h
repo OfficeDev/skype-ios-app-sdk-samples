@@ -5,6 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SkypeForBusiness/SkypeForBusiness.h>
+#import "OnlineMainViewController.h"
 #import "Util.h"
 @interface ChatViewController : UIViewController
 @property (strong, nonatomic) SfBConversation *conversation;

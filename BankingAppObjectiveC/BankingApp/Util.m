@@ -6,6 +6,7 @@
 
 #import "Util.h"
 
+
 @implementation Util
 
 + (bool)leaveMeetingWithSuccess:(SfBConversation *)conversation{
@@ -56,15 +57,15 @@
 
 +(NSString*) getTokenAndDiscoveryURIRequestURL {
     
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@TOKEN_AND_DISCOVERY_API_URL] ?: [[NSBundle mainBundle]objectForInfoDictionaryKey:@"Token and discovery URI request API URL"];
     
-    return  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Token and discovery URI request URL"];
-
 }
 
 +(NSString*) getOnlineMeetingRequestURL {
     
     
-    return  [[NSBundle mainBundle] objectForInfoDictionaryKey:@"Online Meeting request URL"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@ONLINE_MEETING_REQUEST_API_URL] ?: [[NSBundle mainBundle]objectForInfoDictionaryKey:@"Online Meeting request API URL"];
+    
     
 }
 
@@ -75,8 +76,13 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Ok"
                                                         style:UIAlertActionStyleCancel
                                                       handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        if([controller isKindOfClass:[OnlineMeetingViewController class]]){
+            [controller.navigationController popViewControllerAnimated:YES];
+        }
+    }]];
     
-    [controller presentViewController:alertController animated:YES completion:nil];
+        [controller presentViewController:alertController animated:YES completion:nil];
 }
 
 @end
