@@ -2,7 +2,7 @@
 
 This sample app illustrates how to integrate the Skype for Business text chat, audio and video into an iOS application.
 
-##Prerequisites
+## Prerequisites
 
 1. Download the [**Skype for Business App SDK for iOS**](https://www.microsoft.com/en-us/download/confirmation.aspx?id=51962). 
 
@@ -10,16 +10,16 @@ This sample app illustrates how to integrate the Skype for Business text chat, a
     
 | Skype for Business (Office 365) user        | Enable preview features           | Meeting join resource  |
 | ------------- |:-------------:| -----:|
-| YES     | TRUE | Obtain a [**SfB Online (Office 365) meeting Url **](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) for a Skype Business meeting.|
-| YES     | FALSE  |   Create and deploy [Trusted Application API- based service application](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/overview) |   |
-| NO | TRUE/FALSE    |    Obtain SfB Server Meeting Url  |
+| YES     | TRUE | Obtain a **[SfB Online (Office 365) meeting Url ](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl)** for a Skype Business meeting.|
+| YES     | FALSE  |   Create and deploy **[Trusted Application API- based service application](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/overview)** |   |
+| NO | TRUE/FALSE    |    Obtain **SfB Server Meeting Url**  |
 
     
 >[!NOTE]
-Please read [Developing Trusted Application API applications for Skype for Business Online](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/developingapplicationsforsfbonline) for more details on Trusted Application API- based service application.
+Please read [Developing Trusted Application API applications for Skype for Business Online](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/developingapplicationsforsfbonline) to learn more about Trusted Application API- based service application.
 This service application will provide RESTful Trusted Application API endpoint to creates ad-hoc meetings, provides meeting join Urls, discovery Uris, and anonymous meeting tokens that will be used to run this sample.
 
-##How to get started
+## How to get started
 
 1. Clone or copy the sample Banking App to your local machine.
 
@@ -33,15 +33,15 @@ This service application will provide RESTful Trusted Application API endpoint t
 
 4. The sample app uses the SDK's "conversation helper" class that simplifies interaction with the core APIs in mainline scenarios. Copy SfBConversationHelper.h and SfBConversationHelper.m files from the Helpers folder in the SDK download into the sample app's source code.  Add these copied files to your project.
 
-5. Based on your [Meeting join resource](##Prerequisites), Edit the sample's Info.plist as follow: 
+5. Based on your [Meeting join resource](##Prerequisites), edit the sample's Info.plist as follow: 
 
 | Meeting join resource       |  info.plist parameters  |
 | ------------- |:-------------:|
 | [**SfB Online (Office 365) Meeting Url.**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl)    | Replace the value of __Skype meeting URL__  with a [**SfB Online (Office 365) Meeting Url.**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl)
-| [**Trusted Application API- based service application**](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/overview)    | Replace the value of __TokenAndDiscoveryURIRequestURL__ and __Online Meeting request URL__ with your service application Custom listening API. 
-| SfB Server Meeting Url |    Replace the value of __Skype meeting URL__  with a [**SfB Online (Office 365) Meeting Url.**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl)  |
+| [**Trusted Application API- based service application**](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/overview)    | Replace the value of __Token and discovery URI request API URL__ and __Online Meeting request API URL__ with your service application's custom listening APIs. 
+| SfB Server Meeting Url |    Replace the value of __Skype meeting URL__  with you SfB server meeting Url  |
 
-Also replace __Skype meeting display name__ info.plist parameter with any desired name respectively.
+Also replace __Skype meeting display name__ in info.plist parameter with any desired name.
 
 >[!NOTE] __TokenAndDiscoveryURIRequestURL__  and __Online Meeting request URL__ are custom listening APIs that your service application will need to implement. 
 <br>__Online Meeting request URL__: POST on this link will return an adhoc-meeting Url.
