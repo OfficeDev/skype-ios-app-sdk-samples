@@ -6,7 +6,5 @@
 #import "ChatHandler.h"
 
 
-/**
- //Add SfBConversationHelper classes for Audio/Video Chat
- #import "SfBConversationHelper.h"
- **/
+//Add SfBConversationHelper classes for Audio/Video Chat
+#import "SfBConversationHelper.h"
