@@ -23,6 +23,7 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
 
     @IBOutlet var send: UIButton!
 
+    @IBOutlet var mute: UIButton!
     @IBOutlet var hold: UIButton!
 
     @IBOutlet var endpoint: UIButton!
@@ -51,6 +52,8 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
     private var audio: SfBAudioService? {
         willSet {
             audio?.removeObserver(self, forKeyPath: "isOnHold", context: &kvo)
+            audio?.removeObserver(self, forKeyPath: "muted", context: &kvo)
+            audio?.removeObserver(self, forKeyPath: "canToggleMute", context: &kvo)
         }
     }
 
@@ -75,6 +78,8 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
         super.viewDidLoad()
         chat!.addObserver(self, forKeyPath: "canSendMessage", options: [.Initial], context: &kvo)
         audio!.addObserver(self, forKeyPath: "isOnHold", options: [.Initial], context: &kvo)
+        audio!.addObserver(self, forKeyPath: "muted", options: [.Initial], context: &kvo)
+        audio!.addObserver(self, forKeyPath: "canToggleMute", options: [.Initial], context: &kvo)
         speaker?.addObserver(self, forKeyPath: "activeEndpoint", options: [.Initial], context: &kvo)
     }
 
@@ -92,6 +97,10 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
             endpoint.setTitle(speaker!.activeEndpoint.description, forState: .Normal)
         case "isOnHold":
             hold.setTitle(audio!.isOnHold ? "Held" : "Unheld", forState: .Normal)
+        case "muted":
+            mute.setTitle(audio!.muted.description, forState: .Normal)
+        case "canToggleMute":
+            mute.enabled = audio!.canToggleMute
         default:
             assertionFailure()
         }
@@ -143,7 +152,7 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
     }
 
     @IBAction func toggleHold(sender: AnyObject?) {
-        guard let audio = conversation?.audioService else {
+        guard let audio = audio else {
             return
         }
 
@@ -151,6 +160,18 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
             try audio.setHold(!audio.isOnHold)
         } catch {
             UIAlertView(title: "Holding failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
+        }
+    }
+
+    @IBAction func toggleMute(sender: AnyObject?) {
+        guard let audio = audio else {
+            return
+        }
+
+        do {
+            try audio.toggleMute()
+        } catch {
+            UIAlertView(title: "Toggling mute failed", message: "\(error)", delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
 

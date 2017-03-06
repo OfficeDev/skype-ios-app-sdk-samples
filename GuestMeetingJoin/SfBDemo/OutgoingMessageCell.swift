@@ -18,8 +18,10 @@ class OutgoingMessageCell: UITableViewCell {
     var item: SfBMessageActivityItem? {
         willSet {
             item?.removeObserver(self, forKeyPath: "timestamp", context: &kvo)
+            item?.removeObserver(self, forKeyPath: "status", context: &kvo)
         }
         didSet {
+            item?.addObserver(self, forKeyPath: "status", options: [.Initial], context: &kvo)
             item?.addObserver(self, forKeyPath: "timestamp", options: [.Initial], context: &kvo)
             message.text = item?.text
         }
@@ -38,8 +40,15 @@ class OutgoingMessageCell: UITableViewCell {
             return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
 
-        assert(keyPath == "timestamp")
-        timestamp.text = dateFormatter.stringFromDate(item!.timestamp)
+        switch keyPath! {
+        case "timestamp":
+            timestamp.text = dateFormatter.stringFromDate(item!.timestamp)
+        case "status":
+            backgroundColor = item?.status.backgroundColor
+        default:
+            assertionFailure()
+        }
+
         setNeedsLayout()
     }
 
