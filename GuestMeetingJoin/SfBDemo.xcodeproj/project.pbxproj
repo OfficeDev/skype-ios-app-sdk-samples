@@ -20,7 +20,23 @@
 		CFD69C961BAB97F20042F68B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFD69C941BAB97F20042F68B /* Main.storyboard */; };
 		CFD69C981BAB97F20042F68B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFD69C971BAB97F20042F68B /* Assets.xcassets */; };
 		CFD69C9B1BAB97F20042F68B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFD69C991BAB97F20042F68B /* LaunchScreen.storyboard */; };
+		CFF1773C1C0D1ECD00627D94 /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB9F0711BCDD29300E2BDFB /* SkypeForBusiness.framework */; };
+		CFF1773D1C0D1ECD00627D94 /* SkypeForBusiness.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFB9F0711BCDD29300E2BDFB /* SkypeForBusiness.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CFF1773E1C0D1ECD00627D94 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CFF1773D1C0D1ECD00627D94 /* SkypeForBusiness.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CF3DB97A1BD0787D00CEEB49 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -32,6 +48,7 @@
 		CFB9EFD21BC47B5B00E2BDFB /* OutgoingMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingMessageCell.swift; sourceTree = "<group>"; };
 		CFB9EFD41BC4877100E2BDFB /* ParticipantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantsViewController.swift; sourceTree = "<group>"; };
 		CFB9EFD61BC4926A00E2BDFB /* ParticipantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
+		CFB9F0711BCDD29300E2BDFB /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = ../SkypeForBusiness.framework; sourceTree = SOURCE_ROOT; };
 		CFD69C8D1BAB97F20042F68B /* SfBDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SfBDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD69C901BAB97F20042F68B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFD69C951BAB97F20042F68B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFF1773C1C0D1ECD00627D94 /* SkypeForBusiness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +72,7 @@
 		CFD69C841BAB97F20042F68B = {
 			isa = PBXGroup;
 			children = (
+				CFB9F0711BCDD29300E2BDFB /* SkypeForBusiness.framework */,
 				CFD69C8F1BAB97F20042F68B /* SfBDemo */,
 				CFD69C8E1BAB97F20042F68B /* Products */,
 			);
@@ -98,6 +117,7 @@
 				CFD69C891BAB97F20042F68B /* Sources */,
 				CFD69C8A1BAB97F20042F68B /* Frameworks */,
 				CFD69C8B1BAB97F20042F68B /* Resources */,
+				CFF1773E1C0D1ECD00627D94 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

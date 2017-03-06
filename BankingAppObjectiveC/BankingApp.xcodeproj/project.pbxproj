@@ -30,6 +30,9 @@
 		96844E5F1C91F011003F6562 /* AccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96844E5E1C91F011003F6562 /* AccountTableViewController.m */; };
 		96844E6C1C91FCEF003F6562 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96844E6B1C91FCEF003F6562 /* AVFoundation.framework */; };
 		96844E6E1C922A9A003F6562 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96844E6D1C922A9A003F6562 /* GLKit.framework */; };
+		CFE23D451E60C81E00B08E90 /* SfBConversationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE23D441E60C81E00B08E90 /* SfBConversationHelper.m */; };
+		CFE23D471E60C84900B08E90 /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFE23D461E60C84900B08E90 /* SkypeForBusiness.framework */; };
+		CFE23D481E60C84900B08E90 /* SkypeForBusiness.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CFE23D461E60C84900B08E90 /* SkypeForBusiness.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CFE23D481E60C84900B08E90 /* SkypeForBusiness.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +91,9 @@
 		96844E5E1C91F011003F6562 /* AccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewController.m; sourceTree = "<group>"; };
 		96844E6B1C91FCEF003F6562 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		96844E6D1C922A9A003F6562 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		CFE23D431E60C81E00B08E90 /* SfBConversationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SfBConversationHelper.h; sourceTree = "<group>"; };
+		CFE23D441E60C81E00B08E90 /* SfBConversationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SfBConversationHelper.m; sourceTree = "<group>"; };
+		CFE23D461E60C84900B08E90 /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = ../SkypeForBusiness.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +103,7 @@
 			files = (
 				96844E6E1C922A9A003F6562 /* GLKit.framework in Frameworks */,
 				96844E6C1C91FCEF003F6562 /* AVFoundation.framework in Frameworks */,
+				CFE23D471E60C84900B08E90 /* SkypeForBusiness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +113,8 @@
 		5F2086C01CEBD0DD00D2DA2D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CFE23D431E60C81E00B08E90 /* SfBConversationHelper.h */,
+				CFE23D441E60C81E00B08E90 /* SfBConversationHelper.m */,
 				9683CE461CD2C3F5008351E4 /* ChatHandler.h */,
 				9683CE471CD2C3F5008351E4 /* ChatHandler.m */,
 				5FBF17B91E30229800442505 /* Util.h */,
@@ -147,6 +157,7 @@
 		96101E611C90AC8B004CE997 = {
 			isa = PBXGroup;
 			children = (
+				CFE23D461E60C84900B08E90 /* SkypeForBusiness.framework */,
 				96101E6C1C90AC8B004CE997 /* BankingApp */,
 				962239B41CA148D00068CE3A /* Frameworks */,
 				96101E6B1C90AC8B004CE997 /* Products */,
@@ -329,6 +340,7 @@
 				5FBF17B81E2E021000442505 /* OnlineMeetingViewController.m in Sources */,
 				5FA2A81B1E5FBF5D00B1F60F /* WebViewController.m in Sources */,
 				5FA8ECC01E3EB1EF00A86BA6 /* SettingsViewController.m in Sources */,
+				CFE23D451E60C81E00B08E90 /* SfBConversationHelper.m in Sources */,
 				962058951C9724C100D35390 /* VideoViewController.m in Sources */,
 				5FA2A80D1E5FA00F00B1F60F /* OnlineMainViewController.m in Sources */,
 				96844E5F1C91F011003F6562 /* AccountTableViewController.m in Sources */,

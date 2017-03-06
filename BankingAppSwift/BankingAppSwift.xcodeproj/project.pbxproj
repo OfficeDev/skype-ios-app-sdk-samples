@@ -22,16 +22,31 @@
 		5F2086D31CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */; };
 		5F2087221CF8BE8A00D2DA2D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2087211CF8BE8A00D2DA2D /* Utils.swift */; };
 		5F327CF61E527983001C3F2B /* MicrosoftLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F327CF51E527983001C3F2B /* MicrosoftLicenseViewController.swift */; };
-		5F9790B81E2CB52E00C223BA /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9790B31E2CB51C00C223BA /* SkypeForBusiness.framework */; };
 		5F9790D51E2CBDBC00C223BA /* OnlineMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9790D41E2CBDBC00C223BA /* OnlineMeetingViewController.swift */; };
 		5FA2A7FE1E5D2A9D00B1F60F /* OnlineMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A7FD1E5D2A9D00B1F60F /* OnlineMainViewController.swift */; };
 		5FA2A80A1E5F936500B1F60F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A8091E5F936500B1F60F /* WebViewController.swift */; };
 		5FA8EC9E1E3AC0B500A86BA6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */; };
-		5FBF17A61E2DF47F00442505 /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FBF17A51E2DF47F00442505 /* SkypeForBusiness.framework */; };
 		5FEF3BB41CEBA39600F8C72F /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEF3BB31CEBA39600F8C72F /* ChatCell.swift */; };
 		5FFC3E591CE50535001AC5C6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC3E581CE50535001AC5C6 /* ChatViewController.swift */; };
 		5FFC3E5E1CE5065C001AC5C6 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFC3E5D1CE5065C001AC5C6 /* ChatTableViewController.swift */; };
+		CFE23D3F1E60C57000B08E90 /* SfBConversationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE23D3E1E60C57000B08E90 /* SfBConversationHelper.m */; };
+		CFE23D401E60C5EE00B08E90 /* SkypeForBusiness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA2A8031E5F6D7B00B1F60F /* SkypeForBusiness.framework */; };
+		CFE23D411E60C5EE00B08E90 /* SkypeForBusiness.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA2A8031E5F6D7B00B1F60F /* SkypeForBusiness.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CFE23D421E60C5EE00B08E90 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CFE23D411E60C5EE00B08E90 /* SkypeForBusiness.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5F030CE81CE6689D002B2E14 /* ChatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatHandler.h; sourceTree = "<group>"; };
@@ -53,16 +68,16 @@
 		5F2086D21CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterMeetingCredentialsViewController.swift; sourceTree = "<group>"; };
 		5F2087211CF8BE8A00D2DA2D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		5F327CF51E527983001C3F2B /* MicrosoftLicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrosoftLicenseViewController.swift; sourceTree = "<group>"; };
-		5F9790B31E2CB51C00C223BA /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = "/Users/aasveenkaur/skype-ios-app-sdk-samples/BankingAppSwift/SkypeForBusiness.framework"; sourceTree = "<absolute>"; };
 		5F9790D41E2CBDBC00C223BA /* OnlineMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineMeetingViewController.swift; sourceTree = "<group>"; };
 		5FA2A7FD1E5D2A9D00B1F60F /* OnlineMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineMainViewController.swift; sourceTree = "<group>"; };
-		5FA2A8031E5F6D7B00B1F60F /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SkypeForBusiness.framework; sourceTree = "<group>"; };
+		5FA2A8031E5F6D7B00B1F60F /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = ../SkypeForBusiness.framework; sourceTree = "<group>"; };
 		5FA2A8091E5F936500B1F60F /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5FA8EC9D1E3AC0B500A86BA6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		5FBF17A51E2DF47F00442505 /* SkypeForBusiness.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkypeForBusiness.framework; path = "/Users/aasveenkaur/skype-ios-app-sdk-samples/BankingAppSwift/SkypeForBusiness.framework"; sourceTree = "<absolute>"; };
 		5FEF3BB31CEBA39600F8C72F /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		5FFC3E581CE50535001AC5C6 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		5FFC3E5D1CE5065C001AC5C6 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
+		CFE23D3D1E60C57000B08E90 /* SfBConversationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SfBConversationHelper.h; sourceTree = "<group>"; };
+		CFE23D3E1E60C57000B08E90 /* SfBConversationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SfBConversationHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,9 +86,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F2086BA1CEBAD3500D2DA2D /* GLKit.framework in Frameworks */,
-				5FBF17A61E2DF47F00442505 /* SkypeForBusiness.framework in Frameworks */,
-				5F9790B81E2CB52E00C223BA /* SkypeForBusiness.framework in Frameworks */,
 				5F2086B81CEBAD2800D2DA2D /* AVFoundation.framework in Frameworks */,
+				CFE23D401E60C5EE00B08E90 /* SkypeForBusiness.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +97,8 @@
 		5F030CEB1CE668AA002B2E14 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CFE23D3D1E60C57000B08E90 /* SfBConversationHelper.h */,
+				CFE23D3E1E60C57000B08E90 /* SfBConversationHelper.m */,
 				5F2087211CF8BE8A00D2DA2D /* Utils.swift */,
 				5F0357D41CE102F0009044F4 /* BankingAppSwift-Bridging-Header.h */,
 				5F030CE81CE6689D002B2E14 /* ChatHandler.h */,
@@ -203,6 +219,7 @@
 				5F1E1B591CE0EB8D00AE3D31 /* Sources */,
 				5F1E1B5A1CE0EB8D00AE3D31 /* Frameworks */,
 				5F1E1B5B1CE0EB8D00AE3D31 /* Resources */,
+				CFE23D421E60C5EE00B08E90 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,6 +293,7 @@
 				5FA2A7FE1E5D2A9D00B1F60F /* OnlineMainViewController.swift in Sources */,
 				5FEF3BB41CEBA39600F8C72F /* ChatCell.swift in Sources */,
 				5F030CF81CEA4186002B2E14 /* AccountTableViewController.swift in Sources */,
+				CFE23D3F1E60C57000B08E90 /* SfBConversationHelper.m in Sources */,
 				5F9790D51E2CBDBC00C223BA /* OnlineMeetingViewController.swift in Sources */,
 				5F2086D31CF3CE2300D2DA2D /* EnterMeetingCredentialsViewController.swift in Sources */,
 				5F2087221CF8BE8A00D2DA2D /* Utils.swift in Sources */,
