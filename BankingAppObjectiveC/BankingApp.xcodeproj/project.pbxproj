@@ -157,6 +157,7 @@
 		96101E611C90AC8B004CE997 = {
 			isa = PBXGroup;
 			children = (
+				CFE23D461E60C84900B08E90 /* SkypeForBusiness.framework */,
 				96101E6C1C90AC8B004CE997 /* BankingApp */,
 				962239B41CA148D00068CE3A /* Frameworks */,
 				96101E6B1C90AC8B004CE997 /* Products */,
@@ -196,7 +197,6 @@
 			children = (
 				96844E6D1C922A9A003F6562 /* GLKit.framework */,
 				96844E6B1C91FCEF003F6562 /* AVFoundation.framework */,
-				CFE23D461E60C84900B08E90 /* SkypeForBusiness.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
