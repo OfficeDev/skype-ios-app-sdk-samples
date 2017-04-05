@@ -7,4 +7,5 @@
 
 
 //Add SfBConversationHelper classes for Audio/Video Chat
+#import <SkypeForBusiness/SkypeForBusiness.h>
 #import "SfBConversationHelper.h"

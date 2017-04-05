@@ -16,15 +16,15 @@ class WebViewController: UIViewController,UIWebViewDelegate {
         super.viewDidLoad()
         myWebView.delegate = self
         let fullURL = "https://msdn.microsoft.com/en-us/skype/appsdk/gettingstarted#next-steps"
-        let url = NSURL(string:fullURL)
-        let request = NSURLRequest(URL: url!)
+        let url = URL(string:fullURL)
+        let request = URLRequest(url: url!)
         myWebView.loadRequest(request)
         
         // Do any additional setup after loading the view.
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        if (myWebView.loading){
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        if (myWebView.isLoading){
         return
         }
        myActivityIndicator.stopAnimating()

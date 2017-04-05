@@ -9,31 +9,31 @@
 import UIKit
 
 protocol MicrosoftLicenseViewControllerDelegate {
-    func controller(controller: MicrosoftLicenseViewController , didAcceptLicense acceptedLicense:Bool)
+    func controller(_ controller: MicrosoftLicenseViewController , didAcceptLicense acceptedLicense:Bool)
 }
 
 class MicrosoftLicenseViewController: UIViewController,UIWebViewDelegate  {
     var delegate: MicrosoftLicenseViewControllerDelegate?
-    var request:NSURLRequest?
+    var request:URLRequest?
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    @IBAction func closeButtonPressed(sender: AnyObject) {
+    @IBAction func closeButtonPressed(_ sender: AnyObject) {
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     @IBOutlet weak var microsoftLicensePDFWebView: UIWebView!
     
-    @IBAction func licenseAccepted(sender: AnyObject) {
+    @IBAction func licenseAccepted(_ sender: AnyObject) {
         let key = "AcceptedVideoLicense"
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(true, forKey: key)
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: key)
         delegate?.controller(self, didAcceptLicense: true)
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         microsoftLicensePDFWebView.delegate = self
-        if let licensePDFPath = NSBundle.mainBundle().URLForResource("Skype for Business App SDK Codec End User License Terms", withExtension: "pdf"){
-             request = NSURLRequest(URL: licensePDFPath)
+        if let licensePDFPath = Bundle.main.url(forResource: "Skype for Business App SDK Codec End User License Terms", withExtension: "pdf"){
+             request = URLRequest(url: licensePDFPath)
             
             
         }
@@ -43,13 +43,13 @@ class MicrosoftLicenseViewController: UIViewController,UIWebViewDelegate  {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         microsoftLicensePDFWebView.loadRequest(request!)
         
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        if (microsoftLicensePDFWebView.loading){
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        if (microsoftLicensePDFWebView.isLoading){
             return
         }
         loadingIndicator.stopAnimating()
