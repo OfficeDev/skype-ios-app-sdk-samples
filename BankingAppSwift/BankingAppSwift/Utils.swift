@@ -59,7 +59,7 @@ get {
 }
 }
 
-
+@discardableResult
 func leaveMeetingWithSuccess(_ conversation:SfBConversation) -> Bool {
     do{
         try conversation.leave()
@@ -129,9 +129,6 @@ extension SfBAlert {
         case .communication:return "Communication"
             
         case .common:return "Common"
-
-        default:
-            "ERROR!"
         }
     }
     

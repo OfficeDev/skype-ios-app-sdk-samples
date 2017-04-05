@@ -79,7 +79,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                     let json = try  JSONSerialization.jsonObject(with: data, options: []) as! [String: String]
                     self.meetingUrl.text = (json["JoinUrl"])!;
                     
-                    print("Successful! meeting URL>> \(json["JoinUrl"])");
+                    print("Successful! meeting URL>> \(String(describing: json["JoinUrl"]))");
                     
                     // Send second POST request to get discovery URI and TOKEN based on response meeting URL
                     self.sendPostRequestForTokenAndDiscoveryURI();
@@ -121,7 +121,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                     self.join.isEnabled = true
                     self.join.alpha = 1
                     self.activityIndicatorForServiceApplicationResponse.stopAnimating()
-                    print("Successful! token and discovery URI>> \(json["Token"]),\(json["DiscoverUri"])");
+                    print("Successful! token and discovery URI>> \(String(describing: json["Token"])),\(String(describing: json["DiscoverUri"]))");
                     
                 } catch {
                     print("ERROR! Getting token and discovery URI failed>\(error)")
@@ -144,7 +144,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
         let task = sessionObject.dataTask(with: request, completionHandler: {  (data, response, error) in
             let httpResponse = response as? HTTPURLResponse
             let statusCode = httpResponse?.statusCode
-            print("statusCode-aas>\(statusCode)")
+            print("statusCode-aas>\(String(describing: statusCode))")
             
             if (statusCode == 200 ) {
                 
@@ -154,7 +154,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
                 
             else{
                 if(error == nil){
-                    let error:NSError = NSError(domain: "statusCode -\(statusCode)!", code: statusCode!, userInfo:nil)
+                    let error:NSError = NSError(domain: "statusCode -\(String(describing: statusCode))!", code: statusCode!, userInfo:nil)
                     completionHandler(nil,error as NSError?)
                 }
                 else {
