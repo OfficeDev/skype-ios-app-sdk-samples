@@ -14,7 +14,7 @@ class IncomingMessageCell: UITableViewCell {
     @IBOutlet var author: UILabel!
     @IBOutlet var message: UILabel!
 
-    private var kvo = 0
+    fileprivate var kvo = 0
 
     var item: SfBMessageActivityItem? {
         willSet {
@@ -22,8 +22,8 @@ class IncomingMessageCell: UITableViewCell {
             item?.removeObserver(self, forKeyPath: "sender.displayName", context: &kvo)
         }
         didSet {
-            item?.addObserver(self, forKeyPath: "timestamp", options: [.Initial], context: &kvo)
-            item?.addObserver(self, forKeyPath: "sender.displayName", options: [.Initial, .New], context: &kvo)
+            item?.addObserver(self, forKeyPath: "timestamp", options: [.initial], context: &kvo)
+            item?.addObserver(self, forKeyPath: "sender.displayName", options: [.initial, .new], context: &kvo)
             message?.text = item?.text
         }
     }
@@ -36,20 +36,20 @@ class IncomingMessageCell: UITableViewCell {
         item = nil
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &kvo else {
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
 
         switch keyPath! {
         case "timestamp":
-            timestamp.text = dateFormatter.stringFromDate(item!.timestamp)
+            timestamp.text = dateFormatter.string(from: item!.timestamp)
         case "sender.displayName":
             let senderName = KeyValueChange(change: change!).new
             switch senderName {
             case is NSNull:
                 author.attributedText = NSAttributedString(string: "Unknown",
-                    attributes: [NSForegroundColorAttributeName: UIColor.grayColor()])
+                    attributes: [NSForegroundColorAttributeName: UIColor.gray])
             default:
                 author.text = senderName as? String;
             }

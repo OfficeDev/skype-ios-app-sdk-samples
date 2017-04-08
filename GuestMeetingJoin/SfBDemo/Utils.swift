@@ -8,46 +8,46 @@ import Foundation
 import UIKit
 import SkypeForBusiness
 
-var dateFormatter: NSDateFormatter {
-    let formatter = NSDateFormatter()
-    formatter.dateStyle = .NoStyle
-    formatter.timeStyle = .ShortStyle
+var dateFormatter: DateFormatter {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .none
+    formatter.timeStyle = .short
     return formatter
 }
 
 class KeyValueChange {
 
-    private let change: [String : AnyObject]
+    fileprivate let change: [NSKeyValueChangeKey : Any]
 
-    init(change: [String : AnyObject]) {
+    init(change: [NSKeyValueChangeKey : Any]) {
         self.change = change
     }
 
     var kind: NSKeyValueChange? {
-        guard let value = change[NSKeyValueChangeKindKey] as? NSNumber else {
+        guard let value = change[.kindKey] as? NSNumber else {
             return nil
         }
 
-        return NSKeyValueChange(rawValue: value.unsignedLongValue)
+        return NSKeyValueChange(rawValue: value.uintValue)
     }
 
-    var indexSet: NSIndexSet? {
-        return change[NSKeyValueChangeIndexesKey] as? NSIndexSet
+    var indexSet: IndexSet? {
+        return change[.indexesKey] as? IndexSet
     }
 
-    var new: AnyObject? {
-        return change[NSKeyValueChangeNewKey]
+    var new: Any? {
+        return change[.newKey]
     }
 
 }
 
-extension NSIndexSet {
+extension IndexSet {
 
-    var indexPaths: [NSIndexPath] {
-        var indexPaths: [NSIndexPath] = []
+    var indexPaths: [IndexPath] {
+        var indexPaths: [IndexPath] = []
 
         for index in self {
-            indexPaths.append(NSIndexPath(forRow: index, inSection: 0))
+            indexPaths.append(IndexPath(row: index, section: 0))
         }
 
         return indexPaths
@@ -57,16 +57,16 @@ extension NSIndexSet {
 
 extension UITableView {
 
-    func updateRowsWithChange(change: KeyValueChange) {
+    func updateRowsWithChange(_ change: KeyValueChange) {
         switch change.kind! {
-        case .Setting:
+        case .setting:
             reloadData()
-        case .Insertion:
-            insertRowsAtIndexPaths(change.indexSet!.indexPaths, withRowAnimation: .Automatic)
-        case .Removal:
-            deleteRowsAtIndexPaths(change.indexSet!.indexPaths, withRowAnimation: .Automatic)
-        case .Replacement:
-            reloadRowsAtIndexPaths(change.indexSet!.indexPaths, withRowAnimation: .Automatic)
+        case .insertion:
+            insertRows(at: change.indexSet!.indexPaths, with: .automatic)
+        case .removal:
+            deleteRows(at: change.indexSet!.indexPaths, with: .automatic)
+        case .replacement:
+            reloadRows(at: change.indexSet!.indexPaths, with: .automatic)
         }
     }
 
@@ -76,17 +76,17 @@ extension SfBAlertType: CustomStringConvertible {
 
     public var description: String {
         switch (self) {
-        case .SignIn:
+        case .signIn:
             return "SignIn"
-        case .ParticipantMute:
+        case .participantMute:
             return "ParticipantMute"
-        case .ParticipantUnmute:
+        case .participantUnmute:
             return "ParticipantUnmute"
-        case .Messaging:
+        case .messaging:
             return "Messaging"
-        case .ConferenceIsRecording:
+        case .conferenceIsRecording:
             return "ConferenceIsRecording"
-        case .ConferenceUnexpectedDisconnect:
+        case .conferenceUnexpectedDisconnect:
             return "ConferenceUnexpectedDisconnect"
         default:
             return "Type \(self.rawValue)"
@@ -99,11 +99,11 @@ extension SfBAlertLevel: CustomStringConvertible {
 
     public var description: String {
         switch (self) {
-        case .Error:
+        case .error:
             return "Error"
-        case .Warning:
+        case .warning:
             return "Warning"
-        case .Info:
+        case .info:
             return "Info"
         }
     }
@@ -123,12 +123,12 @@ extension SfBMessageStatus {
 
     public var backgroundColor: UIColor {
         switch (self) {
-        case .Failed:
-            return UIColor.redColor()
-        case .Pending:
-            return UIColor.yellowColor()
-        case .Succeeded:
-            return UIColor.clearColor()
+        case .failed:
+            return UIColor.red
+        case .pending:
+            return UIColor.yellow
+        case .succeeded:
+            return UIColor.clear
         }
     }
 
@@ -138,11 +138,11 @@ extension SfBAudioServiceMuteState: CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case .Unmuted:
+        case .unmuted:
             return "Unmuted"
-        case .Muted:
+        case .muted:
             return "Muted"
-        case .Unmuting:
+        case .unmuting:
             return "Unmuting"
         }
     }

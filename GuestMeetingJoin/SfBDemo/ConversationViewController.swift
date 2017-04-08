@@ -11,9 +11,9 @@ import SkypeForBusiness
 extension SfBSpeakerEndpoint: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .Loudspeaker:
+        case .loudspeaker:
             return "Loudspeaker"
-        case .NonLoudspeaker:
+        case .nonLoudspeaker:
             return "Handset"
         }
     }
@@ -28,7 +28,7 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
 
     @IBOutlet var endpoint: UIButton!
 
-    private var kvo = 0
+    fileprivate var kvo = 0
 
     var devicesManager: SfBDevicesManager? {
         didSet {
@@ -42,14 +42,14 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
             conversation?.removeObserver(self, forKeyPath: "subject", context: &kvo)
         }
         didSet {
-            conversation?.addObserver(self, forKeyPath: "subject", options: [.Initial], context: &kvo)
+            conversation?.addObserver(self, forKeyPath: "subject", options: [.initial], context: &kvo)
             chat = conversation?.chatService
             audio = conversation?.audioService
             conversation?.alertDelegate = self
         }
     }
 
-    private var audio: SfBAudioService? {
+    fileprivate var audio: SfBAudioService? {
         willSet {
             audio?.removeObserver(self, forKeyPath: "isOnHold", context: &kvo)
             audio?.removeObserver(self, forKeyPath: "muted", context: &kvo)
@@ -57,13 +57,13 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
         }
     }
 
-    private var chat: SfBChatService? {
+    fileprivate var chat: SfBChatService? {
         willSet {
             chat?.removeObserver(self, forKeyPath: "canSendMessage", context: &kvo)
         }
     }
 
-    private var speaker: SfBSpeaker? {
+    fileprivate var speaker: SfBSpeaker? {
         willSet {
             speaker?.removeObserver(self, forKeyPath: "activeEndpoint", context: &kvo)
         }
@@ -76,38 +76,38 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        chat!.addObserver(self, forKeyPath: "canSendMessage", options: [.Initial], context: &kvo)
-        audio!.addObserver(self, forKeyPath: "isOnHold", options: [.Initial], context: &kvo)
-        audio!.addObserver(self, forKeyPath: "muted", options: [.Initial], context: &kvo)
-        audio!.addObserver(self, forKeyPath: "canToggleMute", options: [.Initial], context: &kvo)
-        speaker?.addObserver(self, forKeyPath: "activeEndpoint", options: [.Initial], context: &kvo)
+        chat!.addObserver(self, forKeyPath: "canSendMessage", options: [.initial], context: &kvo)
+        audio!.addObserver(self, forKeyPath: "isOnHold", options: [.initial], context: &kvo)
+        audio!.addObserver(self, forKeyPath: "muted", options: [.initial], context: &kvo)
+        audio!.addObserver(self, forKeyPath: "canToggleMute", options: [.initial], context: &kvo)
+        speaker?.addObserver(self, forKeyPath: "activeEndpoint", options: [.initial], context: &kvo)
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &kvo else {
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
 
         switch keyPath! {
         case "subject":
             navigationItem.title = conversation?.subject
         case "canSendMessage":
-            send.enabled = chat!.canSendMessage
+            send.isEnabled = chat!.canSendMessage
         case "activeEndpoint":
-            endpoint.setTitle(speaker!.activeEndpoint.description, forState: .Normal)
+            endpoint.setTitle(speaker!.activeEndpoint.description, for: UIControlState())
         case "isOnHold":
-            hold.setTitle(audio!.isOnHold ? "Held" : "Unheld", forState: .Normal)
+            hold.setTitle(audio!.isOnHold ? "Held" : "Unheld", for: UIControlState())
         case "muted":
-            mute.setTitle(audio!.muted.description, forState: .Normal)
+            mute.setTitle(audio!.muted.description, for: UIControlState())
         case "canToggleMute":
-            mute.enabled = audio!.canToggleMute
+            mute.isEnabled = audio!.canToggleMute
         default:
             assertionFailure()
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        switch segue.destinationViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
         case let history as HistoryViewController:
             history.history = conversation?.historyService
         case let participants as ParticipantsViewController:
@@ -120,11 +120,11 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
 
     @IBOutlet var message: UITextField?
 
-    func didReceiveAlert(alert: SfBAlert) {
+    func didReceive(_ alert: SfBAlert) {
         alert.show()
     }
 
-    @IBAction func sendMessage(sender: AnyObject?) {
+    @IBAction func sendMessage(_ sender: AnyObject?) {
         do {
             try chat?.sendMessage(message!.text!)
             message?.text = nil
@@ -133,8 +133,8 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
         }
     }
 
-    override func didMoveToParentViewController(parent: UIViewController?) {
-        super.didMoveToParentViewController(parent)
+    override func didMove(toParentViewController parent: UIViewController?) {
+        super.didMove(toParentViewController: parent)
 
         guard parent == nil else {
             return
@@ -147,11 +147,11 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
         }
     }
 
-    @IBAction func selectSpeakerEndpoint(sender: AnyObject?) {
-        speaker?.activeEndpoint = (speaker?.activeEndpoint == .Loudspeaker) ? .NonLoudspeaker : .Loudspeaker;
+    @IBAction func selectSpeakerEndpoint(_ sender: AnyObject?) {
+        speaker?.activeEndpoint = (speaker?.activeEndpoint == .loudspeaker) ? .nonLoudspeaker : .loudspeaker;
     }
 
-    @IBAction func toggleHold(sender: AnyObject?) {
+    @IBAction func toggleHold(_ sender: AnyObject?) {
         guard let audio = audio else {
             return
         }
@@ -163,7 +163,7 @@ class ConversationViewController: UIViewController, SfBAlertDelegate {
         }
     }
 
-    @IBAction func toggleMute(sender: AnyObject?) {
+    @IBAction func toggleMute(_ sender: AnyObject?) {
         guard let audio = audio else {
             return
         }

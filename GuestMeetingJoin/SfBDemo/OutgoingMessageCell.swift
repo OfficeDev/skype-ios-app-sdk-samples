@@ -13,7 +13,7 @@ class OutgoingMessageCell: UITableViewCell {
     @IBOutlet var timestamp: UILabel!
     @IBOutlet var message: UILabel!
 
-    private var kvo = 0
+    fileprivate var kvo = 0
 
     var item: SfBMessageActivityItem? {
         willSet {
@@ -21,8 +21,8 @@ class OutgoingMessageCell: UITableViewCell {
             item?.removeObserver(self, forKeyPath: "status", context: &kvo)
         }
         didSet {
-            item?.addObserver(self, forKeyPath: "status", options: [.Initial], context: &kvo)
-            item?.addObserver(self, forKeyPath: "timestamp", options: [.Initial], context: &kvo)
+            item?.addObserver(self, forKeyPath: "status", options: [.initial], context: &kvo)
+            item?.addObserver(self, forKeyPath: "timestamp", options: [.initial], context: &kvo)
             message.text = item?.text
         }
     }
@@ -35,14 +35,14 @@ class OutgoingMessageCell: UITableViewCell {
         item = nil
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &kvo else {
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
 
         switch keyPath! {
         case "timestamp":
-            timestamp.text = dateFormatter.stringFromDate(item!.timestamp)
+            timestamp.text = dateFormatter.string(from: item!.timestamp)
         case "status":
             backgroundColor = item?.status.backgroundColor
         default:

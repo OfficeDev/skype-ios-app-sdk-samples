@@ -14,7 +14,7 @@ extension SfBPerson {
     var displayNameLabel: NSAttributedString {
         if displayName == "" {
             return NSAttributedString(string: "No Name",
-                attributes: [NSForegroundColorAttributeName: UIColor.grayColor()])
+                attributes: [NSForegroundColorAttributeName: UIColor.gray])
         }
 
         return NSAttributedString(string: displayName)
@@ -24,7 +24,7 @@ extension SfBPerson {
 
 class BaseParticipantCell: UITableViewCell {
 
-    private var kvo = 0
+    fileprivate var kvo = 0
 
     @IBOutlet var displayName: UILabel!
     @IBOutlet var sipUri: UILabel!
@@ -41,7 +41,7 @@ class BaseParticipantCell: UITableViewCell {
         }
     }
 
-    private var audio: SfBParticipantAudio? {
+    fileprivate var audio: SfBParticipantAudio? {
         willSet {
             audio?.removeObserver(self, forKeyPath: "state", context: &kvo)
             audio?.removeObserver(self, forKeyPath: "isMuted", context: &kvo)
@@ -49,34 +49,34 @@ class BaseParticipantCell: UITableViewCell {
             audio?.removeObserver(self, forKeyPath: "isSpeaking", context: &kvo)
         }
         didSet {
-            audio?.addObserver(self, forKeyPath: "state", options: [.Initial], context: &kvo)
-            audio?.addObserver(self, forKeyPath: "isMuted", options: [.Initial], context: &kvo)
-            audio?.addObserver(self, forKeyPath: "isOnHold", options: [.Initial], context: &kvo)
-            audio?.addObserver(self, forKeyPath: "isSpeaking", options: [.Initial], context: &kvo)
+            audio?.addObserver(self, forKeyPath: "state", options: [.initial], context: &kvo)
+            audio?.addObserver(self, forKeyPath: "isMuted", options: [.initial], context: &kvo)
+            audio?.addObserver(self, forKeyPath: "isOnHold", options: [.initial], context: &kvo)
+            audio?.addObserver(self, forKeyPath: "isSpeaking", options: [.initial], context: &kvo)
         }
     }
 
-    private var chat: SfBParticipantChat? {
+    fileprivate var chat: SfBParticipantChat? {
         willSet {
             chat?.removeObserver(self, forKeyPath: "isTyping", context: &kvo)
             chat?.removeObserver(self, forKeyPath: "state", context: &kvo)
         }
         didSet {
-            chat?.addObserver(self, forKeyPath: "isTyping", options: [.Initial], context: &kvo)
-            chat?.addObserver(self, forKeyPath: "state", options: [.Initial], context: &kvo)
+            chat?.addObserver(self, forKeyPath: "isTyping", options: [.initial], context: &kvo)
+            chat?.addObserver(self, forKeyPath: "state", options: [.initial], context: &kvo)
         }
     }
 
     var video: SfBParticipantVideo?
 
-    private var person: SfBPerson? {
+    fileprivate var person: SfBPerson? {
         willSet {
             person?.removeObserver(self, forKeyPath: "displayName", context: &kvo)
             person?.removeObserver(self, forKeyPath: "sipUri", context: &kvo)
         }
         didSet {
-            person?.addObserver(self, forKeyPath: "displayName", options: [.Initial], context: &kvo)
-            person?.addObserver(self, forKeyPath: "sipUri", options: [.Initial], context: &kvo)
+            person?.addObserver(self, forKeyPath: "displayName", options: [.initial], context: &kvo)
+            person?.addObserver(self, forKeyPath: "sipUri", options: [.initial], context: &kvo)
         }
     }
 
@@ -88,9 +88,9 @@ class BaseParticipantCell: UITableViewCell {
         participant = nil
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &kvo else {
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
 
         switch keyPath! {
@@ -107,26 +107,26 @@ class BaseParticipantCell: UITableViewCell {
         case "state":
             switch object {
             case is SfBParticipantChat:
-                chatLabel.enabled = (chat?.state == .Connected)
+                chatLabel.isEnabled = (chat?.state == .connected)
             case is SfBParticipantAudio:
-                audioButton.enabled = (audio?.state == .Connected)
+                audioButton.isEnabled = (audio?.state == .connected)
             default:
                 assertionFailure()
             }
         case "isSpeaking":
             if (audio?.isSpeaking == true) {
-                audioButton.setTitle("Speak", forState: .Normal)
+                audioButton.setTitle("Speak", for: UIControlState())
             } else {
                 fallthrough
             }
         case "isOnHold":
             if (audio?.isOnHold == true) {
-                audioButton.setTitle("Held", forState: .Normal)
+                audioButton.setTitle("Held", for: UIControlState())
             } else {
                 fallthrough
             }
         case "isMuted":
-            audioButton.setTitle((audio?.isMuted == false) ? "Audio" : "Muted", forState: .Normal)
+            audioButton.setTitle((audio?.isMuted == false) ? "Audio" : "Muted", for: UIControlState())
         default:
             assertionFailure()
         }
@@ -134,7 +134,7 @@ class BaseParticipantCell: UITableViewCell {
         setNeedsLayout()
     }
 
-    @IBAction func mute(sender: AnyObject?) {
+    @IBAction func mute(_ sender: AnyObject?) {
         do {
             try audio!.setMuted(!audio!.isMuted)
         } catch {
@@ -148,7 +148,7 @@ class ParticipantCell: BaseParticipantCell {
 
     @IBOutlet var videoView: GLKView!
 
-    private var kvo2 = 0
+    fileprivate var kvo2 = 0
 
     override var video: SfBParticipantVideo? {
         willSet {
@@ -156,18 +156,18 @@ class ParticipantCell: BaseParticipantCell {
             video?.removeObserver(self, forKeyPath: "isPaused", context: &kvo2)
         }
         didSet {
-            video?.addObserver(self, forKeyPath: "canSubscribe", options: [.Initial, .New, .Old], context: &kvo2)
-            video?.addObserver(self, forKeyPath: "isPaused", options: [.Initial, .New, .Old], context: &kvo2)
+            video?.addObserver(self, forKeyPath: "canSubscribe", options: [.initial, .new, .old], context: &kvo2)
+            video?.addObserver(self, forKeyPath: "isPaused", options: [.initial, .new, .old], context: &kvo2)
         }
     }
 
-    private var displayLink: CADisplayLink {
+    fileprivate var displayLink: CADisplayLink {
         let dl = CADisplayLink(target: self, selector: NSSelectorFromString("render:"))
-        dl.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+        dl.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
         return dl
     }
 
-    private var renderTarget: SfBVideoStream?
+    fileprivate var renderTarget: SfBVideoStream?
 
     deinit {
         try? video?.unsubscribe()
@@ -180,15 +180,15 @@ class ParticipantCell: BaseParticipantCell {
         try? video?.unsubscribe()
     }
 
-    private func setVideoViewHidden() {
+    fileprivate func setVideoViewHidden() {
         let hide = (renderTarget == nil) || video!.isPaused
-        videoView.hidden = hide
-        displayLink.paused = hide
+        videoView.isHidden = hide
+        displayLink.isPaused = hide
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &kvo2 else {
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
 
         switch keyPath! {
@@ -199,7 +199,7 @@ class ParticipantCell: BaseParticipantCell {
         case "canSubscribe":
             if video!.canSubscribe {
                 renderTarget = try! video?.subscribe(videoView.layer as! CAEAGLLayer)
-                try? renderTarget?.setAutoFitMode(.Crop)
+                try? renderTarget?.setAutoFitMode(.crop)
             } else {
                 renderTarget = nil
             }
@@ -211,9 +211,9 @@ class ParticipantCell: BaseParticipantCell {
         }
     }
 
-    func render(sender: CADisplayLink) {
+    func render(_ sender: CADisplayLink) {
         // Any GL usage in background crashes application
-        if UIApplication.sharedApplication().applicationState == .Active {
+        if UIApplication.shared.applicationState == .active {
             try? renderTarget?.render()
         }
     }
@@ -222,17 +222,17 @@ class ParticipantCell: BaseParticipantCell {
 
 class SelfParticipantCell: BaseParticipantCell {
 
-    private var kvo2 = 0
+    fileprivate var kvo2 = 0
 
     @IBOutlet var videoView: UIView!
 
     var videoService: SfBVideoService? {
         didSet {
-            renderTarget = try! videoService?.showPreviewOnView(videoView)
+            renderTarget = try! videoService?.showPreview(on: videoView)
         }
     }
 
-    private var renderTarget: SfBVideoPreview?
+    fileprivate var renderTarget: SfBVideoPreview?
 
     deinit {
         setValue(nil, forKey: "videoService")

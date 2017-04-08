@@ -10,14 +10,14 @@ import SkypeForBusiness
 
 class HistoryViewController: UITableViewController {
 
-    private var kvo = 0
+    fileprivate var kvo = 0
 
     var history: SfBHistoryService? {
         willSet {
             history?.removeObserver(self, forKeyPath: "activityItems", context: &kvo)
         }
         didSet {
-            history?.addObserver(self, forKeyPath: "activityItems", options: [.Initial], context: &kvo)
+            history?.addObserver(self, forKeyPath: "activityItems", options: [.initial], context: &kvo)
         }
     }
 
@@ -25,39 +25,39 @@ class HistoryViewController: UITableViewController {
         setValue(nil, forKey: "history")
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &kvo else {
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
 
         assert(keyPath == "activityItems")
         tableView.updateRowsWithChange(KeyValueChange(change: change!))
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         assert(section == 0)
         return history?.activityItems.count ?? 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch history?.activityItems[indexPath.row] {
         case let textMessage as SfBMessageActivityItem:
             switch textMessage.direction {
-            case .Incoming:
-                let cell = tableView.dequeueReusableCellWithIdentifier("IncomingMessageCell", forIndexPath: indexPath) as! IncomingMessageCell
+            case .incoming:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingMessageCell", for: indexPath) as! IncomingMessageCell
                 cell.item = textMessage
                 return cell
-            case .Outgoing:
-                let cell = tableView.dequeueReusableCellWithIdentifier("OutgoingMessageCell", forIndexPath: indexPath) as! OutgoingMessageCell
+            case .outgoing:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "OutgoingMessageCell", for: indexPath) as! OutgoingMessageCell
                 cell.item = textMessage
                 return cell
             }
         case let joinLeft as SfBParticipantActivityItem:
-            let cell = tableView.dequeueReusableCellWithIdentifier("ParticipantActivityCell", forIndexPath: indexPath) as! ParticipantActivityCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantActivityCell", for: indexPath) as! ParticipantActivityCell
             cell.item = joinLeft
             return cell
         default:
-            return tableView.dequeueReusableCellWithIdentifier("UnknownActivityCell", forIndexPath: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: "UnknownActivityCell", for: indexPath)
         }
     }
 

@@ -10,7 +10,7 @@ import SkypeForBusiness
 
 class ParticipantsViewController: UITableViewController {
 
-    private var kvo = 0
+    fileprivate var kvo = 0
 
     @IBOutlet var videoStart: UIBarButtonItem!
     @IBOutlet var videoPause: UIBarButtonItem!
@@ -24,13 +24,13 @@ class ParticipantsViewController: UITableViewController {
             conversation?.removeObserver(self, forKeyPath: "remoteParticipants", context: &kvo)
         }
         didSet {
-            conversation?.addObserver(self, forKeyPath: "remoteParticipants", options: [.Initial], context: &kvo)
+            conversation?.addObserver(self, forKeyPath: "remoteParticipants", options: [.initial], context: &kvo)
             videoService = conversation?.videoService
             selfVideo = conversation?.selfParticipant.video
         }
     }
 
-    private var videoService: SfBVideoService? {
+    fileprivate var videoService: SfBVideoService? {
         willSet {
             videoService?.removeObserver(self, forKeyPath: "canSetPaused", context: &kvo)
             videoService?.removeObserver(self, forKeyPath: "canStart", context: &kvo)
@@ -38,19 +38,19 @@ class ParticipantsViewController: UITableViewController {
             videoService?.removeObserver(self, forKeyPath: "canSetActiveCamera", context: &kvo)
         }
         didSet {
-            videoService?.addObserver(self, forKeyPath: "canSetPaused", options: [.Initial], context: &kvo)
-            videoService?.addObserver(self, forKeyPath: "canStart", options: [.Initial], context: &kvo)
-            videoService?.addObserver(self, forKeyPath: "canStop", options: [.Initial], context: &kvo)
-            videoService?.addObserver(self, forKeyPath: "canSetActiveCamera", options: [.Initial], context: &kvo)
+            videoService?.addObserver(self, forKeyPath: "canSetPaused", options: [.initial], context: &kvo)
+            videoService?.addObserver(self, forKeyPath: "canStart", options: [.initial], context: &kvo)
+            videoService?.addObserver(self, forKeyPath: "canStop", options: [.initial], context: &kvo)
+            videoService?.addObserver(self, forKeyPath: "canSetActiveCamera", options: [.initial], context: &kvo)
         }
     }
 
-    private var selfVideo: SfBParticipantVideo? {
+    fileprivate var selfVideo: SfBParticipantVideo? {
         willSet {
             selfVideo?.removeObserver(self, forKeyPath: "isPaused", context: &kvo)
         }
         didSet {
-            selfVideo?.addObserver(self, forKeyPath: "isPaused", options: [.Initial], context: &kvo)
+            selfVideo?.addObserver(self, forKeyPath: "isPaused", options: [.initial], context: &kvo)
         }
     }
 
@@ -58,9 +58,9 @@ class ParticipantsViewController: UITableViewController {
         setValue(nil, forKey: "conversation")
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &kvo else {
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
 
         switch keyPath! {
@@ -69,22 +69,22 @@ class ParticipantsViewController: UITableViewController {
         case "canStart", "canSetPaused", "isPaused":
             let isPaused = (selfVideo?.isPaused == true)
             let canSetPaused = (videoService?.canSetPaused == true)
-            videoStart.enabled =  (isPaused && canSetPaused) || videoService?.canStart == true
-            videoPause.enabled = !isPaused && canSetPaused
+            videoStart.isEnabled =  (isPaused && canSetPaused) || videoService?.canStart == true
+            videoPause.isEnabled = !isPaused && canSetPaused
         case "canStop":
-            videoStop.enabled = videoService!.canStop
+            videoStop.isEnabled = videoService!.canStop
         case "canSetActiveCamera":
-            camera.enabled = videoService!.canSetActiveCamera
+            camera.isEnabled = videoService!.canSetActiveCamera
         default:
             assertionFailure()
         }
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return conversation?.remoteParticipants.count ?? 0
@@ -96,14 +96,14 @@ class ParticipantsViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("ParticipantCell", forIndexPath: indexPath) as! ParticipantCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
             cell.participant = conversation?.remoteParticipants[indexPath.row]
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("SelfParticipantCell", forIndexPath: indexPath) as! SelfParticipantCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SelfParticipantCell", for: indexPath) as! SelfParticipantCell
             cell.participant = conversation?.selfParticipant
             cell.videoService = conversation?.videoService
             return cell
@@ -112,7 +112,7 @@ class ParticipantsViewController: UITableViewController {
         }
     }
 
-    @IBAction func startVideo(sender: AnyObject?) {
+    @IBAction func startVideo(_ sender: AnyObject?) {
         guard let videoService = videoService else {
             return
         }
@@ -124,7 +124,7 @@ class ParticipantsViewController: UITableViewController {
         }
     }
 
-    @IBAction func stopVideo(sender: AnyObject?) {
+    @IBAction func stopVideo(_ sender: AnyObject?) {
         guard let videoService = videoService else {
             return
         }
@@ -136,7 +136,7 @@ class ParticipantsViewController: UITableViewController {
         }
     }
 
-    @IBAction func pauseVideo(sender: AnyObject?) {
+    @IBAction func pauseVideo(_ sender: AnyObject?) {
         guard let videoService = videoService else {
             return
         }
@@ -148,7 +148,7 @@ class ParticipantsViewController: UITableViewController {
         }
     }
 
-    @IBAction func changeCamera(sender: AnyObject?) {
+    @IBAction func changeCamera(_ sender: AnyObject?) {
         guard let videoService = videoService else {
             return
         }
@@ -157,7 +157,7 @@ class ParticipantsViewController: UITableViewController {
         var next: SfBCamera?
 
         if let activeCamera = videoService.activeCamera {
-            if let curr = cameras.indexOf(activeCamera) {
+            if let curr = cameras.index(of: activeCamera) {
                 next = cameras[(curr + 1) % cameras.count]
             }
         }

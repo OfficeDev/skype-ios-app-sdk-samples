@@ -13,7 +13,7 @@ class ParticipantActivityCell: UITableViewCell {
     @IBOutlet var timestamp: UILabel?
     @IBOutlet var status: UILabel?
 
-    private var kvo = 0
+    fileprivate var kvo = 0
 
     var item: SfBParticipantActivityItem? {
         willSet {
@@ -21,8 +21,8 @@ class ParticipantActivityCell: UITableViewCell {
             item?.removeObserver(self, forKeyPath: "timestamp", context: &kvo)
         }
         didSet {
-            item?.addObserver(self, forKeyPath: "timestamp", options: [.Initial], context: &kvo)
-            item?.addObserver(self, forKeyPath: "person.displayName", options: [.Initial, .New], context: &kvo)
+            item?.addObserver(self, forKeyPath: "timestamp", options: [.initial], context: &kvo)
+            item?.addObserver(self, forKeyPath: "person.displayName", options: [.initial, .new], context: &kvo)
         }
     }
 
@@ -34,16 +34,16 @@ class ParticipantActivityCell: UITableViewCell {
         item = nil
     }
 
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &kvo else {
-            return super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
 
         switch keyPath! {
         case "timestamp":
-            timestamp?.text = dateFormatter.stringFromDate(item!.timestamp)
+            timestamp?.text = dateFormatter.string(from: item!.timestamp)
         case "person.displayName":
-            status?.text = KeyValueChange(change: change!).new as! String + (item!.type == .ParticipantJoined ? " joined" : " left");
+            status?.text = KeyValueChange(change: change!).new as! String + (item!.type == .participantJoined ? " joined" : " left");
         default:
             assertionFailure()
         }

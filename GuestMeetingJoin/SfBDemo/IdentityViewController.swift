@@ -10,37 +10,37 @@ import SkypeForBusiness
 
 class IdentityViewController: UIViewController, SfBAlertDelegate {
 
-    private var kvo = 0
+    fileprivate var kvo = 0
 
-    private var sfb: SfBApplication!
-    private var conversation: SfBConversation?
+    fileprivate var sfb: SfBApplication!
+    fileprivate var conversation: SfBConversation?
 
     @IBOutlet var displayName: UITextField!
     @IBOutlet var meetingUrl: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sfb = SfBApplication.sharedApplication()
+        sfb = SfBApplication.shared()
 
         let config = sfb.configurationManager
         let key = "AcceptedVideoLicense"
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
 
-        if defaults.boolForKey(key) {
+        if defaults.bool(forKey: key) {
             config.setEndUserAcceptedVideoLicense()
         } else {
             let sheet = UIAlertController(title: "Video License",
                                           message: "You shall obey terms of the license.",
-                                          preferredStyle: .ActionSheet)
+                                          preferredStyle: .actionSheet)
 
-            sheet.addAction(UIAlertAction(title: "Decline", style: .Default, handler: nil))
+            sheet.addAction(UIAlertAction(title: "Decline", style: .default, handler: nil))
 
-            sheet.addAction(UIAlertAction(title: "Accept", style: .Destructive) { action in
-                defaults.setBool(true, forKey: key)
+            sheet.addAction(UIAlertAction(title: "Accept", style: .destructive) { action in
+                defaults.set(true, forKey: key)
                 config.setEndUserAcceptedVideoLicense()
                 })
 
-            presentViewController(sheet, animated: true, completion: nil)
+            present(sheet, animated: true, completion: nil)
         }
 
         sfb.configurationManager.maxVideoChannels = 1
@@ -53,11 +53,11 @@ class IdentityViewController: UIViewController, SfBAlertDelegate {
         sfb.alertDelegate = self
     }
 
-    func didReceiveAlert(alert: SfBAlert) {
+    func didReceive(_ alert: SfBAlert) {
         alert.show()
     }
 
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         do {
             // To join an Online meeting use the discover URL method. Please refer the documentation for
             // the overall procedure of getting the discover URL and authorization token for a meeting.
@@ -66,7 +66,7 @@ class IdentityViewController: UIViewController, SfBAlertDelegate {
             // let authToken = "psat=...";
             // let session = try sfb.joinMeetingAnonymousWithDiscoverUrl(discoverUrl, authToken: authToken, displayName: displayName.text!)
 
-            let session = try sfb.joinMeetingAnonymousWithUri(NSURL(string: meetingUrl.text!)!, displayName: displayName.text!)
+            let session = try sfb.joinMeetingAnonymous(withUri: URL(string: meetingUrl.text!)!, displayName: displayName.text!)
             conversation = session.conversation
             return true
         } catch {
@@ -75,8 +75,8 @@ class IdentityViewController: UIViewController, SfBAlertDelegate {
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let destination = segue.destinationViewController as? ConversationViewController else {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? ConversationViewController else {
             return
         }
 
