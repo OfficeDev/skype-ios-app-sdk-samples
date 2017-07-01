@@ -84,8 +84,12 @@ class BaseParticipantCell: UITableViewCell {
         setValue(nil, forKey: "participant")
     }
 
-    override func prepareForReuse() {
-        participant = nil
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+
+        if superview == nil {
+            participant = nil
+        }
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -161,29 +165,30 @@ class ParticipantCell: BaseParticipantCell {
         }
     }
 
-    fileprivate var displayLink: CADisplayLink {
-        let dl = CADisplayLink(target: self, selector: NSSelectorFromString("render:"))
-        dl.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
-        return dl
-    }
+    fileprivate var displayLink: CADisplayLink?
 
     fileprivate var renderTarget: SfBVideoStream?
 
-    deinit {
-        try? video?.unsubscribe()
-        displayLink.invalidate()
-        renderTarget = nil
-    }
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        try? video?.unsubscribe()
+        if superview == nil {
+            try? video?.unsubscribe()
+            displayLink?.invalidate()
+            displayLink = nil
+        }
     }
 
     fileprivate func setVideoViewHidden() {
         let hide = (renderTarget == nil) || video!.isPaused
         videoView.isHidden = hide
-        displayLink.isPaused = hide
+
+        if displayLink == nil {
+            displayLink = CADisplayLink(target: self, selector: NSSelectorFromString("render:"))
+            displayLink!.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+        }
+
+        displayLink!.isPaused = hide
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -238,9 +243,12 @@ class SelfParticipantCell: BaseParticipantCell {
         setValue(nil, forKey: "videoService")
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        videoService = nil
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+
+        if superview == nil {
+            videoService = nil
+        }
     }
 
 }
