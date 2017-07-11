@@ -45,11 +45,11 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         // Set date label to current times
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        let dateFormatter:DateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
         dateFormatter.dateFormat = "yyyy.MM.dd"
         
-        self.dateLabel.text = dateFormatter.stringFromDate(NSDate())
+        self.dateLabel.text = dateFormatter.string(from: Date())
         
         
         // Do any additional setup after loading the view.
@@ -60,7 +60,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         self.infoBarBottomConstraint.constant = -90;
@@ -72,13 +72,13 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
      *  Bring information bar from bottom to the visible area of the screen.
      */
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         self.initializeUI()
         self.joinMeeting()
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     /**
@@ -88,9 +88,9 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     
     func initializeUI()  {
         self.infoBarBottomConstraint.constant = 0
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5, animations: {
             self.infoBar.layoutIfNeeded()
-        }
+        }) 
     }
     
     /**
@@ -109,7 +109,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
                                                         incomingVideoLayer: self.participantVideoView.layer as! CAEAGLLayer,
                                                         userInfo: [DisplayNameInfo:displayName!])
         
-        conversationInstance!.addObserver(self, forKeyPath: "canLeave", options: .Initial , context: nil)
+        conversationInstance!.addObserver(self, forKeyPath: "canLeave", options: .initial , context: nil)
         
         
     }
@@ -117,7 +117,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     //MARK: User Button Actions
     
     
-    @IBAction func endCall(sender: AnyObject) {
+    @IBAction func endCall(_ sender: AnyObject) {
         
         // Get conversation handle and call leave.
         // Need to check for canLeave property of conversation,
@@ -133,14 +133,14 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
         var presentedFromOnlineMeetingViewController = false
         let allViewControllers = self.navigationController?.viewControllers
         for viewController in allViewControllers!{
-            if(viewController.isKindOfClass(OnlineMainViewController)){
+            if(viewController.isKind(of: OnlineMainViewController.self)){
                 presentedFromOnlineMeetingViewController = true
                 self.navigationController?.popToViewController(viewController, animated: true)
                 break;
             }
         }
         if(!presentedFromOnlineMeetingViewController){
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }        
         
     
@@ -149,7 +149,7 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
 
    
     
-    @IBAction func toggleMute(sender: AnyObject) {
+    @IBAction func toggleMute(_ sender: AnyObject) {
         do{
             try self.conversationHelper?.conversation.audioService.toggleMute()
 
@@ -167,17 +167,17 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     
     // At incoming video, unhide the participant video view
     
-    func conversationHelper(conversationHelper: SfBConversationHelper, didSubscribeToVideo video: SfBParticipantVideo?) {
-        self.participantVideoView.hidden = false
+    func conversationHelper(_ conversationHelper: SfBConversationHelper, didSubscribeTo video: SfBParticipantVideo?) {
+        self.participantVideoView.isHidden = false
     }
     
     // When video service is ready to start, unhide self video view and start the service.
     
-    func conversationHelper(conversationHelper: SfBConversationHelper, videoService: SfBVideoService, didChangeCanStart canStart: Bool) {
+    func conversationHelper(_ conversationHelper: SfBConversationHelper, videoService: SfBVideoService, didChangeCanStart canStart: Bool) {
         
         if (canStart) {
-            if (self.selfVideoView.hidden) {
-                self.selfVideoView.hidden = false
+            if (self.selfVideoView.isHidden) {
+                self.selfVideoView.isHidden = false
             }
             do{
                 try videoService.start()
@@ -192,12 +192,12 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     // When the audio status changes, reflect in UI
    
 
-    func conversationHelper(conversationHelper: SfBConversationHelper, audioService: SfBAudioService, didChangeMuted muted: SfBAudioServiceMuteState) {
-        if muted == .Muted {
-            self.muteButton.setTitle("Unmute", forState: .Normal)
+    func conversationHelper(_ conversationHelper: SfBConversationHelper, audioService: SfBAudioService, didChangeMuted muted: SfBAudioServiceMuteState) {
+        if muted == .muted {
+            self.muteButton.setTitle("Unmute", for: UIControlState())
         }
         else {
-            self.muteButton.setTitle("Mute", forState: .Normal)
+            self.muteButton.setTitle("Mute", for: UIControlState())
         }
     }
     
@@ -206,20 +206,20 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
 
     
     // Monitor canLeave property of a conversation to prevent leaving prematurely
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "canLeave") {
-            self.endCallButton.enabled = (self.conversationHelper?.conversation.canLeave)!
+            self.endCallButton.isEnabled = (self.conversationHelper?.conversation.canLeave)!
             
         }
     }
     
     func registerForAppTerminationNotification() {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(VideoViewController.leaveMeetingWhenAppTerminates(_:)), name:UIApplicationWillTerminateNotification, object:nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(VideoViewController.leaveMeetingWhenAppTerminates(_:)), name:NSNotification.Name.UIApplicationWillTerminate, object:nil)
     }
     
     
-    func leaveMeetingWhenAppTerminates(aNotification:NSNotification) {
+    func leaveMeetingWhenAppTerminates(_ aNotification:Notification) {
         if let conversation = conversationHelper?.conversation{
             leaveMeetingWithSuccess(conversation)
         }
@@ -228,15 +228,15 @@ class VideoViewController: UIViewController,SfBConversationHelperDelegate,SfBAle
     
     //MARK: - Helper UI
     
-    func handleError(readableErrorDescription:String)  {
-        let alertController:UIAlertController = UIAlertController(title: "ERROR!", message: readableErrorDescription, preferredStyle: .Alert)
+    func handleError(_ readableErrorDescription:String)  {
+        let alertController:UIAlertController = UIAlertController(title: "ERROR!", message: readableErrorDescription, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
-        presentViewController(alertController, animated: true, completion:nil)
+        alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion:nil)
     }
    
     
-    func didReceiveAlert(alert: SfBAlert) {
+    func didReceive(_ alert: SfBAlert) {
        alert.showSfBAlertInController(self)
     }
     

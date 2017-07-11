@@ -24,39 +24,39 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scroller: UIScrollView!
     
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     
     
-    @IBAction func saveSettings(sender: AnyObject) {
+    @IBAction func saveSettings(_ sender: AnyObject) {
         saveSkypeForBusinessOnlineValueChange()
         saveEnablePreviewValueChange()
         saveSettings()
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
 
     }
     
     
-    @IBAction func cancelPressed(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func cancelPressed(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func saveSkypeForBusinessOnlineValueChange() {
         
-        if SfBOnlineSwitch.on {
-            defaults.setBool(true, forKey:SFB_ONLINE_MEETING_STATE)
+        if SfBOnlineSwitch.isOn {
+            defaults.set(true, forKey:SFB_ONLINE_MEETING_STATE)
         } else {
-            defaults.setBool(false, forKey:SFB_ONLINE_MEETING_STATE)
+            defaults.set(false, forKey:SFB_ONLINE_MEETING_STATE)
         }
         defaults.synchronize()
         
     }
     
     func saveEnablePreviewValueChange() {
-        if enablePreviewSwitch.on {
-            defaults.setBool(true, forKey: ENABLE_PREVIEW_STATE)
+        if enablePreviewSwitch.isOn {
+            defaults.set(true, forKey: ENABLE_PREVIEW_STATE)
         } else {
-            defaults.setBool(false, forKey: ENABLE_PREVIEW_STATE)
+            defaults.set(false, forKey: ENABLE_PREVIEW_STATE)
         }
         defaults.synchronize()
     }
@@ -65,9 +65,9 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
    
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.keyboardWillBeHidden(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
         
         
@@ -77,14 +77,14 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
         self.meetingUrl.delegate = self
         self.meetingRequestAPIUrl.delegate = self
         self.TokenAndDiscoveryRequestAPIUrl.delegate = self
-        self.SfBOnlineSwitch.tintColor = UIColor.whiteColor()
-        self.enablePreviewSwitch.tintColor = UIColor.whiteColor()
+        self.SfBOnlineSwitch.tintColor = UIColor.white
+        self.enablePreviewSwitch.tintColor = UIColor.white
         
-        if let SfBOnlineSwitchState:Bool = defaults.objectForKey(SFB_ONLINE_MEETING_STATE) as? Bool {
-            self.SfBOnlineSwitch.on = SfBOnlineSwitchState
+        if let SfBOnlineSwitchState:Bool = defaults.object(forKey: SFB_ONLINE_MEETING_STATE) as? Bool {
+            self.SfBOnlineSwitch.isOn = SfBOnlineSwitchState
         }
-        if let enablePreviewSwitchState:Bool = defaults.objectForKey(ENABLE_PREVIEW_STATE) as? Bool {
-            self.enablePreviewSwitch.on = enablePreviewSwitchState
+        if let enablePreviewSwitchState:Bool = defaults.object(forKey: ENABLE_PREVIEW_STATE) as? Bool {
+            self.enablePreviewSwitch.isOn = enablePreviewSwitchState
         }
         showCurrentMeetingUrlAndDisplayName()
     }
@@ -117,7 +117,7 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
     func saveSettings() {
         self.hideKeyboard()
         
-        let prefs = NSUserDefaults.standardUserDefaults()
+        let prefs = UserDefaults.standard
         
         //Save Skype display name and meeting url.
         if ((checkIfTextFieldHasText(meetingUrl)) && (meetingUrl.text != meetingUrl.placeholder))
@@ -139,31 +139,31 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
     //MARK: - Text field handlers
     
     func hideKeyboard() {
-        if (self.meetingDisplayName.isFirstResponder()) {
+        if (self.meetingDisplayName.isFirstResponder) {
             self.meetingDisplayName.resignFirstResponder()
-        } else if (self.meetingUrl.isFirstResponder()) {
+        } else if (self.meetingUrl.isFirstResponder) {
             self.meetingUrl.resignFirstResponder()
-        }else if(self.meetingRequestAPIUrl.isFirstResponder()) {
+        }else if(self.meetingRequestAPIUrl.isFirstResponder) {
             self.meetingRequestAPIUrl.resignFirstResponder()
-        }else if(self.TokenAndDiscoveryRequestAPIUrl.isFirstResponder()) {
+        }else if(self.TokenAndDiscoveryRequestAPIUrl.isFirstResponder) {
             self.TokenAndDiscoveryRequestAPIUrl.resignFirstResponder()
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if(textField.text == textField.placeholder){
             textField.placeholder = ""
             textField.text = ""
         }
     }
     
-    func checkIfTextFieldHasText(textField:UITextField) -> Bool {
-        if let text = textField.text where !text.isEmpty
+    func checkIfTextFieldHasText(_ textField:UITextField) -> Bool {
+        if let text = textField.text, !text.isEmpty
         {
             //return true if it's not empty
             return true
@@ -174,9 +174,9 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
    
     
     //MARK: - Scroll screen on keyboard show/hide
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if view.frame.origin.y == 0{
                 self.view.frame.origin.y -= keyboardSize.height
             }
@@ -188,12 +188,12 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
     }
     
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         
     }
     
-    func keyboardWillBeHidden(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+    func keyboardWillBeHidden(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if view.frame.origin.y != 0 {
                 self.view.frame.origin.y += keyboardSize.height
             }
@@ -202,7 +202,7 @@ class SettingsViewController: UIViewController,UITextFieldDelegate {
             }
         }
     }
-    @IBAction func prepareForUnwind(segue:UIStoryboardSegue){
+    @IBAction func prepareForUnwind(_ segue:UIStoryboardSegue){
         
     }
     

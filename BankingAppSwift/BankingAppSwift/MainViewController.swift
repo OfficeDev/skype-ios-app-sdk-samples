@@ -10,9 +10,16 @@ Onprem CU4 / Onprem CU3 / {Online meeting-enablePreviewFeatures = True} scenario
 import UIKit
 
 class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseViewControllerDelegate {
-    
-    private var sfb: SfBApplication?
-    private var conversation: SfBConversation?
+    /** Called when new alert appears in the context where this delegate is attached.
+     *
+     * Each alert is passed to a delegate once and dismissed unconditionally.
+     * If no delegate is attached, alerts are accumulated and reported as soon
+     * as delegate is set. Accumulated alerts of the same category and type
+     * are coalesced, only the last one will be reported.
+     */
+
+    fileprivate var sfb: SfBApplication?
+    fileprivate var conversation: SfBConversation?
     
     @IBOutlet weak var askAgentButton: UIButton!
     
@@ -23,26 +30,26 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func askAgent(sender: AnyObject) {
-        let alertController:UIAlertController = UIAlertController(title: "Ask Agent", message: nil, preferredStyle: .ActionSheet)
+    @IBAction func askAgent(_ sender: AnyObject) {
+        let alertController:UIAlertController = UIAlertController(title: "Ask Agent", message: nil, preferredStyle: .actionSheet)
         
         
-        alertController.addAction(UIAlertAction(title: "Ask using Text Chat", style: .Default, handler: { (action:UIAlertAction) in
+        alertController.addAction(UIAlertAction(title: "Ask using Text Chat", style: .default, handler: { (action:UIAlertAction) in
             self.askAgentText()
         }))
         
-        alertController.addAction(UIAlertAction(title: "Ask using Video Chat", style: .Default, handler: { (action:UIAlertAction) in
+        alertController.addAction(UIAlertAction(title: "Ask using Video Chat", style: .default, handler: { (action:UIAlertAction) in
             self.askAgentVideo()
         }))
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = sender as? UIView
             popoverController.sourceRect = sender.bounds
         }
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     
@@ -53,7 +60,7 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
     
     func askAgentText()  {
         if(didJoinMeeting()){
-            self.performSegueWithIdentifier("askAgentText", sender: nil)
+            self.performSegue(withIdentifier: "askAgentText", sender: nil)
         }
     }
     
@@ -62,21 +69,21 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
         if let sfb = sfb{
             let config = sfb.configurationManager
             let key = "AcceptedVideoLicense"
-            let defaults = NSUserDefaults.standardUserDefaults()
+            let defaults = UserDefaults.standard
             
-            if defaults.boolForKey(key) {
+            if defaults.bool(forKey: key) {
                 config.setEndUserAcceptedVideoLicense()
                 if(didJoinMeeting()){
-                    self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+                    self.performSegue(withIdentifier: "askAgentVideo", sender: nil)
                 }
 
             } else {
                 
                 
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MicrosoftLicenseViewController") as! MicrosoftLicenseViewController
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "MicrosoftLicenseViewController") as! MicrosoftLicenseViewController
                 vc.delegate = self
                 
-                self.presentViewController(vc, animated: true, completion: nil)
+                self.present(vc, animated: true, completion: nil)
             }
             
         }
@@ -84,23 +91,23 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
     }
     
     func initializeSkype(){
-        sfb = SfBApplication.sharedApplication()
+        sfb = SfBApplication.shared()
         if let sfb = sfb{
             sfb.configurationManager.maxVideoChannels = 1
             sfb.configurationManager.requireWifiForAudio = false
             sfb.configurationManager.requireWifiForVideo = false
-            sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
+            sfb.devicesManager.selectedSpeaker.activeEndpoint = .loudspeaker
             sfb.configurationManager.enablePreviewFeatures = getEnablePreviewSwitchState
             sfb.alertDelegate = self
         }
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func didReceiveAlert(alert: SfBAlert) {
+    func didReceive(_ alert: SfBAlert) {
         alert.showSfBAlertInController(self)
     }
     
@@ -110,9 +117,9 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
         let meetingDisplayName:String = getMeetingDisplayName
         
         do {
-            let urlText:String = meetingURLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-            let url = NSURL(string:urlText)
-            conversation = try sfb!.joinMeetingAnonymousWithUri(url!, displayName: meetingDisplayName).conversation
+            let urlText:String = meetingURLString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            let url = URL(string:urlText)
+            conversation = try sfb!.joinMeetingAnonymous(withUri: url!, displayName: meetingDisplayName).conversation
             return true
         }
         catch  {
@@ -123,16 +130,16 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "askAgentText"){
-            guard let destination = segue.destinationViewController as? ChatViewController else {
+            guard let destination = segue.destination as? ChatViewController else {
                 return
             }
             destination.conversation = self.conversation
         }
         else if(segue.identifier == "askAgentVideo"){
-            guard let destination = segue.destinationViewController as? VideoViewController else {
+            guard let destination = segue.destination as? VideoViewController else {
                 return
             }
             destination.deviceManagerInstance = sfb!.devicesManager
@@ -143,14 +150,14 @@ class MainViewController: UIViewController,SfBAlertDelegate, MicrosoftLicenseVie
         conversation = nil
     }
     
-    func controller(controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {
+    func controller(_ controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {
         if(acceptedLicense){
             if let sfb = sfb{
                 let config = sfb.configurationManager
                 config.setEndUserAcceptedVideoLicense()
                 
                 if(didJoinMeeting()){
-                    self.performSegueWithIdentifier("askAgentVideo", sender: nil)
+                    self.performSegue(withIdentifier: "askAgentVideo", sender: nil)
                 }
                 
             }

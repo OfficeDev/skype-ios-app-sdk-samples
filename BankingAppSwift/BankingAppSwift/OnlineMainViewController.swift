@@ -9,11 +9,11 @@
 import UIKit
 
 class OnlineMainViewController: UIViewController, SfBAlertDelegate {
-    private var sfb: SfBApplication?
+    fileprivate var sfb: SfBApplication?
     
     
-    @IBAction func joinOnlineMeeting(sender: AnyObject) {
-        performSegueWithIdentifier("segueToOnlineMeeting", sender: nil)
+    @IBAction func joinOnlineMeeting(_ sender: AnyObject) {
+        performSegue(withIdentifier: "segueToOnlineMeeting", sender: nil)
     }
     
     override func viewDidLoad() {
@@ -22,21 +22,21 @@ class OnlineMainViewController: UIViewController, SfBAlertDelegate {
        
     }
 
-   override func viewWillAppear(animated: Bool) {
+   override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func initializeSkype(){
         
         // Configure Shared application instance for Online meeting
-        sfb = SfBApplication.sharedApplication()
+        sfb = SfBApplication.shared()
         
         if let sfb = sfb{
             sfb.configurationManager.maxVideoChannels = 1
             sfb.configurationManager.requireWifiForAudio = false
             sfb.configurationManager.requireWifiForVideo = false
             sfb.alertDelegate = self
-            sfb.devicesManager.selectedSpeaker.activeEndpoint = .Loudspeaker
+            sfb.devicesManager.selectedSpeaker.activeEndpoint = .loudspeaker
             
             // For OnPrem topolgies enablePreview features should be enabled for Audio/Video.
             sfb.configurationManager.enablePreviewFeatures = getEnablePreviewSwitchState
@@ -45,15 +45,15 @@ class OnlineMainViewController: UIViewController, SfBAlertDelegate {
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "segueToOnlineMeeting"){
-            let vc = segue.destinationViewController as! OnlineMeetingViewController
+            let vc = segue.destination as! OnlineMeetingViewController
             vc.sfb = sfb
         }
     }
     
     //MARK: SfBAlertDelegate alert function
-    func didReceiveAlert(alert: SfBAlert) {
+    func didReceive(_ alert: SfBAlert) {
         alert.showSfBAlertInController(self)
     }
 
