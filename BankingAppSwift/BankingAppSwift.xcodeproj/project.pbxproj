@@ -420,7 +420,7 @@
 				DEVELOPMENT_TEAM = UYUY4NQE32;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = BankingAppSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -444,7 +444,7 @@
 				DEVELOPMENT_TEAM = UYUY4NQE32;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
 				);
 				INFOPLIST_FILE = BankingAppSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
