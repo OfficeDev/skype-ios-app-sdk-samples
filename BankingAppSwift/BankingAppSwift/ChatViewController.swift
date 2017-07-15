@@ -37,11 +37,11 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
     }
     
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         
         }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.setHidesBackButton(true, animated: true)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
@@ -52,25 +52,25 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
     func registerForNotifications() {
 
         
-       NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(ChatViewController.leaveMeetingWhenAppTerminates(_:)), name:UIApplicationWillTerminateNotification, object:nil)
+       NotificationCenter.default.addObserver(self, selector:#selector(ChatViewController.leaveMeetingWhenAppTerminates(_:)), name:NSNotification.Name.UIApplicationWillTerminate, object:nil)
         
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillBeHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillBeHidden(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func leaveMeetingWhenAppTerminates(aNotification:NSNotification) {
+    func leaveMeetingWhenAppTerminates(_ aNotification:Notification) {
         if let conversation = self.chatHandler?.conversation{
             leaveMeetingWithSuccess(conversation)
         }
     }
 
     
-    func keyboardWillShow(aNotification:NSNotification) {
+    func keyboardWillShow(_ aNotification:Notification) {
         
-        let info:NSDictionary = aNotification.userInfo!
-        let keyboardFrame: CGRect = ((info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue())!
+        let info:NSDictionary = aNotification.userInfo! as NSDictionary
+        let keyboardFrame: CGRect = ((info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue)!
         self.spaceConstraint.constant = keyboardFrame.size.height
         self.view.layoutIfNeeded()
         // To scroll table up
@@ -79,19 +79,19 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
         
     }
     
-    func keyboardWillBeHidden(aNotification:NSNotification) {
+    func keyboardWillBeHidden(_ aNotification:Notification) {
         self.spaceConstraint.constant = 0
         self.view.layoutIfNeeded()
     }
     
     //MARK: - Button actions
     
-    @IBAction func sendMessage(sender: AnyObject) {
+    @IBAction func sendMessage(_ sender: AnyObject) {
         self.messageTextField.resignFirstResponder()
         self.sendChatMessage(self.messageTextField.text!)
     }
     
-    @IBAction func endChat(sender: AnyObject) {
+    @IBAction func endChat(_ sender: AnyObject) {
         self.endMeeting()
     }
     
@@ -110,30 +110,30 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
         var presentedFromOnlineMeetingViewController = false
         let allViewControllers = self.navigationController?.viewControllers
         for viewController in allViewControllers!{
-        if(viewController.isKindOfClass(OnlineMainViewController)){
+        if(viewController.isKind(of: OnlineMainViewController.self)){
             presentedFromOnlineMeetingViewController = true
             self.navigationController?.popToViewController(viewController, animated: true)
         break;
         }
        }
         if(!presentedFromOnlineMeetingViewController){
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
         
       
     }
 
     
-    func sendChatMessage(message: String) {
+    func sendChatMessage(_ message: String) {
         var error: NSError? = nil
         if let chatHandler = self.chatHandler{
             chatHandler.sendMessage(message, error: &error)
             if (error != nil) {
-                self.navigationController!.popViewControllerAnimated(true)
+                self.navigationController!.popViewController(animated: true)
             }
             else {
                 self.messageTextField.text = ""
-                self.chatTableViewController?.addMessage(message, from: (chatHandler.userInfo as! Dictionary)[DisplayNameInfo]!, origin: .MySelf)
+                self.chatTableViewController?.addMessage(message, from: (chatHandler.userInfo as! Dictionary)[DisplayNameInfo]!, origin: .mySelf)
             }
         }
     }
@@ -151,10 +151,10 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
                                        userInfo: [DisplayNameInfo:"Jake"])
         
         
-        conversation!.addObserver(self, forKeyPath: "canLeave", options: [.Initial, .New] , context: nil)
+        conversation!.addObserver(self, forKeyPath: "canLeave", options: [.initial, .new] , context: nil)
         
     }
-    func didReceiveAlert(alert: SfBAlert){
+    func didReceive(_ alert: SfBAlert){
         
         alert.showSfBAlertInController(self)
     }
@@ -163,21 +163,21 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
     //MARK - Skype ChatHandlerDelegate Functions
     
     // Notify the user when connection is established and message can be sent.
-    func chatHandler(chatHandler: ChatHandler, chatService: SfBChatService, didChangeCanSendMessage canSendMessage: Bool) {
+    func chatHandler(_ chatHandler: ChatHandler, chatService: SfBChatService, didChangeCanSendMessage canSendMessage: Bool) {
         if (canSendMessage) {
-            self.sendButton.enabled = true
+            self.sendButton.isEnabled = true
             self.sendButton.alpha = 1
             self.chatTableViewController?.addStatus("now you can send a message")
         }
         else{
-            self.sendButton.enabled = false
+            self.sendButton.isEnabled = false
         }
     }
     
     //Handle message received from other meeting participant.
-    func chatHandler(chatHandler: ChatHandler, didReceiveMessage message: SfBMessageActivityItem) {
+    func chatHandler(_ chatHandler: ChatHandler, didReceiveMessage message: SfBMessageActivityItem) {
         self.chatTableViewController?.addMessage(message.text,
-                                                 from: (message.sender?.displayName)!, origin:.Participant)
+                                                 from: (message.sender?.displayName)!, origin:.participant)
     }
     
     
@@ -185,27 +185,27 @@ class ChatViewController: UIViewController,ChatHandlerDelegate ,SfBAlertDelegate
     //MARK: -  Additional KVO
     
     // Monitor canLeave property of a conversation to prevent leaving prematurely
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "canLeave") {
-            self.endButton.enabled = (self.chatHandler?.conversation.canLeave)!
+            self.endButton.isEnabled = (self.chatHandler?.conversation.canLeave)!
         }
     }
     
     //MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "chatTable") {
-            self.chatTableViewController = segue.destinationViewController as? ChatTableViewController
+            self.chatTableViewController = segue.destination as? ChatTableViewController
         }
     }
     
     //MARK: - Helper UI
     
-    func handleError(readableErrorDescription:String)  {
-        let alertController:UIAlertController = UIAlertController(title: "ERROR!", message: readableErrorDescription, preferredStyle: .Alert)
+    func handleError(_ readableErrorDescription:String)  {
+        let alertController:UIAlertController = UIAlertController(title: "ERROR!", message: readableErrorDescription, preferredStyle: .alert)
         
-        alertController.addAction(UIAlertAction(title: "Close", style: .Cancel, handler: nil))
-        presentViewController(alertController, animated: true, completion:nil)
+        alertController.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion:nil)
     }
     
     

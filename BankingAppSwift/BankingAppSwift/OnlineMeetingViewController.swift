@@ -20,9 +20,9 @@ import SkypeForBusiness
 class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFieldDelegate, MicrosoftLicenseViewControllerDelegate {
     
     var sfb: SfBApplication?
-    private var conversation: SfBConversation?
-    private var token: String?
-    private var discoveryURI: String?
+    fileprivate var conversation: SfBConversation?
+    fileprivate var token: String?
+    fileprivate var discoveryURI: String?
     
     @IBOutlet var meetingUrl: UITextView!
     @IBOutlet var displayName: UITextField!
@@ -34,18 +34,18 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     override func viewDidLoad() {
         super.viewDidLoad()
         // Setup UI
-        join.titleLabel?.textAlignment = NSTextAlignment.Center
+        join.titleLabel?.textAlignment = NSTextAlignment.center
         displayName.text = getMeetingDisplayName
         displayName.delegate = self
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         // First POST request to fetch meeting URL
         sendPostRequestForMeetingURL()
         
@@ -56,19 +56,19 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     func sendPostRequestForMeetingURL(){
         
         // request to Trusted Application API Service Application endpoint
-        if let url = NSURL(string: getOnlineMeetingRequestURL){
-        let meetingUrlRequest = NSMutableURLRequest(URL: url)
-        meetingUrlRequest.HTTPMethod = "POST"
-        meetingUrlRequest.HTTPBody = "Subject=adhocMeeting&Description=adhocMeeting&AccessLevel=".dataUsingEncoding(NSUTF8StringEncoding)
+        if let url = URL(string: getOnlineMeetingRequestURL){
+        let meetingUrlRequest = NSMutableURLRequest(url: url)
+        meetingUrlRequest.httpMethod = "POST"
+        meetingUrlRequest.httpBody = "Subject=adhocMeeting&Description=adhocMeeting&AccessLevel=".data(using: String.Encoding.utf8)
         
-        SendHttpRequest(meetingUrlRequest as NSURLRequest) { (data, error) in
-            dispatch_async(dispatch_get_main_queue()) {
+        SendHttpRequest(meetingUrlRequest as URLRequest) { (data, error) in
+            DispatchQueue.main.async {
                 do {
                     guard error == nil, let data = data else {
                         throw error!
                     }
                     
-                    let json = try  NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: String]
+                    let json = try  JSONSerialization.jsonObject(with: data as Data, options: []) as! [String: String]
                     self.meetingUrl.text = (json["JoinUrl"])!;
                     
                     print("Successful! meeting URL>> \(json["JoinUrl"])");
@@ -91,26 +91,26 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     func sendPostRequestForTokenAndDiscoveryURI()  {
         
         // request to Trusted Application API Service Application endpoint
-         if let url = NSURL(string: getTokenAndDiscoveryURIRequestURL){
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
+         if let url = URL(string: getTokenAndDiscoveryURIRequestURL){
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "POST"
         let meetintURL = meetingUrl.text!;
-        request.HTTPBody = "ApplicationSessionId=AnonMeeting&AllowedOrigins=http%3a%2f%2flocalhost%2f&MeetingUrl=\(meetintURL)".dataUsingEncoding(NSUTF8StringEncoding)
+        request.httpBody = "ApplicationSessionId=AnonMeeting&AllowedOrigins=http%3a%2f%2flocalhost%2f&MeetingUrl=\(meetintURL)".data(using: String.Encoding.utf8)
         
-        join.enabled = false
-        SendHttpRequest(request as NSURLRequest) { (data, error) in
-            dispatch_async(dispatch_get_main_queue()) {
+        join.isEnabled = false
+        SendHttpRequest(request as URLRequest) { (data, error) in
+            DispatchQueue.main.async {
                 do {
                     guard error == nil, let data = data else {
                         throw error!
                     }
                     
-                    let json = try  NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: String]
+                    let json = try  JSONSerialization.jsonObject(with: data as Data, options: []) as! [String: String]
                     self.discoveryURI = json["DiscoverUri"]!
-                    self.tokenAndDiscoveryURISuccessLabel.textColor = UIColor.darkGrayColor()
+                    self.tokenAndDiscoveryURISuccessLabel.textColor = UIColor.darkGray
                     self.tokenAndDiscoveryURISuccessLabel.text = "Success! Please join online meeting"
                     self.token = json["Token"]
-                    self.join.enabled = true
+                    self.join.isEnabled = true
                     self.join.alpha = 1
                     self.activityIndicatorForServiceApplicationResponse.stopAnimating()
                     print("Successful! token and discovery URI>> \(json["Token"]),\(json["DiscoverUri"])");
@@ -131,61 +131,61 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     
     
     // Helper function to send request
-    func SendHttpRequest(request:NSURLRequest, withBlock completionHandler:  completionBlock) {
-        let  sessionObject: NSURLSession = NSURLSession.sharedSession()
-        let task = sessionObject.dataTaskWithRequest(request) {  (data, response, error) in
-            let httpResponse = response as? NSHTTPURLResponse
+    func SendHttpRequest(_ request:URLRequest, withBlock completionHandler:  @escaping completionBlock) {
+        let  sessionObject: URLSession = URLSession.shared
+        let task = sessionObject.dataTask(with: request, completionHandler: {  (data, response, error) in
+            let httpResponse = response as? HTTPURLResponse
             let statusCode = httpResponse?.statusCode
             print("statusCode-aas>\(statusCode)")
             
             if (statusCode == 200 ) {
                 
-                completionHandler(data: data, error: nil)
+                completionHandler(data, nil)
                 
             }
                 
             else{
                 if(error == nil){
                     let error:NSError = NSError(domain: "statusCode -\(statusCode)!", code: statusCode!, userInfo:nil)
-                    completionHandler(data: nil,error: error as NSError?)
+                    completionHandler(nil,error as NSError?)
                 }
                 else {
-                    completionHandler(data: nil,error: error as NSError?)
+                    completionHandler(nil,error as NSError?)
                 }
                 
             }
-        }
+        }) 
         
         task.resume()
     }
     
     //MARK: User button actions
     // press "Join online meeting" button to join text or video online meeting
-    @IBAction func JoinOnlineMeetingPressed(sender: AnyObject) {
-        let alertController:UIAlertController = UIAlertController(title: "Join online meeting", message: nil, preferredStyle: .ActionSheet)
+    @IBAction func JoinOnlineMeetingPressed(_ sender: AnyObject) {
+        let alertController:UIAlertController = UIAlertController(title: "Join online meeting", message: nil, preferredStyle: .actionSheet)
         
         
-        alertController.addAction(UIAlertAction(title: "Join online chat", style: .Default, handler: { (action:UIAlertAction) in
+        alertController.addAction(UIAlertAction(title: "Join online chat", style: .default, handler: { (action:UIAlertAction) in
             self.joinOnlineChat()
         }))
         
-        alertController.addAction(UIAlertAction(title: "Join online video chat", style: .Default, handler: { (action:UIAlertAction) in
+        alertController.addAction(UIAlertAction(title: "Join online video chat", style: .default, handler: { (action:UIAlertAction) in
             self.joinOnlineVideoChat()
         }))
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = sender as? UIView
             popoverController.sourceRect = sender.bounds
         }
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func joinOnlineChat()  {
         if(didJoinMeeting()){
-            self.performSegueWithIdentifier("joinOnlineChat", sender: nil)
+            self.performSegue(withIdentifier: "joinOnlineChat", sender: nil)
         }
     }
     
@@ -195,21 +195,21 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
         if let sfb = sfb{
             let config = sfb.configurationManager
             let key = "AcceptedVideoLicense"
-            let defaults = NSUserDefaults.standardUserDefaults()
+            let defaults = UserDefaults.standard
             
-            if defaults.boolForKey(key) {
+            if defaults.bool(forKey: key) {
                 config.setEndUserAcceptedVideoLicense()
                 if(didJoinMeeting()){
-                    self.performSegueWithIdentifier("joinOnlineAudioVideoChat", sender: nil)
+                    self.performSegue(withIdentifier: "joinOnlineAudioVideoChat", sender: nil)
                 }
                 
             } else {
                 
                 
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MicrosoftLicenseViewController") as! MicrosoftLicenseViewController
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "MicrosoftLicenseViewController") as! MicrosoftLicenseViewController
                 vc.delegate = self
                 
-                self.presentViewController(vc, animated: true, completion: nil)
+                self.present(vc, animated: true, completion: nil)
             }
             
         }
@@ -223,7 +223,7 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     func didJoinMeeting() -> Bool {
         do {
             
-            let session = try sfb!.joinMeetingAnonymousWithDiscoverUrl(NSURL(string: discoveryURI!)!, authToken: token!, displayName: displayName.text!)
+            let session = try sfb!.joinMeetingAnonymous(withDiscover: URL(string: discoveryURI!)!, authToken: token!, displayName: displayName.text!)
             conversation = session.conversation
             conversation?.alertDelegate = self
             return true
@@ -235,17 +235,17 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     }
     
     //MARK: Segue navigation functions
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "joinOnlineChat"){
-            guard let destination = segue.destinationViewController as? ChatViewController else {
+            guard let destination = segue.destination as? ChatViewController else {
                 return
             }
             destination.conversation = self.conversation
             
         }
         else if(segue.identifier == "joinOnlineAudioVideoChat"){
-            guard let destination = segue.destinationViewController as? VideoViewController else {
+            guard let destination = segue.destination as? VideoViewController else {
                 return
             }
             destination.deviceManagerInstance = sfb!.devicesManager
@@ -261,33 +261,33 @@ class OnlineMeetingViewController: UIViewController, SfBAlertDelegate,UITextFiel
     
     //MARK: Lifecycle and helper functions
     // reset UI when leaving this screen
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         displayName.text = displayName.placeholder
-        meetingUrl.textColor = UIColor.redColor()
+        meetingUrl.textColor = UIColor.red
         meetingUrl.text = "Waiting for online meeting URL!"
-        tokenAndDiscoveryURISuccessLabel.textColor = UIColor.redColor()
+        tokenAndDiscoveryURISuccessLabel.textColor = UIColor.red
         tokenAndDiscoveryURISuccessLabel.text = "Waiting for token and discovery URI!"
     }
     
     // Hide Keyboard on return.
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
     
     //MARK: SfBAlertDelegate alert function
-    func didReceiveAlert(alert: SfBAlert) {
+    func didReceive(_ alert: SfBAlert) {
        alert.showSfBAlertInController(self)
     }
     
-    func controller(controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {
+    func controller(_ controller: MicrosoftLicenseViewController, didAcceptLicense acceptedLicense: Bool) {
         if(acceptedLicense){
             if let sfb = self.sfb{
                 let config = sfb.configurationManager
                 config.setEndUserAcceptedVideoLicense()
                 if(didJoinMeeting()){
-                    self.performSegueWithIdentifier("joinOnlineAudioVideoChat", sender: nil)
+                    self.performSegue(withIdentifier: "joinOnlineAudioVideoChat", sender: nil)
                 }
             }
         }

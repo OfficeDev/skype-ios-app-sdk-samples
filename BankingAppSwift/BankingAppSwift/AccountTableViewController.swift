@@ -16,16 +16,16 @@ class AccountTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        let dateFormatter: NSDateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
         dateFormatter.dateFormat = "MMMM dd, yyyy"
-        self.navigationItem.prompt = dateFormatter.stringFromDate(NSDate())
+        self.navigationItem.prompt = dateFormatter.string(from: Date())
 }
 
-    @IBAction func logOff(sender: AnyObject) {
+    @IBAction func logOff(_ sender: AnyObject) {
      
-        self.parentViewController?.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.parentViewController?.navigationController?.popViewControllerAnimated(true)
+        self.parent?.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.parent?.navigationController?.popViewController(animated: true)
         
     }
     override func didReceiveMemoryWarning() {

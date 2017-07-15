@@ -11,9 +11,9 @@ import UIKit
  *  They can be status message, chat from self, or chat from others
  */
 enum ChatSource : Int {
-    case Status
-    case MySelf
-    case Participant
+    case status
+    case mySelf
+    case participant
 }
 
 class ChatMessage: NSObject {
@@ -49,49 +49,49 @@ class ChatTableViewController: UITableViewController {
 //MARK: - ACTIONS
     
     // Add a status type message
-    func addStatus(message: String) {
+    func addStatus(_ message: String) {
         let newMessage: ChatMessage = ChatMessage()
         newMessage.chatMessage = message
-        newMessage.chatSource = .Status
-        self.myDataSource.addObject(newMessage)
+        newMessage.chatSource = .status
+        self.myDataSource.add(newMessage)
         self.updateTable()
     }
     
     
     // Add a chat message
-    func addMessage(message: String, from name: String, origin source: ChatSource) {
+    func addMessage(_ message: String, from name: String, origin source: ChatSource) {
         let newMessage: ChatMessage = ChatMessage()
         newMessage.chatDisplayName = name
         newMessage.chatMessage = message
         newMessage.chatSource = source
-        self.myDataSource.addObject(newMessage)
+        self.myDataSource.add(newMessage)
         self.updateTable()
     }
     
     func updateTable() {
         self.tableView.reloadData()
-        let row: NSIndexPath = NSIndexPath(forRow: self.myDataSource.count - 1, inSection: 0)
-        self.tableView.scrollToRowAtIndexPath(row, atScrollPosition: .Top, animated: true)
+        let row: IndexPath = IndexPath(row: self.myDataSource.count - 1, section: 0)
+        self.tableView.scrollToRow(at: row, at: .top, animated: true)
     }
     
     
 // MARK: - TABLE VIEW DATA SOURCE
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.myDataSource.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chatMessage: ChatMessage = self.myDataSource[indexPath.row] as! ChatMessage
         var cell: UITableViewCell
         switch (chatMessage.chatSource!) {
             
-        case .Status:
-            cell = tableView.dequeueReusableCellWithIdentifier(StatusCellIdentifier, forIndexPath: indexPath)
-        case .MySelf:
-            cell = tableView.dequeueReusableCellWithIdentifier(SelfCellIdentifier, forIndexPath: indexPath)
-        case .Participant:
-            cell = tableView.dequeueReusableCellWithIdentifier(ParticipantCellIdentifier, forIndexPath: indexPath)
+        case .status:
+            cell = tableView.dequeueReusableCell(withIdentifier: StatusCellIdentifier, for: indexPath)
+        case .mySelf:
+            cell = tableView.dequeueReusableCell(withIdentifier: SelfCellIdentifier, for: indexPath)
+        case .participant:
+            cell = tableView.dequeueReusableCell(withIdentifier: ParticipantCellIdentifier, for: indexPath)
             
         }
         
@@ -99,8 +99,8 @@ class ChatTableViewController: UITableViewController {
         return cell
     }
     
-    func setUpCell(cell: UITableViewCell, withChatMessage message: ChatMessage) {
-        if message.chatSource == .Status {
+    func setUpCell(_ cell: UITableViewCell, withChatMessage message: ChatMessage) {
+        if message.chatSource == .status {
             cell.textLabel?.text = message.chatMessage
         }
         else {
