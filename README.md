@@ -7,3 +7,6 @@ This sample will help you get started with Skype for Business SDK API. It uses t
   Audio/Video and text chat features into the sample application.
 ## Guest Meeting Join sample
 The [Guest meeting join](https://github.com/OfficeDev/skype-ios-app-sdk-samples/tree/master/GuestMeetingJoin) sample provides further technology details of how to join a guest meeting, start chatting, and connect to the audio/video stream of the meeting.
+
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
