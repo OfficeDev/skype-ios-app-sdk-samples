@@ -2,7 +2,7 @@
 
 This sample app illustrates how to integrate the Skype for Business text chat, audio and video into an iOS application.
 
-##Prerequisites
+## Prerequisites
 
 1. Download the [**Skype for Business App SDK for iOS**](https://www.microsoft.com/en-us/download/confirmation.aspx?id=51962). 
 
@@ -15,11 +15,11 @@ This sample app illustrates how to integrate the Skype for Business text chat, a
 | NO | TRUE/FALSE    |    Obtain SfB Server Meeting Url  |
 
     
->[!NOTE]
+>**NOTE**:
 Please read [Developing Trusted Application API applications for Skype for Business Online](https://msdn.microsoft.com/en-us/skype/trusted-application-api/docs/developingapplicationsforsfbonline) for more details on Trusted Application API- based service application.
 This service application will provide RESTful Trusted Application API endpoint to creates ad-hoc meetings, provides meeting join Urls, discovery Uris, and anonymous meeting tokens that will be used to run this sample.
 
-##How to get started
+## How to get started
 
 1. Clone or copy the sample Banking App to your local machine.
 
