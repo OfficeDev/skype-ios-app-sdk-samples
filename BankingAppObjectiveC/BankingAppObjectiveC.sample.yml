@@ -1,0 +1,19 @@
+### YamlMime:Sample
+sample:
+- name: Banking App for iOS (Objective C)
+  path: BankingAppObjectiveC
+  description: This sample app illustrates how to integrate the Skype for Business text chat, audio and video into an iOS application.
+  readme: ''
+  generateZip: FALSE
+  isLive: TRUE
+  technologies:
+  - Office Add-in
+  azureDeploy: ''
+  author: JohnAustin-MSFT
+  platforms: []
+  languages:
+  - C#
+  extensions:
+    products:
+    - Skype for Business
+    scenarios: []
