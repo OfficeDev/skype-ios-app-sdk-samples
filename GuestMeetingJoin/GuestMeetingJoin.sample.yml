@@ -1,0 +1,19 @@
+### YamlMime:Sample
+sample:
+- name: Skype for Business IOS SDK - Guest Meeting Join sample
+  path: GuestMeetingJoin
+  description: The Guest meeting join sample provides further technology details of you how to join a guest meeting, start chatting, and connect to the audio/video stream of the meeting.
+  readme: ''
+  generateZip: FALSE
+  isLive: TRUE
+  technologies:
+  - Office Add-in
+  azureDeploy: ''
+  author: JohnAustin-MSFT
+  platforms: []
+  languages:
+  - C#
+  extensions:
+    products:
+    - Skype for Business
+    scenarios: []
