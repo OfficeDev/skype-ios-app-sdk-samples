@@ -1,3 +1,16 @@
+---
+topic: sample
+products:
+- Skype
+- Office 365
+languages:
+- Swift
+extensions:
+  contentType: samples
+  createdDate: 4/21/2016 10:21:45 AM
+  scenarios:
+  - Mobile
+---
 # skype-ios-app-sdk-samples
 
 ## Banking App Sample
