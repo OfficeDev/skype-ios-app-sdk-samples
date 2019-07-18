@@ -1,10 +1,10 @@
 ---
 topic: sample
 products:
-- Skype
-- Office 365
+- skype
+- office-365
 languages:
-- Swift
+- swift
 extensions:
   contentType: samples
   createdDate: 4/21/2016 10:21:45 AM
