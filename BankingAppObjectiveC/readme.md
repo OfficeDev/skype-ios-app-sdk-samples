@@ -1,3 +1,16 @@
+---
+page_type: sample
+products:
+- skype
+- office-365
+languages:
+- swift
+extensions:
+  contentType: samples
+  createdDate: 4/21/2016 10:21:45 AM
+  scenarios:
+  - Mobile
+---
 # Banking App for iOS (Objective C)
 
 This sample app illustrates how to integrate the Skype for Business text chat, audio and video into an iOS application.
