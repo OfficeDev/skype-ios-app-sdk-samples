@@ -1,8 +1,21 @@
+---
+page_type: sample
+products:
+- skype
+- office-365
+languages:
+- swift
+extensions:
+  contentType: samples
+  createdDate: 4/21/2016 10:21:45 AM
+  scenarios:
+  - Mobile
+---
 # Skype for Business IOS SDK - Guest Meeting Join sample
 
 The Guest meeting join sample provides further technology details of you how to join a guest meeting, start chatting, and connect to the audio/video stream of the meeting.
 
-##Prerequisites
+## Prerequisites
 
 1. Download the [**Skype for Business App SDK for iOS**](https://www.microsoft.com/en-us/download/confirmation.aspx?id=51962).
 
