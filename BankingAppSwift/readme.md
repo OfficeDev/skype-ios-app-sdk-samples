@@ -1,8 +1,21 @@
+---
+page_type: sample
+products:
+- skype
+- office-365
+languages:
+- swift
+extensions:
+  contentType: samples
+  createdDate: 4/21/2016 10:21:45 AM
+  scenarios:
+  - Mobile
+---
 # Banking App for iOS (Swift)
 
 This sample app illustrates how to integrate the Skype for Business text chat, audio and video into an iOS application.
 
-##Prerequisites
+## Prerequisites
 
 1. Download the [**Skype for Business App SDK for iOS**](https://www.microsoft.com/en-us/download/confirmation.aspx?id=51962). 
 
