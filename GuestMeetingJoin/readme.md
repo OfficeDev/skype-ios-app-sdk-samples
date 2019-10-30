@@ -21,7 +21,7 @@ The Guest meeting join sample provides further technology details of you how to 
 
 2. Obtain a [**meeting URL**](https://msdn.microsoft.com/en-us/skype/appsdk/getmeetingurl) for a Skype Business meeting.
 
-##How to get started
+## How to get started
 
 1.  Clone or copy the Guest Meeting Join sample app to your local machine.
 
@@ -50,7 +50,7 @@ Once you join the meeting, you enter the conversation screen. On this screen, yo
  - The "held/Unheld" toggle button to hold call.
  - The "Participants" button that takes you to the **Participants Screen**.
  
-###Participants Screen
+### Participants Screen
  
 Here you can view the list of meeting participants identified by name, along with their live video stream (if available).
 - Participants Screen shows:
