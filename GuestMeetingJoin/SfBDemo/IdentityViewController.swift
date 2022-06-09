@@ -1,6 +1,6 @@
 //+----------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
-//
+// Last updated: 06/09/2022
 // Module name: IdentityViewController.swift
 //----------------------------------------------------------------
 
