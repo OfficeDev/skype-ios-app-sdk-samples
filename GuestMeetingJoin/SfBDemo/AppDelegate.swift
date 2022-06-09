@@ -1,6 +1,6 @@
 //+----------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
-//
+// Updated 06/09/2022
 // Module name: AppDelegate.swift
 //----------------------------------------------------------------
 
@@ -53,4 +53,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
