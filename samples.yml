@@ -1,0 +1,69 @@
+samples:
+    - name: Banking App for iOS (Objective C)
+      relPath: BankingAppObjectiveC/
+      description: This sample app illustrates how to integrate the Skype for Business text chat, audio and video into an iOS application.
+      readme: https://github.com/OfficeDev/skype-ios-app-sdk-samples/blob/master/BankingAppObjectiveC/readme.md
+      screenshots:
+          - relPath:
+            description:
+            alt:
+          - relPath:
+            description:
+            alt:
+      generateZip: true
+      indexed: true
+      reviewOnly: true
+      tags:
+          - skype
+          - BankingAppObjectiveC
+          - ios
+          - Banking
+      azureDeploy:
+      tryNow:
+      author: aasveenkaur
+---
+samples:
+    - name: Banking App for iOS (Swift)
+      relPath: BankingAppSwift/
+      description: This sample app illustrates how to integrate the Skype for Business text chat, audio and video into an iOS application.
+      readme: https://github.com/OfficeDev/skype-ios-app-sdk-samples/blob/master/BankingAppSwift/readme.md
+      screenshots:
+          - relPath:
+            description:
+            alt:
+          - relPath:
+            description:
+            alt:
+      generateZip: true
+      indexed: true
+      reviewOnly: true
+      tags:
+          - BankingAppSwift
+          - ios
+          - skype
+      azureDeploy:
+      tryNow:
+      author: aasveenkaur
+---
+samples:
+    - name: Skype for Business IOS SDK - Guest Meeting Join sample
+      relPath: GuestMeetingJoin/
+      description: sample provides further technology details of you how to join a guest meeting, start chatting, and connect to the audio/video stream of the meeting.
+      readme: https://github.com/OfficeDev/skype-ios-app-sdk-samples/blob/master/GuestMeetingJoin/readme.md
+      screenshots:
+          - relPath:
+            description:
+            alt:
+          - relPath:
+            description:
+            alt:
+      generateZip: true
+      indexed: true
+      reviewOnly: true
+      tags:
+          - skype
+          - GuestMeetingJoin
+          - iOS
+      azureDeploy:
+      tryNow: 
+      author: aasveenkaur
